@@ -13,8 +13,35 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Utilities
+const fs = require( 'fs' );
 const path = require('path');
 const { globSync } = require('glob');
+
+/**
+ * Read all file entries in a directory.
+ * @param {string} dir Directory to read.
+ * @return {Object} Object with file entries.
+ */
+const readAllFileEntries = ( dir ) => {
+	const entries = {};
+
+	if ( ! fs.existsSync( dir ) ) {
+		return entries;
+	}
+
+	if ( fs.readdirSync( dir ).length === 0 ) {
+		return entries;
+	}
+
+	fs.readdirSync( dir ).forEach( ( fileName ) => {
+		const fullPath = `${ dir }/${ fileName }`;
+		if ( ! fs.lstatSync( fullPath ).isDirectory() && ! fileName.startsWith( '_' ) ) {
+			entries[ fileName.replace( /\.[^/.]+$/, '' ) ] = fullPath;
+		}
+	} );
+
+	return entries;
+};
 
 // Environment
 const isProduction = process.env.NODE_ENV === 'production';
