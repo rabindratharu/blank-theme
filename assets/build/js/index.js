@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",(function(){var e=document.querySelector("input.wp-block-search__input");e&&(e.addEventListener("focus",(function(){this.setAttribute("data-placeholder",this.placeholder),this.placeholder=""})),e.addEventListener("blur",(function(){this.placeholder=this.getAttribute("data-placeholder")})))}));
