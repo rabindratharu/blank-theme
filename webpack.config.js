@@ -46,7 +46,8 @@ const readAllFileEntries = ( dir ) => {
 // Environment
 const isProduction = process.env.NODE_ENV === 'production';
 
-module.exports = {
+// Base shared config
+const baseConfig = {
   ...defaultConfig,
   entry: {
     'js/index': path.resolve(process.cwd(), 'assets/src/js', 'index.js'),
@@ -129,3 +130,5 @@ module.exports = {
     ],
   },
 };
+
+module.exports = [ baseConfig ];
