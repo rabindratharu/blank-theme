@@ -1,6 +1,6 @@
 <?php
 /**
- * Register Meta Boxes
+ * Utilies Functions
  *
  * @package Blank_Theme
  */
