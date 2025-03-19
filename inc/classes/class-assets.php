@@ -38,219 +38,117 @@ class Assets {
 	 * @access protected
 	 */
 	protected function setup_hooks() {
-		// Hook to register styles
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
-
-		// Hook to register scripts
+		
+		/**
+		 * Actions
+		 */
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
-
-		add_action( 'init', [ $this, 'enqueue_block_styles' ] );
-	}
-
-	/**
-	 * Register styles.
-	 *
-	 * This method registers the theme's styles.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
-	public function register_styles() {
-		// Register the theme's public stylesheet.
-		wp_register_style(
-			'select2',
-			BLANK_THEME_BUILD_URI . '/library/select2.min.css',
-			// Dependencies.
-			[],
-			// Version.
-			'4.1.0',
-			// Media.
-			'all'
-		);
-
-		wp_register_style(
-			'public-css',
-			BLANK_THEME_BUILD_URI . '/css/public.css',
-			// Dependencies.
-			[],
-			// Version.
-			filemtime( BLANK_THEME_BUILD_PATH . '/css/public.css' ),
-			// Media.
-			'all'
-		);
-
-		// Register the theme's filter stylesheet.
-		wp_register_style(
-			'filter-css',
-			BLANK_THEME_BUILD_URI . '/css/filter.css',
-			// Dependencies.
-			[],
-			// Version.
-			filemtime( BLANK_THEME_BUILD_PATH . '/css/filter.css' ),
-			// Media.
-			'all'
-		);
-
-		wp_register_style(
-			'popup-css',
-			BLANK_THEME_BUILD_URI . '/css/popup.css',
-			// Dependencies.
-			[],
-			// Version.
-			filemtime( BLANK_THEME_BUILD_PATH . '/css/popup.css' ),
-			// Media.
-			'all'
-		);
-
-		// Enqueue the stylesheet.
-		wp_enqueue_style( 'public-css' );
-
-		// If search page.
-		if ( is_search() ) {
-			wp_enqueue_style( 'filter-css' );
-		}
-
-		/*
-		* Load additional block styles.
-		*/
-		$styled_blocks = ['button','list'];
-		foreach ( $styled_blocks as $block_name ) {
-			$args = array(
-				'handle' => "blank-theme-$block_name",
-				'src'    => get_theme_file_uri( "build/css/core/$block_name.css" ),
-			);
-			wp_enqueue_block_style( "core/$block_name", $args );
-		}
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
 	}
 
 	/**
 	 * Register scripts.
 	 *
-	 * This method registers the theme's scripts.
-	 *
-	 * @since 1.0.0
-	 * @access public
+	 * @action wp_enqueue_scripts
 	 */
 	public function register_scripts() {
-		// Register the theme's public script.
-		wp_register_script(
-			// Handle.
-			'select2',
-			// Source.
-			BLANK_THEME_BUILD_URI . '/library/select2.min.js',
-			// Dependencies.
-			['jquery'],
-			// Version.
-			'4.1.0',
-			// Enqueue in footer.
-			true
-		);
 
-		wp_register_script(
-			// Handle.
-			'public-js',
-			// Source.
-			BLANK_THEME_BUILD_URI . '/js/public.js',
-			// Dependencies.
-			[],
-			// Version.
-			filemtime( BLANK_THEME_BUILD_PATH . '/js/public.js' ),
-			// Enqueue in footer.
-			true
-		);
+		$this->register_script( 'blank-theme-main', 'js/main.js', [ 'jquery' ] );
 
-		wp_register_script(
-			// Handle.
-			'search-js',
-			// Source.
-			BLANK_THEME_BUILD_URI . '/js/search.js',
-			// Dependencies.
-			['public-js'],
-			// Version.
-			filemtime( BLANK_THEME_BUILD_PATH . '/js/search.js' ),
-			// Enqueue in footer.
-			true
-		);
-
-		wp_register_script(
-			// Handle.
-			'popup-js',
-			// Source.
-			BLANK_THEME_BUILD_URI . '/js/popup.js',
-			// Dependencies.
-			['jquery'],
-			// Version.
-			filemtime( BLANK_THEME_BUILD_PATH . '/js/popup.js' ),
-			// Enqueue in footer.
-			true
-		);
-
-		// Enqueue the script.
-		wp_enqueue_script( 'public-js' );
-
-		// If search page.
-		if ( is_search() ) {
-			wp_enqueue_script( 'search-js' );
-			wp_localize_script( 'search-js', 'search_settings',
-				[
-					'search_api' 	=> home_url( '/wp-json/blank-theme/v2/search' ),
-					'rest_api' 		=> home_url( 'wp-json/wp/v2/' ),
-					'root_url'     	=> home_url('/?s='.sanitize_text_field(get_search_query())),
-					'search_text'  	=> sanitize_text_field(get_search_query()),
-				]
-			);
-		}
+		wp_enqueue_script( 'blank-theme-main' );
 	}
+
 
 	/**
 	 * Register styles.
 	 *
-	 * This method registers the theme's styles.
-	 *
-	 * @since 1.0.0
-	 * @access public
+	 * @action wp_enqueue_scripts
 	 */
-	public function enqueue_block_styles() {
+	public function register_styles() {
 
-		/*
-		* Load additional block styles.
-		*/
-		$styled_blocks = ['button','list'];
-		foreach ( $styled_blocks as $block_name ) {
-			$args = array(
-				'handle' => "blank-theme-$block_name",
-				'src'    => get_theme_file_uri( "build/css/core/$block_name.css" ),
-			);
-			wp_enqueue_block_style( "core/$block_name", $args );
-		}
+		$this->register_style( 'blank-theme-main', 'css/main.css' );
+		
+		wp_enqueue_style( 'blank-theme-main' );
 	}
 
 	/**
-	 * Enqueues an individual block stylesheet based on a given block
-	 * namespace and slug.
+	 * Get asset dependencies and version info from {handle}.asset.php if exists.
 	 *
-	 * @since 1.0.0
+	 * @param string $file File name.
+	 * @param array  $deps Script dependencies to merge with.
+	 * @param string $ver  Asset version string.
+	 *
+	 * @return array
 	 */
-	private function enqueueStyle(string $namespace, string $slug): void
-	{
-		// Build a relative path and URL string.
-		$relative = "public/css/{$namespace}/{$slug}";
+	public function get_asset_meta( $file, $deps = array(), $ver = false ) {
+		$asset_meta_file = sprintf( '%s/js/%s.asset.php', untrailingslashit( BLANK_THEME_BUILD_DIR ), basename( $file, '.' . pathinfo( $file )['extension'] ) );
+		$asset_meta      = is_readable( $asset_meta_file )
+			? require $asset_meta_file
+			: array(
+				'dependencies' => array(),
+				'version'      => $this->get_file_version( $file, $ver ),
+			);
 
-		// Bail if the asset file doesn't exist.
-		if (! file_exists(get_parent_theme_file_path("{$relative}.asset.php"))) {
-			return;
+		$asset_meta['dependencies'] = array_merge( $deps, $asset_meta['dependencies'] );
+
+		return $asset_meta;
+	}
+
+	/**
+	 * Register a new script.
+	 *
+	 * @param string           $handle    Name of the script. Should be unique.
+	 * @param string|bool      $file       script file, path of the script relative to the assets/build/ directory.
+	 * @param array            $deps      Optional. An array of registered script handles this script depends on. Default empty array.
+	 * @param string|bool|null $ver       Optional. String specifying script version number, if not set, filetime will be used as version number.
+	 * @param bool             $in_footer Optional. Whether to enqueue the script before </body> instead of in the <head>.
+	 *                                    Default 'false'.
+	 * @return bool Whether the script has been registered. True on success, false on failure.
+	 */
+	public function register_script( $handle, $file, $deps = array(), $ver = false, $in_footer = true ) {
+
+		$src        = sprintf( BLANK_THEME_BUILD_URI . '/%s', $file );
+		$asset_meta = $this->get_asset_meta( $file, $deps );
+
+		return wp_register_script( $handle, $src, $asset_meta['dependencies'], $asset_meta['version'], $in_footer );
+	}
+
+	/**
+	 * Register a CSS stylesheet.
+	 *
+	 * @param string           $handle Name of the stylesheet. Should be unique.
+	 * @param string|bool      $file    style file, path of the script relative to the assets/build/ directory.
+	 * @param array            $deps   Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
+	 * @param string|bool|null $ver    Optional. String specifying script version number, if not set, filetime will be used as version number.
+	 * @param string           $media  Optional. The media for which this stylesheet has been defined.
+	 *                                 Default 'all'. Accepts media types like 'all', 'print' and 'screen', or media queries like
+	 *                                 '(orientation: portrait)' and '(max-width: 640px)'.
+	 *
+	 * @return bool Whether the style has been registered. True on success, false on failure.
+	 */
+	public function register_style( $handle, $file, $deps = array(), $ver = false, $media = 'all' ) {
+
+		$src        = sprintf( BLANK_THEME_BUILD_URI . '/%s', $file );
+		$asset_meta = $this->get_asset_meta( $file, $deps );
+
+		return wp_register_style( $handle, $src, $asset_meta['dependencies'], $asset_meta['version'], $media );
+	}
+
+	/**
+	 * Get file version.
+	 *
+	 * @param string             $file File path.
+	 * @param int|string|boolean $ver  File version.
+	 *
+	 * @return bool|false|int
+	 */
+	public function get_file_version( $file, $ver = false ) {
+		if ( ! empty( $ver ) ) {
+			return $ver;
 		}
 
-		// Get the asset file.
-		$asset = include get_parent_theme_file_path("{$relative}.asset.php");
+		$file_path = sprintf( '%s/%s', BLANK_THEME_BUILD_DIR, $file );
 
-		// Register the block style.
-		wp_enqueue_block_style("{$namespace}/{$slug}", [
-			'handle' => "blank-theme-{$namespace}-{$slug}",
-			'src'    => get_parent_theme_file_uri("{$relative}.css"),
-			'path'   => get_parent_theme_file_path("{$relative}.css"),
-			'deps'   => $asset['dependencies'],
-			'ver'    => $asset['version']
-		]);
+		return file_exists( $file_path ) ? filemtime( $file_path ) : false;
 	}
 }
