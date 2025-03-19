@@ -13,7 +13,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // Utilities
-const fs = require( 'fs' );
+const fs = require('fs');
 const path = require('path');
 const { globSync } = require('glob');
 
@@ -22,25 +22,29 @@ const { globSync } = require('glob');
  * @param {string} dir Directory to read.
  * @return {Object} Object with file entries.
  */
-const readAllFileEntries = ( dir ) => {
-	const entries = {};
+const readAllFileEntries = (dir) => {
+  const entries = {};
 
-	if ( ! fs.existsSync( dir ) ) {
-		return entries;
-	}
+  if (!fs.existsSync(dir)) {
+    console.log(`[DEBUG] Directory ${dir} does not exist.`);
+    return entries;
+  }
 
-	if ( fs.readdirSync( dir ).length === 0 ) {
-		return entries;
-	}
+  const files = fs.readdirSync(dir);
+  if (files.length === 0) {
+    console.log(`[DEBUG] No files found in ${dir}.`);
+    return entries;
+  }
 
-	fs.readdirSync( dir ).forEach( ( fileName ) => {
-		const fullPath = `${ dir }/${ fileName }`;
-		if ( ! fs.lstatSync( fullPath ).isDirectory() && ! fileName.startsWith( '_' ) ) {
-			entries[ fileName.replace( /\.[^/.]+$/, '' ) ] = fullPath;
-		}
-	} );
+  files.forEach((fileName) => {
+    const fullPath = `${dir}/${fileName}`;
+    if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
+      entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
+    }
+  });
 
-	return entries;
+  console.log(`[DEBUG] Entries for ${dir}:`, entries);
+  return entries;
 };
 
 // Environment
@@ -49,15 +53,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 // Base shared config
 const baseConfig = {
   ...defaultConfig,
-  entry: {
-    'js/index': path.resolve(process.cwd(), 'assets/src/js', 'index.js'),
-    'css/public': path.resolve(process.cwd(), 'assets/src/css', 'public.css'),
-  },
-  output: {
-    path: path.resolve(process.cwd(), 'assets/build'),
-    filename: '[name].js',
-    chunkFilename: '[name].js',
-  },
   module: {
     rules: [
       {
@@ -84,10 +79,7 @@ const baseConfig = {
     ],
   },
   plugins: [
-    ...defaultConfig.plugins.filter((filter) => !(filter instanceof RtlCssPlugin)),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
+    ...defaultConfig.plugins.filter((plugin) => !(plugin instanceof RtlCssPlugin)),
     new RemoveEmptyScriptsPlugin({
       stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
     }),
@@ -131,4 +123,37 @@ const baseConfig = {
   },
 };
 
-module.exports = [ baseConfig ];
+// Styles configuration with CSS-specific plugins
+const stylesConfig = {
+  ...baseConfig,
+  entry: () => readAllFileEntries('./assets/src/css'),
+ output: {
+   path: path.resolve(process.cwd(), 'assets', 'build'), // Output directory is 'assets/build'
+   filename: 'css/[name].js', // This will be removed by RemoveEmptyScriptsPlugin
+   chunkFilename: 'css/[name].js',
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css', // CSS files should go directly into output.path
+    }),
+    new RemoveEmptyScriptsPlugin({
+      stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
+    }),
+    new RtlCssPlugin({
+      filename: 'css/[name]-rtl.css', // RTL files should also go into output.path
+    }),
+  ],
+};
+
+// Scripts configuration
+const scriptsConfig = {
+  ...baseConfig,
+  entry: () => readAllFileEntries('./assets/src/js'),
+ output: {
+   path: path.resolve(process.cwd(), 'assets', 'build'), // Output directory is 'assets/build'
+   filename: 'js/[name].js', // This will be removed by RemoveEmptyScriptsPlugin
+   chunkFilename: 'js/[name].js',
+  },
+};
+
+module.exports = [baseConfig,stylesConfig,scriptsConfig];
