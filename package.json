@@ -10,7 +10,7 @@
 		"build:pot": "grunt i18n",
 		"build:zip": "grunt release",
 		"start": "npm run build:dev",
-		"build": "npm run build:prod && npm run init"
+		"build": "npm run build:prod"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.26.10",

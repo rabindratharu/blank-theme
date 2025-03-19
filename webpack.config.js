@@ -15,7 +15,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // Utilities
 const fs = require('fs');
 const path = require('path');
-const { globSync } = require('glob');
 
 /**
  * Read all file entries in a directory.
@@ -132,7 +131,8 @@ const stylesConfig = {
    filename: 'css/[name].js', // This will be removed by RemoveEmptyScriptsPlugin
    chunkFilename: 'css/[name].js',
   },
-  plugins: [
+
+	plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].css', // CSS files should go directly into output.path
     }),
