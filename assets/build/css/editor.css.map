@@ -1,0 +1,1 @@
+{"version":3,"file":"editor.css","mappings":";;;AAAA;;;EAAA;AAIA;EACC;EACA;AACD,C","sources":["webpack://blank-theme/./assets/src/css/editor.css"],"sourcesContent":["/*\n * Link styles\n * https://github.com/WordPress/gutenberg/issues/42319\n */\na {\n\ttext-decoration-thickness: 1px !important;\n\ttext-underline-offset: .1em;\n}\n"],"names":[],"sourceRoot":""}

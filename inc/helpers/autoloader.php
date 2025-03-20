@@ -2,7 +2,7 @@
 /**
  * Autoloader file for plugin.
  *
- * @package Blank-Theme
+  * @package Blank-Theme
  */
 
 namespace Blank_Theme\Inc\Helpers;

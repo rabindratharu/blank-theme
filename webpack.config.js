@@ -123,7 +123,7 @@ const sharedConfig = {
 // Generate a webpack config which includes setup for CSS extraction.
 const styles = {
 	...sharedConfig,
-	entry: () => readAllFileEntries('./assets/src/sass'),
+	entry: () => readAllFileEntries('./assets/src/css'),
 	output: {
 		...sharedConfig.output,
 		path: path.resolve(process.cwd(), 'assets', 'build', 'css'), // Move CSS output to assets/build/css
@@ -151,6 +151,10 @@ const assets = {
 				{
 					from: './assets/src/fonts',
 					to: 'fonts', // Fonts go into assets/build/fonts
+				},
+				{
+					from: './assets/src/images',
+					to: 'images', // Images go into assets/build/images
 				},
 			],
 		}),

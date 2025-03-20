@@ -22,7 +22,7 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package Blank-Theme
+  * @package Blank-Theme
  */
 
 namespace Blank_Theme\Inc\Traits;

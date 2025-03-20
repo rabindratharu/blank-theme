@@ -2,7 +2,7 @@
 /**
  * Bootstraps the Theme.
  *
- * @package Blank-Theme
+  * @package Blank-Theme
  */
 
 namespace Blank_Theme\Inc;
@@ -23,8 +23,6 @@ class Blank_Theme {
 
 		// Load classes.
 		Assets::get_instance();
-		Customizer::get_instance();
-		Widgets::get_instance();
 
 		$this->setup_hooks();
 
@@ -38,17 +36,12 @@ class Blank_Theme {
 	protected function setup_hooks() {
 
 		/**
-		 * Filters
-		 */
-		add_filter( 'excerpt_more', [ $this, 'add_read_more_link' ] );
-		add_filter( 'body_class', [ $this, 'filter_body_classes' ] );
-
-		/**
 		 * Actions
 		 */
-		add_action( 'wp_head', [ $this, 'add_pingback_link' ] );
 		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
-
+		add_action( 'init', [ $this, 'block_styles' ] );
+		add_action( 'init', [ $this, 'pattern_categories' ] );
+		add_action( 'init', [ $this, 'block_bindings' ] );
 	}
 
 	/**
@@ -60,42 +53,9 @@ class Blank_Theme {
 
 		load_theme_textdomain( 'blank-theme', BLANK_THEME_TEMP_DIR . '/languages' );
 
-		add_theme_support( 'automatic-feed-links' );
-		add_theme_support( 'title-tag' );
-		add_theme_support( 'jetpack-responsive-videos' );
+		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video' ) );
 
-		add_theme_support(
-			'custom-background',
-			[
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			]
-		);
-
-		add_theme_support(
-			'custom-logo',
-			[
-				'header-text' => [
-					'site-title',
-					'site-description',
-				],
-			]
-		);
-
-		add_editor_style();
-
-		// Gutenberg theme support.
-		add_theme_support( 'wp-block-styles' );
-
-		register_nav_menus(
-			[
-				'primary' => esc_html__( 'Primary Menu', 'blank-theme' ),
-			]
-		);
-
-		if ( ! isset( $content_width ) ) {
-			$content_width = 900;
-		}
+		add_editor_style( get_parent_theme_file_uri( 'assets/buildd/css/editor.css' ) );
 	}
 
 	/**
@@ -105,10 +65,22 @@ class Blank_Theme {
 	 *
 	 * @return string
 	 */
-	public function add_read_more_link() {
-		global $post;
+	public function block_styles() {
+		register_block_style(
+			'core/list',
+			array(
+				'name'         => 'checkmark-list',
+				'label'        => __( 'Checkmark', 'blank-theme' ),
+				'inline_style' => '
+				ul.is-style-checkmark-list {
+					list-style-type: "\2713";
+				}
 
-		return sprintf( '<a class="moretag" href="%s">%s</a>', get_permalink( $post->ID ), esc_html__( 'Read More', 'blank-theme' ) );
+				ul.is-style-checkmark-list li {
+					padding-inline-start: 1ch;
+				}',
+			)
+		);
 	}
 
 	/**
@@ -120,18 +92,22 @@ class Blank_Theme {
 	 *
 	 * @return array
 	 */
-	public function filter_body_classes( $classes ) {
+	public function pattern_categories() {
+		register_block_pattern_category(
+			'twentytwentyfive_page',
+			array(
+				'label'       => __( 'Pages', 'blank-theme' ),
+				'description' => __( 'A collection of full page layouts.', 'blank-theme' ),
+			)
+		);
 
-		if ( ! is_singular() ) {
-			$classes[] = 'hfeed';
-		}
-
-		// Adds a class of no-sidebar when there is no sidebar present.
-		if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-			$classes[] = 'no-sidebar';
-		}
-
-		return $classes;
+		register_block_pattern_category(
+			'twentytwentyfive_post-format',
+			array(
+				'label'       => __( 'Post formats', 'blank-theme' ),
+				'description' => __( 'A collection of post format patterns.', 'blank-theme' ),
+			)
+		);
 	}
 
 	/**
@@ -141,10 +117,14 @@ class Blank_Theme {
 	 *
 	 * @return void
 	 */
-	public function add_pingback_link() {
-		if ( is_singular() && pings_open() ) {
-			printf( '<link rel="pingback" href="%s">', esc_url( get_bloginfo( 'pingback_url' ) ) );
-		}
+	public function block_bindings() {
+		register_block_bindings_source(
+			'blank-theme/format',
+			array(
+				'label'              => _x( 'Post format name', 'Label for the block binding placeholder in the editor', 'blank-theme' ),
+				'get_value_callback' => 'blank_theme_format_binding',
+			)
+		);
 	}
 
 }
