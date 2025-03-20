@@ -2,7 +2,7 @@
 /**
  * Title: Landing page for podcast
  * Slug: blank-theme/page-landing-podcast
- * Categories: twentytwentyfive_page, featured
+ * Categories: blank_theme_page, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template

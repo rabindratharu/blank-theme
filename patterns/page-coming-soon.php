@@ -2,7 +2,7 @@
 /**
  * Title: Coming soon
  * Slug: blank-theme/page-coming-soon
- * Categories: twentytwentyfive_page, featured
+ * Categories: blank_theme_page, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template

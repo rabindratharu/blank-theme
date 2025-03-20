@@ -2,7 +2,7 @@
 /**
  * Title: Portfolio homepage
  * Slug: blank-theme/page-portfolio-home
- * Categories: twentytwentyfive_page, posts
+ * Categories: blank_theme_page, posts
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template
@@ -221,7 +221,7 @@
 		<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 		<div class="wp-block-group alignwide">
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size"><?php esc_html_e( 'Twenty Twenty-Five', 'blank-theme' ); ?></p>
+			<p class="has-small-font-size"><?php esc_html_e( 'Blank Theme', 'blank-theme' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"fontSize":"small"} -->
 			<p class="has-small-font-size"><?php esc_html_e( 'email@example.com', 'blank-theme' ); ?><br><?php echo esc_html_x( '+1 555 349 1806', 'Phone number.', 'blank-theme' ); ?></p>

@@ -2,7 +2,7 @@
 /**
  * Title: Link format
  * Slug: blank-theme/format-link
- * Categories: twentytwentyfive_post-format
+ * Categories: blank_theme_post-format
  * Description: A link post format with a description and an emphasized link for key content.
  *
  * @package Blank-Theme

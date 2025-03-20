@@ -21,10 +21,11 @@ if ( ! defined( 'BLANK_THEME_BUILD_DIR' ) ) {
 require_once BLANK_THEME_TEMP_DIR . '/inc/helpers/autoloader.php';
 require_once BLANK_THEME_TEMP_DIR . '/inc/helpers/custom-functions.php';
 
+
 /**
- * Get blank theme instance.
+ * Retrieves the main instance of Blank_Theme to prevent the need to use globals.
  *
- * @return object \Blank_Theme\Inc\Blank_Theme
+ * @return object Blank_Theme
  */
 function blank_theme_get_theme_instance() {
 	return Blank_Theme\Inc\Blank_Theme::get_instance();

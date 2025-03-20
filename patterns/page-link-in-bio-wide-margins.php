@@ -2,7 +2,7 @@
 /**
  * Title: Link in bio with profile, links and wide margins
  * Slug: blank-theme/page-link-in-bio-wide-margins
- * Categories: twentytwentyfive_page, banner, featured
+ * Categories: blank_theme_page, banner, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Viewport width: 1400

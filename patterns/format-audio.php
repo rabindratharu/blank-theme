@@ -2,7 +2,7 @@
 /**
  * Title: Audio format
  * Slug: blank-theme/format-audio
- * Categories: twentytwentyfive_post-format
+ * Categories: blank_theme_post-format
  * Description: An audio post format with an image, title, audio player, and description.
  *
  * @package Blank-Theme

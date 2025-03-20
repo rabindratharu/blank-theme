@@ -2,7 +2,7 @@
 /**
  * Title: Business homepage
  * Slug: blank-theme/page-business-home
- * Categories: twentytwentyfive_page, featured
+ * Categories: blank_theme_page, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template

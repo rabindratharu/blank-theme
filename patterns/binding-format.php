@@ -2,7 +2,7 @@
 /**
  * Title: Post format name
  * Slug: blank-theme/binding-format
- * Categories: twentytwentyfive_post-format
+ * Categories: blank_theme_post-format
  * Description: Prints the name of the post format with the help of the Block Bindings API.
  *
  * @package Blank-Theme

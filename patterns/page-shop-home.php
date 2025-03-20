@@ -2,7 +2,7 @@
 /**
  * Title: Shop homepage
  * Slug: blank-theme/page-shop-home
- * Categories: twentytwentyfive_page
+ * Categories: blank_theme_page
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template

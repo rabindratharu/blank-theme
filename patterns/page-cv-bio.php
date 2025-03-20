@@ -2,7 +2,7 @@
 /**
  * Title: CV/bio
  * Slug: blank-theme/page-cv-bio
- * Categories: twentytwentyfive_page, about, featured
+ * Categories: blank_theme_page, about, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Viewport width: 1400
