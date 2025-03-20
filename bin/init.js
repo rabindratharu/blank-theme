@@ -44,7 +44,7 @@ if (0 === args.length) {
         }
         rl.question('Enter theme name (shown in WordPress admin)*: ', (themeName) => {
             const themeInfo = renderThemeDetails(themeName);
-            rl.question('Enter template name (used for file naming)*: ', (templateName) => {
+            rl.question('Enter parent theme template name (folder name of the parent theme)*: ', (templateName) => {
                 themeInfo.templateName = templateName;
                 rl.question('Confirm the Theme Details (Y/n) ', (confirm) => {
                     if ('n' === confirm.toLowerCase()) {
@@ -157,9 +157,7 @@ const initTheme = (themeInfo) => {
         blank_theme_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
         Blank_Theme_Child_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
         BLANK_THEME_CHILD_: themeInfo.macroCaseWithUnderscoreSuffix,
-        'template-name': themeInfo.templateName.toLowerCase().replace(/\s+/g, '-'), // Add template name placeholders
-        'Template Name': themeInfo.templateName,
-        'TEMPLATE_NAME': themeInfo.templateName.toUpperCase().replace(/\s+/g, '_'),
+        'Template: blank-theme': `Template: ${themeInfo.templateName.toLowerCase().replace(/\s+/g, '-')}`, // Replace Template in style.css
     };
 
     const files = getAllFiles(getRoot());
@@ -196,7 +194,7 @@ const initTheme = (themeInfo) => {
     if (fileContentUpdated || fileNameUpdated) {
         console.log(info.success('\nYour new theme is ready to go!'), '✨');
         // Docs link
-        console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/blank-theme/blob/master/README.md\n')));
+        console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/blank-theme-child/blob/master/README.md\n')));
     } else {
         console.log(info.warning('\nNo changes were made to your theme.\n'));
     }
