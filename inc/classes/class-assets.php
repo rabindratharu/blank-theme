@@ -26,53 +26,77 @@ class Assets {
 		$this->setup_hooks();
 	}
 
+	
 	/**
-	 * Register actions and filters for the theme assets.
+	 * Set up hooks for the class.
 	 *
-	 * This method sets up the hooks necessary for registering scripts
-	 * and styles related to the theme. It hooks into the WordPress
-	 * 'wp_enqueue_scripts' action to add custom scripts and styles.
+	 * This method sets up necessary hooks for the class, such as registering
+	 * scripts and styles to be enqueued.
 	 *
 	 * @return void
 	 */
 	protected function setup_hooks() {
 
-		// Register scripts to be enqueued.
+		// Register and enqueue scripts.
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
 
-		// Register styles to be enqueued.
+		// Register and enqueue styles.
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
 
+		// Register and enqueue editor styles.
+		add_action( 'enqueue_block_editor_assets', [ $this, 'register_editor_styles' ] );
 	}
 
 	/**
-	 * Register scripts for the theme.
+	 * Register and enqueue theme scripts.
 	 *
-	 * This method registers and enqueues JavaScript files needed for the theme.
-	 * It utilizes WordPress's script enqueueing functions to add scripts
-	 * to the front-end of the site.
+	 * This method registers the main JavaScript file for the theme and enqueues
+	 * it to be included in the front-end. It includes necessary dependencies
+	 * such as jQuery.
 	 *
-	 * @action wp_enqueue_scripts
 	 * @return void
 	 */
 	public function register_scripts() {
 
 		// Register the main JavaScript file for the theme with jQuery dependency.
-		//$this->register_script( 'blank-theme-main', 'js/main.js', [ 'jquery' ] );
+		$this->register_script( 'blank-theme-main', 'js/main.js', [ 'jquery' ] );
 
 		// Enqueue the registered JavaScript file to be included in the front-end.
 		//wp_enqueue_script( 'blank-theme-main' );
 	}
 
 	/**
-	 * Register styles.
+	 * Register and enqueue styles for the theme.
+	 *
+	 * This method registers the main CSS file for the theme and enqueues it
+	 * to be included in the front-end of the site. It utilizes WordPress's
+	 * style enqueueing functions to add styles to the front-end.
 	 *
 	 * @action wp_enqueue_scripts
+	 * @return void
 	 */
 	public function register_styles() {
-		// Register and enqueue the main CSS file for the theme.
+		// Register the main CSS file for the theme.
 		$this->register_style( 'blank-theme-main', 'css/main.css' );
+
+		// Enqueue the registered CSS file to be included in the front-end.
 		wp_enqueue_style( 'blank-theme-main' );
+	}
+
+	/**
+	 * Register and enqueue editor styles.
+	 *
+	 * This method registers and enqueues the CSS file specific to the block editor.
+	 * It ensures that the editor styles match the front-end styles for a consistent editing experience.
+	 *
+	 * @action enqueue_block_editor_assets
+	 */
+	public function register_editor_styles() {
+		// Register the editor CSS file.
+		$this->register_style( 'blank-theme-editor', 'css/editor.css' );
+
+		// Enqueue the registered editor CSS file to be included in the block editor.
+		wp_enqueue_style( 'blank-theme-editor' );
 	}
 
 	/**

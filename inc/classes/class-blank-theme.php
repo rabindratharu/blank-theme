@@ -97,15 +97,6 @@ class Blank_Theme {
 			'status',
 			'video'
 		) );
-
-		/**
-		 * Add stylesheet for the editor.
-		 *
-		 * This adds a stylesheet to the editor that matches the styles of the
-		 * theme. This makes it easier to see how the content will look like
-		 * when it is published.
-		 */
-		add_editor_style( get_parent_theme_file_uri( 'assets/buildd/css/editor.css' ) );
 	}
 
 	/**
