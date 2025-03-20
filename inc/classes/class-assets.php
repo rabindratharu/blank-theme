@@ -1,49 +1,42 @@
 <?php
 /**
- * Enqueue theme assets
+ * Enqueue theme assets.
  *
- * @package Blank_Theme
+ * @package Blank-Theme
  */
 
 namespace Blank_Theme\Inc;
 
 use Blank_Theme\Inc\Traits\Singleton;
 
+/**
+ * Class Assets
+ */
 class Assets {
 
 	use Singleton;
 
 	/**
-	 * Constructor.
-	 *
-	 * @since 1.0.0
-	 * @access protected
+	 * Construct method.
 	 */
 	protected function __construct() {
-		/**
-		 * Set up hooks.
-		 *
-		 * This method sets up all the hooks related to the assets.
-		 */
+
 		$this->setup_hooks();
 	}
 
 	/**
-	 * Set up hooks.
+	 * To register action/filter.
 	 *
-	 * This method sets up all the hooks related to the assets,
-	 * such as styles and scripts.
-	 *
-	 * @since 1.0.0
-	 * @access protected
+	 * @return void
 	 */
 	protected function setup_hooks() {
-		
+
 		/**
 		 * Actions
 		 */
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
+
 	}
 
 	/**
@@ -54,10 +47,23 @@ class Assets {
 	public function register_scripts() {
 
 		$this->register_script( 'blank-theme-main', 'js/main.js', [ 'jquery' ] );
+		$this->register_script( 'blank-theme-home', 'js/home.js', [ 'blank-theme-main' ] );
+		$this->register_script( 'blank-theme-single', 'js/single.js', [ 'blank-theme-main' ] );
 
 		wp_enqueue_script( 'blank-theme-main' );
-	}
 
+		if ( is_home() ) {
+			wp_enqueue_script( 'blank-theme-home' );
+		}
+
+		if ( is_single() ) {
+			wp_enqueue_script( 'blank-theme-single' );
+		}
+
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+	}
 
 	/**
 	 * Register styles.
@@ -67,8 +73,18 @@ class Assets {
 	public function register_styles() {
 
 		$this->register_style( 'blank-theme-main', 'css/main.css' );
-		
+		$this->register_style( 'blank-theme-home', 'css/home.css', [ 'blank-theme-main' ] );
+		$this->register_style( 'blank-theme-single', 'css/single.css', [ 'blank-theme-main' ] );
+
 		wp_enqueue_style( 'blank-theme-main' );
+
+		if ( is_home() ) {
+			wp_enqueue_style( 'blank-theme-home' );
+		}
+
+		if ( is_single() ) {
+			wp_enqueue_style( 'blank-theme-single' );
+		}
 	}
 
 	/**
@@ -151,4 +167,5 @@ class Assets {
 
 		return file_exists( $file_path ) ? filemtime( $file_path ) : false;
 	}
+
 }

@@ -1,20 +1,18 @@
 /**
- * Webpack configuration file.
+ * External dependencies
  */
-
-// WordPress webpack config
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
-
-// Plugins
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const CopyPlugin = require('copy-webpack-plugin');
-const RtlCssPlugin = require('rtlcss-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-// Utilities
 const fs = require('fs');
 const path = require('path');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const RtlCssPlugin = require('rtlcss-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+/**
+ * WordPress dependencies
+ */
+const [scriptConfig] = require('@wordpress/scripts/config/webpack.config');
 
 /**
  * Read all file entries in a directory.
@@ -22,138 +20,142 @@ const path = require('path');
  * @return {Object} Object with file entries.
  */
 const readAllFileEntries = (dir) => {
-  const entries = {};
+    const entries = {};
 
-  if (!fs.existsSync(dir)) {
-    console.log(`[DEBUG] Directory ${dir} does not exist.`);
-    return entries;
-  }
-
-  const files = fs.readdirSync(dir);
-  if (files.length === 0) {
-    console.log(`[DEBUG] No files found in ${dir}.`);
-    return entries;
-  }
-
-  files.forEach((fileName) => {
-    const fullPath = `${dir}/${fileName}`;
-    if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
-      entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
+    if (!fs.existsSync(dir)) {
+        return entries;
     }
-  });
 
-  console.log(`[DEBUG] Entries for ${dir}:`, entries);
-  return entries;
+    if (fs.readdirSync(dir).length === 0) {
+        return entries;
+    }
+
+    fs.readdirSync(dir).forEach((fileName) => {
+        const fullPath = path.resolve(dir, fileName); // Use path.resolve
+        if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
+            entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
+        }
+    });
+
+    return entries;
 };
+
 
 // Environment
 const isProduction = process.env.NODE_ENV === 'production';
 
-// Base shared config
-const baseConfig = {
-  ...defaultConfig,
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            sourceMap: !isProduction,
-          },
-        },
-      },
-      {
-        test: /\.(sc|sa|c)ss$/,
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { sourceMap: !isProduction } },
-          { loader: 'postcss-loader', options: { sourceMap: !isProduction } },
-          { loader: 'sass-loader', options: { sourceMap: !isProduction } },
-        ],
-      },
-    ],
-  },
-  plugins: [
-    ...defaultConfig.plugins.filter((plugin) => !(plugin instanceof RtlCssPlugin)),
-    new RemoveEmptyScriptsPlugin({
-      stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-    }),
-    new CopyPlugin({
-      patterns: [
-        { from: './assets/src/fonts', to: './fonts' },
-        { from: './assets/src/library', to: './library' },
-        { from: './assets/src/media', to: './media' },
-      ],
-    }),
-    new RtlCssPlugin({
-      filename: '[name]-rtl.css',
-    }),
-  ],
-  optimization: {
-    ...defaultConfig.optimization,
-    minimizer: [
-      ...defaultConfig.optimization.minimizer,
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              normalizeWhitespace: isProduction,
-            },
-          ],
-        },
-      }),
-    ],
-  },
-  performance: {
-    maxAssetSize: 512000,
-  },
-  devtool: isProduction ? false : 'source-map',
-  resolve: {
-    modules: [
-      path.resolve(process.cwd(), 'node_modules'), // Theme's node_modules
-      'node_modules', // Fallback
-    ],
-  },
-};
-
-// Styles configuration with CSS-specific plugins
-const stylesConfig = {
-  ...baseConfig,
-  entry: () => readAllFileEntries('./assets/src/css'),
- output: {
-   path: path.resolve(process.cwd(), 'assets', 'build'), // Output directory is 'assets/build'
-   filename: 'css/[name].js', // This will be removed by RemoveEmptyScriptsPlugin
-   chunkFilename: 'css/[name].js',
-  },
-
+// Extend the default config.
+const sharedConfig = {
+	...scriptConfig,
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						sourceMap: !isProduction,
+					},
+				},
+			},
+			{
+				test: /\.(sc|sa|c)ss$/,
+				exclude: /node_modules/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{ loader: 'css-loader', options: { sourceMap: !isProduction } },
+					{ loader: 'postcss-loader', options: { sourceMap: !isProduction } },
+					{ loader: 'sass-loader', options: { sourceMap: !isProduction } },
+				],
+			},
+		],
+	},
+	output: {
+		path: path.resolve(process.cwd(), 'assets', 'build'),
+		filename: 'js/[name].js', // JS files go into assets/build/js
+		chunkFilename: 'js/[name].js', // Chunk files go into assets/build/js
+	},
 	plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].css', // CSS files should go directly into output.path
-    }),
-    new RemoveEmptyScriptsPlugin({
-      stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-    }),
-    new RtlCssPlugin({
-      filename: 'css/[name]-rtl.css', // RTL files should also go into output.path
-    }),
-  ],
+		...scriptConfig.plugins.filter((plugin) => !(plugin instanceof RtlCssPlugin)),
+		new MiniCssExtractPlugin({
+			filename: '[name].css', // Ensure CSS files are in assets/build/css
+		}),
+		new RemoveEmptyScriptsPlugin({
+			stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
+		}),
+		new RtlCssPlugin({
+			filename: '[name]-rtl.css', // Ensure RTL CSS files are in assets/build/css
+		}),
+	],
+	optimization: {
+		...scriptConfig.optimization,
+		splitChunks: {
+			...scriptConfig.optimization.splitChunks,
+		},
+		minimizer: scriptConfig.optimization.minimizer.concat([
+			new CssMinimizerPlugin({
+				minimizerOptions: {
+					preset: [
+						'default',
+						{
+							discardComments: { removeAll: true },
+							normalizeWhitespace: isProduction,
+						},
+					],
+				},
+			}),
+		]),
+	},
+	performance: {
+		maxAssetSize: 512000,
+	},
+	devtool: isProduction ? false : 'source-map',
+	resolve: {
+		modules: [
+			path.resolve(process.cwd(), 'node_modules'), // Theme's node_modules
+			'node_modules', // Fallback
+		],
+	},
 };
 
-// Scripts configuration
-const scriptsConfig = {
-  ...baseConfig,
-  entry: () => readAllFileEntries('./assets/src/js'),
- output: {
-   path: path.resolve(process.cwd(), 'assets', 'build'), // Output directory is 'assets/build'
-   filename: 'js/[name].js', // This will be removed by RemoveEmptyScriptsPlugin
-   chunkFilename: 'js/[name].js',
-  },
+// Generate a webpack config which includes setup for CSS extraction.
+const styles = {
+	...sharedConfig,
+	entry: () => readAllFileEntries('./assets/src/sass'),
+	output: {
+		...sharedConfig.output,
+		path: path.resolve(process.cwd(), 'assets', 'build', 'css'), // Move CSS output to assets/build/css
+	},
+	module: {
+		...sharedConfig.module,
+	},
+	plugins: [
+		...sharedConfig.plugins.filter(
+			(plugin) => plugin.constructor.name !== 'DependencyExtractionWebpackPlugin',
+		),
+	],
 };
 
-module.exports = [baseConfig,stylesConfig,scriptsConfig];
+const scripts = {
+	...sharedConfig,
+	entry: () => readAllFileEntries('./assets/src/js'),
+};
+
+const assets = {
+	...sharedConfig,
+	plugins: [
+		new CopyPlugin({
+			patterns: [
+				{
+					from: './assets/src/fonts',
+					to: 'fonts', // Fonts go into assets/build/fonts
+				},
+			],
+		}),
+	],
+
+};
+
+module.exports = [styles, scripts, assets];

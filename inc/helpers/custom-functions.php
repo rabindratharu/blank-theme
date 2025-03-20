@@ -1,6 +1,8 @@
 <?php
 /**
- * Define custom functions for the theme.
+ * Contains custom functions used for the theme
  *
- * @package Blank_Theme
+ * @package Blank-Theme
  */
+
+// Your custom functions here.

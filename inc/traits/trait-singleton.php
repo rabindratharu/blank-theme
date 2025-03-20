@@ -22,7 +22,7 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package Blank_Theme
+ * @package Blank-Theme
  */
 
 namespace Blank_Theme\Inc\Traits;
@@ -78,7 +78,7 @@ trait Singleton {
 			/**
 			 * Dependent items can use the `blank_theme_singleton_init_{$called_class}` hook to execute code
 			 */
-			do_action( sprintf( 'blank_theme_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+			do_action( sprintf( 'blank_theme_singleton_init_%s', $called_class ) ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores, WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound
 
 		}
 

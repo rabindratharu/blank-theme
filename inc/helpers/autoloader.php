@@ -1,17 +1,14 @@
 <?php
 /**
- * Autoloader file for theme.
+ * Autoloader file for plugin.
  *
- * @package Blank_Theme
+ * @package Blank-Theme
  */
 
 namespace Blank_Theme\Inc\Helpers;
 
 /**
- * Auto loader function for the theme.
- *
- * This function dynamically loads classes, interfaces, traits, and other PHP files
- * based on the namespace and class name. It follows the PSR-4 autoloading standard.
+ * Auto loader function.
  *
  * @param string $resource Source namespace.
  *
@@ -22,22 +19,23 @@ function autoloader( $resource = '' ) {
 	$namespace_root = 'Blank_Theme\\';
 	$resource       = trim( $resource, '\\' );
 
-	// Check if the resource is empty, does not contain a namespace separator, 
-	// or does not start with the root namespace. If so, return early.
 	if ( empty( $resource ) || strpos( $resource, '\\' ) === false || strpos( $resource, $namespace_root ) !== 0 ) {
+		// Not our namespace, bail out.
 		return;
 	}
 
-	// Remove the root namespace from the resource string.
+	// Remove our root namespace.
 	$resource = str_replace( $namespace_root, '', $resource );
 
-	// Convert the resource string into an array of path components.
 	$path = explode(
 		'\\',
 		str_replace( '_', '-', strtolower( $resource ) )
 	);
 
-	// If the path array does not have enough components, return early.
+	/**
+	 * Time to determine which type of resource path it is,
+	 * so that we can deduce the correct file path for it.
+	 */
 	if ( empty( $path[0] ) || empty( $path[1] ) ) {
 		return;
 	}
@@ -45,8 +43,8 @@ function autoloader( $resource = '' ) {
 	$directory = '';
 	$file_name = '';
 
-	// Determine the directory and file name based on the first path component.
 	if ( 'inc' === $path[0] ) {
+
 		switch ( $path[1] ) {
 			case 'traits':
 				$directory = 'traits';
@@ -55,8 +53,10 @@ function autoloader( $resource = '' ) {
 
 			case 'widgets':
 			case 'blocks': // phpcs:ignore PSR2.ControlStructures.SwitchDeclaration.TerminatingComment
-				// If there is a class name provided for a specific directory, load it.
-				// Otherwise, find it in the inc/ directory.
+				/**
+				 * If there is class name provided for specific directory then load that.
+				 * otherwise find in inc/ directory.
+				 */
 				if ( ! empty( $path[2] ) ) {
 					$directory = sprintf( 'classes/%s', $path[1] );
 					$file_name = sprintf( 'class-%s', trim( strtolower( $path[2] ) ) );
@@ -68,21 +68,17 @@ function autoloader( $resource = '' ) {
 				break;
 		}
 
-		// Construct the full path to the resource file.
-		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( BLANK_THEME_DIR_PATH ), $directory, $file_name );
+		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( BLANK_THEME_TEMP_DIR ), $directory, $file_name );
+
 	}
 
-	// Validate the resource file path.
-	$is_valid_file = validate_file( $resource_path );
-
-	// If the path is valid and the file exists, require it.
-	if ( ! empty( $resource_path ) && file_exists( $resource_path ) && ( 0 === $is_valid_file || 2 === $is_valid_file ) ) {
-		/**
-		 * The require_once statement is used to include the file containing the class definition.
-		 * This is done to ensure that the class is loaded only once, as required by the PSR-4 standard.
-		 */
-		require_once( $resource_path ); // phpcs:ignore
+	$resource_path_valid = validate_file( $resource_path );
+	// For Windows platform, validate_file returns 2 so we've added this condition as well.
+	if ( ! empty( $resource_path ) && file_exists( $resource_path ) && ( 0 === $resource_path_valid || 2 === $resource_path_valid ) ) {
+		// We are already making sure that the file exists and it's valid.
+		require_once $resource_path; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 	}
+
 }
 
 spl_autoload_register( '\Blank_Theme\Inc\Helpers\autoloader' );
