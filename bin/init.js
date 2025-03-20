@@ -102,18 +102,19 @@ const renderThemeDetails = (themeName) => {
     const themeInfo = generateThemeInfo(themeName);
 
     const themeDetails = {
-        'Theme Name: ': themeInfo.themeName,
-        'Theme Version: ': '1.0.0',
-        'Text Domain: ': themeInfo.kebabCase,
-        'Package: ': themeInfo.trainCase,
-        'Namespace: ': themeInfo.pascalSnakeCase,
-        'Function Prefix: ': themeInfo.snakeCaseWithUnderscoreSuffix,
-        'CSS Class Prefix: ': themeInfo.kebabCaseWithHyphenSuffix,
-        'PHP Variable Prefix: ': themeInfo.snakeCaseWithUnderscoreSuffix,
-        'Version Constant: ': `${ themeInfo.macroCase }_VERSION`,
-        'Theme Directory Constant: ': `${ themeInfo.macroCase }_TEMP_DIR`,
-        'Theme Build Directory Constant: ': `${ themeInfo.macroCase }_BUILD_DIR`,
-        'Theme Build Directory URI Constant: ': `${ themeInfo.macroCase }_BUILD_URI`,
+        'Theme Name': themeInfo.themeName,
+        'Template': themeInfo.templateName.toLowerCase().replace(/\s+/g, '-'),
+        'Theme Version': '1.0.0',
+        'Text Domain': themeInfo.kebabCase,
+        'Package': themeInfo.trainCase,
+        'Namespace': themeInfo.pascalSnakeCase,
+        'Function Prefix': themeInfo.snakeCaseWithUnderscoreSuffix,
+        'CSS Class Prefix': themeInfo.kebabCaseWithHyphenSuffix,
+        'PHP Variable Prefix': themeInfo.snakeCaseWithUnderscoreSuffix,
+        'Version Constant': `${themeInfo.macroCase}_VERSION`,
+        'Theme Directory Constant': `${themeInfo.macroCase}_TEMP_DIR`,
+        'Theme Build Directory Constant': `${themeInfo.macroCase}_BUILD_DIR`,
+        'Theme Build Directory URI Constant': `${themeInfo.macroCase}_BUILD_URI`,
     };
 
     const biggestStringLength = themeDetails['Theme Build Directory URI Constant: '].length + 'Theme Build Directory URI Constant: '.length;
