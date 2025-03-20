@@ -2,10 +2,10 @@
 /**
  * Autoloader file for plugin.
  *
-  * @package Blank-Theme
+  * @package Blank-Theme-Child
  */
 
-namespace Blank_Theme\Inc\Helpers;
+namespace Blank_Theme_Child\Inc\Helpers;
 
 /**
  * Auto loader function.
@@ -19,7 +19,7 @@ function autoloader( $resource = '' ) {
 	 * If the resource is empty, or the resource does not have our namespace
 	 * we don't need to proceed further.
 	 */
-	$namespace_root = 'Blank_Theme\\';
+	$namespace_root = 'Blank_Theme_Child\\';
 	$resource       = trim( $resource, '\\' );
 	if ( empty( $resource ) || strpos( $resource, '\\' ) === false || strpos( $resource, $namespace_root ) !== 0 ) {
 		// Not our namespace, bail out.
@@ -86,7 +86,7 @@ function autoloader( $resource = '' ) {
 		/**
 		 * Now we need to generate the file path for the resource.
 		 */
-		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( BLANK_THEME_TEMP_DIR ), $directory, $file_name );
+		$resource_path = sprintf( '%s/inc/%s/%s.php', untrailingslashit( BLANK_THEME_CHILD_TEMP_DIR ), $directory, $file_name );
 	}
 
 	/**
@@ -100,4 +100,4 @@ function autoloader( $resource = '' ) {
 	}
 }
 
-spl_autoload_register( '\Blank_Theme\Inc\Helpers\autoloader' );
+spl_autoload_register( '\Blank_Theme_Child\Inc\Helpers\autoloader' );

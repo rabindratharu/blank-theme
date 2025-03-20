@@ -45,35 +45,35 @@ module.exports = function( grunt ) {
 					'!sass/**',
 					'!*.zip',
 				],
-				dest: 'blank-theme/',
+				dest: 'blank-theme-child-child/',
 			},
 		},
 
 		compress: {
 			main: {
 				options: {
-					archive: 'blank-theme.zip',
+					archive: 'blank-theme-child-child.zip',
 					mode: 'zip',
 				},
 				files: [
 					{
-						src: [ './blank-theme/**' ],
+						src: [ './blank-theme-child-child/**' ],
 					},
 				],
 			},
 		},
 
 		clean: {
-			main: [ 'blank-theme' ],
-			zip: [ 'blank-theme.zip' ],
+			main: [ 'blank-theme-child-child' ],
+			zip: [ 'blank-theme-child-child.zip' ],
 		},
 
 		makepot: {
 			target: {
 				options: {
 					domainPath: '/',
-					mainFile: 'blank-theme.php',
-					potFilename: 'languages/blank-theme.pot',
+					mainFile: 'blank-theme-child-child.php',
+					potFilename: 'languages/blank-theme-child-child.pot',
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true,
@@ -97,7 +97,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'blank-theme',
+				textdomain: 'blank-theme-child-child',
 			},
 			target: {
 				files: {
@@ -118,7 +118,7 @@ module.exports = function( grunt ) {
 		checktextdomain: {
 			standard: {
 				options: {
-					text_domain: 'blank-theme', //Specify allowed domain(s)
+					text_domain: 'blank-theme-child-child', //Specify allowed domain(s)
 					keywords: [
 						//List keyword specifications
 						'__:1,2d',

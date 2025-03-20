@@ -1,5 +1,5 @@
 {
-	"name": "blank-theme",
+	"name": "blank-theme-child",
 	"version": "2.0.0",
 	"description": "Blank Theme Packages",
 	"author": "rabindratharu",
@@ -8,7 +8,7 @@
 	"keywords": [
 		"rabindratharu",
 		"wp-theme",
-		"blank-theme"
+		"blank-theme-child"
 	],
 	"homepage": "https://github.com/rabindratharu/blank-theme#readme",
 	"repository": {

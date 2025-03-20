@@ -2,17 +2,17 @@
 /**
  * Bootstraps the Theme.
  *
-  * @package Blank-Theme
+  * @package Blank-Theme-Child
  */
 
-namespace Blank_Theme\Inc;
+namespace Blank_Theme_Child\Inc;
 
-use Blank_Theme\Inc\Traits\Singleton;
+use Blank_Theme_Child\Inc\Traits\Singleton;
 
 /**
  * Main theme bootstrap file.
  */
-class Blank_Theme {
+class Blank_Theme_Child {
 
 	use Singleton;
 
@@ -69,7 +69,7 @@ class Blank_Theme {
 		 *
 		 * Translations can be added to the `/languages` directory.
 		 */
-		load_theme_textdomain( 'blank-theme', BLANK_THEME_TEMP_DIR . '/languages' );
+		load_theme_textdomain( 'blank-theme-child', BLANK_THEME_CHILD_TEMP_DIR . '/languages' );
 
 		/**
 		 * Enable post-formats feature.
@@ -120,7 +120,7 @@ class Blank_Theme {
 			'core/list',
 			array(
 				'name'         => 'checkmark-list', // Unique name for the block style.
-				'label'        => __( 'Checkmark', 'blank-theme' ), // Display label for the block style.
+				'label'        => __( 'Checkmark', 'blank-theme-child' ), // Display label for the block style.
 				'inline_style' => '
 				/*
 				 * Set the list style type to a checkmark.
@@ -159,7 +159,7 @@ class Blank_Theme {
 		// Register a block pattern category for pages.
 		// The category is used in the editor for categorizing block patterns.
 		register_block_pattern_category(
-			'blank_theme_page',
+			'blank_theme_child_page',
 			array(
 				/**
 				 * The label for the block pattern category.
@@ -168,7 +168,7 @@ class Blank_Theme {
 				 *
 				 * @var string
 				 */
-				'label'       => __( 'Pages', 'blank-theme' ),
+				'label'       => __( 'Pages', 'blank-theme-child' ),
 
 				/**
 				 * The description for the block pattern category.
@@ -177,14 +177,14 @@ class Blank_Theme {
 				 *
 				 * @var string
 				 */
-				'description' => __( 'A collection of full page layouts.', 'blank-theme' ),
+				'description' => __( 'A collection of full page layouts.', 'blank-theme-child' ),
 			)
 		);
 
 		// Register a block pattern category for post formats.
 		// The category is used in the editor for categorizing block patterns.
 		register_block_pattern_category(
-			'blank_theme_post-format',
+			'blank_theme_child_post-format',
 			array(
 				/**
 				 * The label for the block pattern category.
@@ -193,7 +193,7 @@ class Blank_Theme {
 				 *
 				 * @var string
 				 */
-				'label'       => __( 'Post formats', 'blank-theme' ),
+				'label'       => __( 'Post formats', 'blank-theme-child' ),
 
 				/**
 				 * The description for the block pattern category.
@@ -202,7 +202,7 @@ class Blank_Theme {
 				 *
 				 * @var string
 				 */
-				'description' => __( 'A collection of post format patterns.', 'blank-theme' ),
+				'description' => __( 'A collection of post format patterns.', 'blank-theme-child' ),
 			)
 		);
 	}
@@ -226,7 +226,7 @@ class Blank_Theme {
 		 * @param array  $args The arguments for the block bindings source.
 		 */
 		register_block_bindings_source(
-			'blank-theme/format',
+			'blank-theme-child/format',
 			array(
 				/**
 				 * The label for the block bindings source.
@@ -235,7 +235,7 @@ class Blank_Theme {
 				 *
 				 * @var string
 				 */
-				'label'              => _x( 'Post format name', 'Label for the block binding placeholder in the editor', 'blank-theme' ),
+				'label'              => _x( 'Post format name', 'Label for the block binding placeholder in the editor', 'blank-theme-child' ),
 
 				/**
 				 * The callback function to get the post format name.
@@ -246,7 +246,7 @@ class Blank_Theme {
 				 *
 				 * @var callable
 				 */
-				'get_value_callback' => 'blank_theme_format_binding', // Callback function to get the post format name.
+				'get_value_callback' => 'blank_theme_child_format_binding', // Callback function to get the post format name.
 			)
 		);
 	}

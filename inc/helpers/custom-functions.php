@@ -2,11 +2,11 @@
 /**
  * Contains custom functions used for the theme
  *
-  * @package Blank-Theme
+  * @package Blank-Theme-Child
  */
 
 // Registers block binding callback function for the post format name.
-if ( ! function_exists( 'blank_theme_format_binding' ) ) :
+if ( ! function_exists( 'blank_theme_child_format_binding' ) ) :
 	/**
 	 * Callback function for the post format name block binding source.
 	 *
@@ -14,7 +14,7 @@ if ( ! function_exists( 'blank_theme_format_binding' ) ) :
 	 *
 	 * @return string|void Post format name, or nothing if the format is 'standard'.
 	 */
-	function blank_theme_format_binding() {
+	function blank_theme_child_format_binding() {
 		$post_format_slug = get_post_format();
 
 		if ( $post_format_slug && 'standard' !== $post_format_slug ) {

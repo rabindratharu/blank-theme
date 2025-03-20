@@ -1,5 +1,5 @@
 {
-	"name": "rabindratharu/blank-theme",
+	"name": "rabindratharu/blank-theme-child",
 	"type": "wordpress-theme",
 	"description": "A base theme for WordPress development.",
 	"homepage": "https://github.com/rabindratharu/blank-theme",
@@ -27,6 +27,6 @@
 	"scripts": {
 	  "phpcbf": "phpcbf",
 	  "phpcs": "phpcs",
-	  "pot": "wp i18n make-pot . ./languages/blank-theme.pot --domain=blank-theme --package-name=\"Blank Theme\" --skip-theme-json"
+	  "pot": "wp i18n make-pot . ./languages/blank-theme-child.pot --domain=blank-theme-child --package-name=\"Blank Theme\" --skip-theme-json"
 	}
   }
