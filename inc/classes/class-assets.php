@@ -42,9 +42,6 @@ class Assets {
 
 		// Register and enqueue styles.
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
-
-		// Register and enqueue editor styles.
-		add_action( 'enqueue_block_editor_assets', [ $this, 'register_editor_styles' ] );
 	}
 
 	/**
@@ -62,7 +59,7 @@ class Assets {
 		$this->register_script( 'blank-theme-child-main', 'js/main.js', [ 'jquery' ] );
 
 		// Enqueue the registered JavaScript file to be included in the front-end.
-		//wp_enqueue_script( 'blank-theme-child-main' );
+		wp_enqueue_script( 'blank-theme-child-main' );
 	}
 
 	/**
@@ -77,26 +74,10 @@ class Assets {
 	 */
 	public function register_styles() {
 		// Register the main CSS file for the theme.
-		$this->register_style( 'blank-theme-child-main', 'css/main.css' );
+		$this->register_style( 'blank-theme-child-main', 'css/main.css', ['parent-template-theme-css'] );
 
 		// Enqueue the registered CSS file to be included in the front-end.
 		wp_enqueue_style( 'blank-theme-child-main' );
-	}
-
-	/**
-	 * Register and enqueue editor styles.
-	 *
-	 * This method registers and enqueues the CSS file specific to the block editor.
-	 * It ensures that the editor styles match the front-end styles for a consistent editing experience.
-	 *
-	 * @action enqueue_block_editor_assets
-	 */
-	public function register_editor_styles() {
-		// Register the editor CSS file.
-		$this->register_style( 'blank-theme-child-editor', 'css/editor.css' );
-
-		// Enqueue the registered editor CSS file to be included in the block editor.
-		wp_enqueue_style( 'blank-theme-child-editor' );
 	}
 
 	/**

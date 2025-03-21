@@ -46,8 +46,8 @@
 	"scripts": {
 		"build:dev": "cross-env NODE_ENV=development npm-run-all 'build:!(dev|prod)'",
 		"build:prod": "cross-env NODE_ENV=production npm-run-all 'build:!(dev|prod)'",
-		"build:js": "wp-scripts build --experimental-modules",
-		"start": "wp-scripts start --experimental-modules",
+		"build:js": "npm run clean && wp-scripts build --experimental-modules",
+		"start": "npm run clean && wp-scripts start --experimental-modules",
 		"clean": "rm -rf assets/build/*",
 		"init": "./bin/init.js && npm run build:pot",
 		"lint:all": "npm-run-all --parallel lint:*",

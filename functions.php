@@ -9,13 +9,13 @@ if ( ! defined( 'BLANK_THEME_CHILD_VERSION' ) ) {
 	define( 'BLANK_THEME_CHILD_VERSION', 1.0 );
 }
 if ( ! defined( 'BLANK_THEME_CHILD_TEMP_DIR' ) ) {
-	define( 'BLANK_THEME_CHILD_TEMP_DIR', untrailingslashit( get_template_directory() ) );
+	define( 'BLANK_THEME_CHILD_TEMP_DIR', untrailingslashit( get_stylesheet_directory() ) );
 }
 if ( ! defined( 'BLANK_THEME_CHILD_BUILD_URI' ) ) {
-	define( 'BLANK_THEME_CHILD_BUILD_URI', untrailingslashit( get_template_directory_uri() ) . '/assets/build' );
+	define( 'BLANK_THEME_CHILD_BUILD_URI', untrailingslashit( get_stylesheet_directory_uri() ) . '/assets/build' );
 }
 if ( ! defined( 'BLANK_THEME_CHILD_BUILD_DIR' ) ) {
-	define( 'BLANK_THEME_CHILD_BUILD_DIR', untrailingslashit( get_template_directory() ) . '/assets/build' );
+	define( 'BLANK_THEME_CHILD_BUILD_DIR', untrailingslashit( get_stylesheet_directory() ) . '/assets/build' );
 }
 
 require_once BLANK_THEME_CHILD_TEMP_DIR . '/inc/helpers/autoloader.php';

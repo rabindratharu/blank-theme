@@ -139,25 +139,24 @@ const renderThemeDetails = (themeName, templateName) => {
  */
 const initTheme = (themeInfo) => {
     const chunksToReplace = {
-        'blank theme': themeInfo.themeNameLowerCase,
-        'Blank Theme': themeInfo.themeName,
-        BlankTheme: themeInfo.pascalCase,
-        'BLANK THEME': themeInfo.themeNameCobolCase,
-        'blank-theme-child': themeInfo.kebabCase,
-        'Blank-Theme-Child': themeInfo.trainCase,
-        'BLANK-THEME': themeInfo.cobolCase,
-        blank_theme: themeInfo.snakeCase,
-        Blank_Theme_Child: themeInfo.pascalSnakeCase,
-        BLANK_THEME: themeInfo.macroCase,
-        'blank-theme-child-': themeInfo.kebabCaseWithHyphenSuffix,
-        'Blank-Theme-Child-': themeInfo.trainCaseWithHyphenSuffix,
-        'BLANK-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
-        blank_theme_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
-        Blank_Theme_Child_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
+		'blank theme child': themeInfo.themeNameLowerCase,
+		'Blank Theme Child': themeInfo.themeName,
+		BlankThemeChild: themeInfo.pascalCase,
+		'BLANK THEME CHILD': themeInfo.themeNameCobolCase,
+		'blank-theme-child': themeInfo.kebabCase,
+		'Blank-Theme-Child': themeInfo.trainCase,
+		'BLANK-THEME-CHILD': themeInfo.cobolCase,
+		blank_theme_child: themeInfo.snakeCase,
+		Blank_Theme_Child: themeInfo.pascalSnakeCase,
+		BLANK_THEME_CHILD: themeInfo.macroCase,
+		'blank-theme-child-': themeInfo.kebabCaseWithHyphenSuffix,
+		'Blank-Theme-Child-': themeInfo.trainCaseWithHyphenSuffix,
+		'BLANK-THEME-CHILD-': themeInfo.cobolCaseWithHyphenSuffix,
+		blank_theme_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
+		Blank_Theme_Child_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
         BLANK_THEME_CHILD_: themeInfo.macroCaseWithUnderscoreSuffix,
         'parent-template': themeInfo.templateName.toLowerCase().replace(/\s+/g, '-'),
-        'Template: blank-theme': `Template: ${themeInfo.templateName.toLowerCase().replace(/\s+/g, '-')}`, // Replace Template in style.css
-    };
+	};
 
     const files = getAllFiles(getRoot());
 
@@ -347,14 +346,12 @@ const getRoot = () => {
  * 1. .git
  * 2. .github
  * 3. bin
- * 4. languages
  */
 const runThemeCleanup = () => {
     const deleteDirs = [
         '.git',
         '.github',
-        'bin',
-        'languages',
+        'bin'
     ];
 
     deleteDirs.forEach((dir) => {
