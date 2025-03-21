@@ -42,7 +42,7 @@ if (0 === args.length) {
             console.log(info.warning('\nChild Theme Setup Cancelled.\n'));
             process.exit(0);
         }
-        rl.question('Enter childtheme name (shown in WordPress admin)*: ', (themeName) => {
+        rl.question('Enter child theme name (shown in WordPress admin)*: ', (themeName) => {
             rl.question('Enter parent theme template name (folder name of the parent theme)*: ', (templateName) => {
                 const themeInfo = renderThemeDetails(themeName, templateName);
                 rl.question('Confirm the Child Theme Details (Y/n) ', (confirm) => {
@@ -139,23 +139,24 @@ const renderThemeDetails = (themeName, templateName) => {
  */
 const initTheme = (themeInfo) => {
     const chunksToReplace = {
-        'rabindra': themeInfo.themeNameLowerCase,
-        'Rabindra': themeInfo.themeName,
-        Rabindra: themeInfo.pascalCase,
-        'RABINDRA': themeInfo.themeNameCobolCase,
-        'rabindra': themeInfo.kebabCase,
-        'Rabindra': themeInfo.trainCase,
-        'RABINDRA': themeInfo.cobolCase,
-        rabindra: themeInfo.snakeCase,
-        Rabindra: themeInfo.pascalSnakeCase,
-        RABINDRA: themeInfo.macroCase,
-        'rabindra-': themeInfo.kebabCaseWithHyphenSuffix,
-        'Rabindra-': themeInfo.trainCaseWithHyphenSuffix,
-        'RABINDRA-': themeInfo.cobolCaseWithHyphenSuffix,
-        rabindra_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
-        Rabindra_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
-        RABINDRA_CHILD_: themeInfo.macroCaseWithUnderscoreSuffix,
-        'Template: astra': `Template: ${themeInfo.templateName.toLowerCase().replace(/\s+/g, '-')}`, // Replace Template in style.css
+        'blank theme': themeInfo.themeNameLowerCase,
+        'Blank Theme': themeInfo.themeName,
+        BlankTheme: themeInfo.pascalCase,
+        'BLANK THEME': themeInfo.themeNameCobolCase,
+        'blank-theme-child': themeInfo.kebabCase,
+        'Blank-Theme-Child': themeInfo.trainCase,
+        'BLANK-THEME': themeInfo.cobolCase,
+        blank_theme: themeInfo.snakeCase,
+        Blank_Theme_Child: themeInfo.pascalSnakeCase,
+        BLANK_THEME: themeInfo.macroCase,
+        'blank-theme-child-': themeInfo.kebabCaseWithHyphenSuffix,
+        'Blank-Theme-Child-': themeInfo.trainCaseWithHyphenSuffix,
+        'BLANK-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
+        blank_theme_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
+        Blank_Theme_Child_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
+        BLANK_THEME_CHILD_: themeInfo.macroCaseWithUnderscoreSuffix,
+        'parent-template': themeInfo.templateName.toLowerCase().replace(/\s+/g, '-'),
+        'Template: blank-theme': `Template: ${themeInfo.templateName.toLowerCase().replace(/\s+/g, '-')}`, // Replace Template in style.css
     };
 
     const files = getAllFiles(getRoot());
