@@ -45,35 +45,35 @@ module.exports = function( grunt ) {
 					'!sass/**',
 					'!*.zip',
 				],
-				dest: 'blank-theme-child-child/',
+				dest: 'blank-theme-child/',
 			},
 		},
 
 		compress: {
 			main: {
 				options: {
-					archive: 'blank-theme-child-child.zip',
+					archive: 'blank-theme-child.zip',
 					mode: 'zip',
 				},
 				files: [
 					{
-						src: [ './blank-theme-child-child/**' ],
+						src: [ './blank-theme-child/**' ],
 					},
 				],
 			},
 		},
 
 		clean: {
-			main: [ 'blank-theme-child-child' ],
-			zip: [ 'blank-theme-child-child.zip' ],
+			main: [ 'blank-theme-child' ],
+			zip: [ 'blank-theme-child.zip' ],
 		},
 
 		makepot: {
 			target: {
 				options: {
 					domainPath: '/',
-					mainFile: 'blank-theme-child-child.php',
-					potFilename: 'languages/blank-theme-child-child.pot',
+					mainFile: 'blank-theme-child.php',
+					potFilename: 'languages/blank-theme-child.pot',
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true,
@@ -97,7 +97,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'blank-theme-child-child',
+				textdomain: 'blank-theme-child',
 			},
 			target: {
 				files: {
@@ -118,7 +118,7 @@ module.exports = function( grunt ) {
 		checktextdomain: {
 			standard: {
 				options: {
-					text_domain: 'blank-theme-child-child', //Specify allowed domain(s)
+					text_domain: 'blank-theme-child', //Specify allowed domain(s)
 					keywords: [
 						//List keyword specifications
 						'__:1,2d',

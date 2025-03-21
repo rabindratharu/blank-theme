@@ -18,16 +18,16 @@ const rl = readline.createInterface({
 });
 const info = {
     error: (message) => {
-        return `\x1b[31m${ message }\x1b[0m`;
+        return `\x1b[31m${message}\x1b[0m`;
     },
     success: (message) => {
-        return `\x1b[32m${ message }\x1b[0m`;
+        return `\x1b[32m${message}\x1b[0m`;
     },
     warning: (message) => {
-        return `\x1b[33m${ message }\x1b[0m`;
+        return `\x1b[33m${message}\x1b[0m`;
     },
     message: (message) => {
-        return `\x1b[34m${ message }\x1b[0m`;
+        return `\x1b[34m${message}\x1b[0m`;
     },
 };
 let fileContentUpdated = false;
@@ -43,9 +43,8 @@ if (0 === args.length) {
             process.exit(0);
         }
         rl.question('Enter theme name (shown in WordPress admin)*: ', (themeName) => {
-            const themeInfo = renderThemeDetails(themeName);
             rl.question('Enter parent theme template name (folder name of the parent theme)*: ', (templateName) => {
-                themeInfo.templateName = templateName;
+                const themeInfo = renderThemeDetails(themeName, templateName);
                 rl.question('Confirm the Theme Details (Y/n) ', (confirm) => {
                     if ('n' === confirm.toLowerCase()) {
                         console.log(info.warning('\nTheme Setup Cancelled.\n'));
@@ -86,20 +85,22 @@ rl.on('close', () => {
  * Renders the theme setup modal with all necessary information related to the search-replace.
  *
  * @param {string} themeName
+ * @param {string} templateName
  *
  * @return {Object} themeInfo
  */
-const renderThemeDetails = (themeName) => {
+const renderThemeDetails = (themeName, templateName) => {
     console.log(info.success('\nFiring up the theme setup...'));
 
     // Bail out if theme name isn't provided.
-    if (!themeName) {
-        console.log(info.error('\nTheme name is required.\n'));
+    if (!themeName || !templateName) {
+        console.log(info.error('\nTheme name and template name are required.\n'));
         process.exit(0);
     }
 
     // Generate theme info.
     const themeInfo = generateThemeInfo(themeName);
+    themeInfo.templateName = templateName;
 
     const themeDetails = {
         'Theme Name': themeInfo.themeName,
@@ -117,20 +118,16 @@ const renderThemeDetails = (themeName) => {
         'Theme Build Directory URI Constant': `${themeInfo.macroCase}_BUILD_URI`,
     };
 
-    const biggestStringLength = themeDetails['Theme Build Directory URI Constant: '].length + 'Theme Build Directory URI Constant: '.length;
+    // Calculate the longest key-value pair for formatting
+    const biggestStringLength = Math.max(...Object.keys(themeDetails).map((key) => key.length + themeDetails[key].length));
 
     console.log(info.success('\nTheme Details:'));
-    console.log(
-        info.warning('┌' + '─'.repeat(biggestStringLength + 2) + '┐'),
-    );
+    console.log(info.warning('┌' + '─'.repeat(biggestStringLength + 4) + '┐'));
     Object.keys(themeDetails).forEach((key) => {
-        console.log(
-            info.warning('│' + ' ' + info.success(key) + info.message(themeDetails[key]) + ' ' + ' '.repeat(biggestStringLength - (themeDetails[key].length + key.length)) + info.warning('│')),
-        );
+        const value = themeDetails[key];
+        console.log(info.warning('│ ' + info.success(key + ': ') + info.message(value) + ' '.repeat(biggestStringLength - (key.length + value.length)) + ' │'));
     });
-    console.log(
-        info.warning('└' + '─'.repeat(biggestStringLength + 2) + '┘'),
-    );
+    console.log(info.warning('└' + '─'.repeat(biggestStringLength + 4) + '┘'));
 
     return themeInfo;
 };
@@ -142,23 +139,23 @@ const renderThemeDetails = (themeName) => {
  */
 const initTheme = (themeInfo) => {
     const chunksToReplace = {
-        'blank theme': themeInfo.themeNameLowerCase,
-        'Blank Theme': themeInfo.themeName,
-        BlankTheme: themeInfo.pascalCase,
-        'BLANK THEME': themeInfo.themeNameCobolCase,
-        'blank-theme-child': themeInfo.kebabCase,
-        'Blank-Theme-Child': themeInfo.trainCase,
-        'BLANK-THEME': themeInfo.cobolCase,
-        blank_theme: themeInfo.snakeCase,
-        Blank_Theme_Child: themeInfo.pascalSnakeCase,
-        BLANK_THEME: themeInfo.macroCase,
-        'blank-theme-child-': themeInfo.kebabCaseWithHyphenSuffix,
-        'Blank-Theme-Child-': themeInfo.trainCaseWithHyphenSuffix,
-        'BLANK-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
-        blank_theme_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
-        Blank_Theme_Child_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
-        BLANK_THEME_CHILD_: themeInfo.macroCaseWithUnderscoreSuffix,
-        'Template: blank-theme': `Template: ${themeInfo.templateName.toLowerCase().replace(/\s+/g, '-')}`, // Replace Template in style.css
+        'rabindra': themeInfo.themeNameLowerCase,
+        'Rabindra': themeInfo.themeName,
+        Rabindra: themeInfo.pascalCase,
+        'RABINDRA': themeInfo.themeNameCobolCase,
+        'rabindra': themeInfo.kebabCase,
+        'Rabindra': themeInfo.trainCase,
+        'RABINDRA': themeInfo.cobolCase,
+        rabindra: themeInfo.snakeCase,
+        Rabindra: themeInfo.pascalSnakeCase,
+        RABINDRA: themeInfo.macroCase,
+        'rabindra-': themeInfo.kebabCaseWithHyphenSuffix,
+        'Rabindra-': themeInfo.trainCaseWithHyphenSuffix,
+        'RABINDRA-': themeInfo.cobolCaseWithHyphenSuffix,
+        rabindra_child_: themeInfo.snakeCaseWithUnderscoreSuffix,
+        Rabindra_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
+        RABINDRA_CHILD_: themeInfo.macroCaseWithUnderscoreSuffix,
+        'Template: astra': `Template: ${themeInfo.templateName.toLowerCase().replace(/\s+/g, '-')}`, // Replace Template in style.css
     };
 
     const files = getAllFiles(getRoot());
@@ -195,7 +192,7 @@ const initTheme = (themeInfo) => {
     if (fileContentUpdated || fileNameUpdated) {
         console.log(info.success('\nYour new theme is ready to go!'), '✨');
         // Docs link
-        console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/blank-theme-child/blob/master/README.md\n')));
+        console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/rabindra/blob/master/README.md\n')));
     } else {
         console.log(info.warning('\nNo changes were made to your theme.\n'));
     }
@@ -207,7 +204,6 @@ const initTheme = (themeInfo) => {
  * @param {Array} dir - Directory to search
  */
 const getAllFiles = (dir) => {
-
     const dirOrFilesIgnore = [
         '.git',
         '.github',
@@ -252,11 +248,11 @@ const replaceFileContent = (files, chunksToReplace, newChunk) => {
             content = content.replace(regex, newChunk);
             if (content !== fs.readFileSync(filePath, 'utf8')) {
                 fs.writeFileSync(filePath, content, 'utf8');
-                console.log(info.success(`Updated [${ info.message( chunksToReplace ) }] ${ info.success( 'to' ) } [${ info.message( newChunk ) }] ${ info.success( 'in file' ) } [${ info.message( path.basename( file ) ) }]`));
+                console.log(info.success(`Updated [${info.message(chunksToReplace)}] ${info.success('to')} [${info.message(newChunk)}] ${info.success('in file')} [${info.message(path.basename(file))}]`));
                 fileContentUpdated = true;
             }
         } catch (err) {
-            console.log(info.error(`\nError: ${ err }`));
+            console.log(info.error(`\nError: ${err}`));
         }
     });
 };
@@ -277,10 +273,10 @@ const replaceFileName = (files, oldFileName, newFileName) => {
         const newFilePath = path.resolve(getRoot(), file.replace(oldFileName, newFileName));
         try {
             fs.renameSync(filePath, newFilePath);
-            console.log(info.success(`Updated file [${ info.message( path.basename( filePath ) ) }] ${ info.success( 'to' ) } [${ info.message( path.basename( newFilePath ) ) }]`));
+            console.log(info.success(`Updated file [${info.message(path.basename(filePath))}] ${info.success('to')} [${info.message(path.basename(newFilePath))}]`));
             fileNameUpdated = true;
         } catch (err) {
-            console.log(info.error(`\nError: ${ err }`));
+            console.log(info.error(`\nError: ${err}`));
         }
     });
 };
@@ -364,14 +360,12 @@ const runThemeCleanup = () => {
         const dirPath = path.resolve(getRoot(), dir);
         try {
             if (fs.existsSync(dirPath)) {
-                fs.rmdirSync(dirPath, {
-                    recursive: true
-                });
-                console.log(info.success(`Deleted directory [${ info.message( dir ) }]`));
+                fs.rmSync(dirPath, { recursive: true, force: true });
+                console.log(info.success(`Deleted directory [${info.message(dir)}]`));
                 themeCleanup = true;
             }
         } catch (err) {
-            console.log(info.error(`\nError: ${ err }`));
+            console.log(info.error(`\nError: ${err}`));
         }
     });
 
