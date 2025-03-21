@@ -37,23 +37,23 @@ let themeCleanup = false;
 const args = process.argv.slice(2);
 
 if (0 === args.length) {
-    rl.question('Would you like to setup the theme? (Y/n) ', (answer) => {
+    rl.question('Would you like to setup the child theme? (Y/n) ', (answer) => {
         if ('n' === answer.toLowerCase()) {
-            console.log(info.warning('\nTheme Setup Cancelled.\n'));
+            console.log(info.warning('\nChild Theme Setup Cancelled.\n'));
             process.exit(0);
         }
-        rl.question('Enter theme name (shown in WordPress admin)*: ', (themeName) => {
+        rl.question('Enter childtheme name (shown in WordPress admin)*: ', (themeName) => {
             rl.question('Enter parent theme template name (folder name of the parent theme)*: ', (templateName) => {
                 const themeInfo = renderThemeDetails(themeName, templateName);
-                rl.question('Confirm the Theme Details (Y/n) ', (confirm) => {
+                rl.question('Confirm the Child Theme Details (Y/n) ', (confirm) => {
                     if ('n' === confirm.toLowerCase()) {
-                        console.log(info.warning('\nTheme Setup Cancelled.\n'));
+                        console.log(info.warning('\nChild Theme Setup Cancelled.\n'));
                         process.exit(0);
                     }
                     initTheme(themeInfo);
-                    rl.question('Would you like to run the theme cleanup? (Y/n) ', (cleanup) => {
+                    rl.question('Would you like to run the child theme cleanup? (Y/n) ', (cleanup) => {
                         if ('n' === cleanup.toLowerCase()) {
-                            console.log(info.warning('\nExiting without running theme cleanup.\n'));
+                            console.log(info.warning('\nExiting without running child theme cleanup.\n'));
                             process.exit(0);
                         }
                         runThemeCleanup();
@@ -64,9 +64,9 @@ if (0 === args.length) {
         });
     });
 } else if ((args.includes('--clean') || args.includes('-c')) && 1 === args.length) {
-    rl.question('Would you like to run the theme cleanup? (Y/n) ', (cleanup) => {
+    rl.question('Would you like to run the child theme cleanup? (Y/n) ', (cleanup) => {
         if ('n' === cleanup.toLowerCase()) {
-            console.log(info.warning('\nExiting without running theme cleanup.\n'));
+            console.log(info.warning('\nExiting without running child theme cleanup.\n'));
             process.exit(0);
         }
         runThemeCleanup();
@@ -90,11 +90,11 @@ rl.on('close', () => {
  * @return {Object} themeInfo
  */
 const renderThemeDetails = (themeName, templateName) => {
-    console.log(info.success('\nFiring up the theme setup...'));
+    console.log(info.success('\nFiring up the child theme setup...'));
 
     // Bail out if theme name isn't provided.
     if (!themeName || !templateName) {
-        console.log(info.error('\nTheme name and template name are required.\n'));
+        console.log(info.error('\nChild Theme name and template name are required.\n'));
         process.exit(0);
     }
 
@@ -121,7 +121,7 @@ const renderThemeDetails = (themeName, templateName) => {
     // Calculate the longest key-value pair for formatting
     const biggestStringLength = Math.max(...Object.keys(themeDetails).map((key) => key.length + themeDetails[key].length));
 
-    console.log(info.success('\nTheme Details:'));
+    console.log(info.success('\nChild Theme Details:'));
     console.log(info.warning('┌' + '─'.repeat(biggestStringLength + 4) + '┐'));
     Object.keys(themeDetails).forEach((key) => {
         const value = themeDetails[key];
@@ -172,7 +172,7 @@ const initTheme = (themeInfo) => {
     });
 
     // Replace files contents.
-    console.log(info.success('\nUpdating theme details in file(s)...'));
+    console.log(info.success('\nUpdating child theme details in file(s)...'));
     Object.keys(chunksToReplace).forEach((key) => {
         replaceFileContent(files, key, chunksToReplace[key]);
     });
@@ -181,7 +181,7 @@ const initTheme = (themeInfo) => {
     }
 
     // Replace file names
-    console.log(info.success('\nUpdating theme file name(s)...'));
+    console.log(info.success('\nUpdating child theme file name(s)...'));
     Object.keys(fileNameToReplace).forEach((key) => {
         replaceFileName(files, key, fileNameToReplace[key]);
     });
@@ -190,11 +190,11 @@ const initTheme = (themeInfo) => {
     }
 
     if (fileContentUpdated || fileNameUpdated) {
-        console.log(info.success('\nYour new theme is ready to go!'), '✨');
+        console.log(info.success('\nYour new child theme is ready to go!'), '✨');
         // Docs link
-        console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/rabindra/blob/master/README.md\n')));
+        console.log(info.success('\nFor more information on how to use this child theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/blank-theme/blob/main/README.md\n')));
     } else {
-        console.log(info.warning('\nNo changes were made to your theme.\n'));
+        console.log(info.warning('\nNo changes were made to your child theme.\n'));
     }
 };
 
@@ -370,8 +370,8 @@ const runThemeCleanup = () => {
     });
 
     if (themeCleanup) {
-        console.log(info.success('\nTheme cleanup completed!'), '✨');
+        console.log(info.success('\nChild Theme cleanup completed!'), '✨');
     } else {
-        console.log(info.warning('\nNo theme cleanup required!\n'));
+        console.log(info.warning('\nNo child theme cleanup required!\n'));
     }
 };
