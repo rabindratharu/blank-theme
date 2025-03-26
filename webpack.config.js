@@ -155,6 +155,10 @@ const assets = {
 		new CopyPlugin({
 			patterns: [
 				{
+					from: './assets/src/fonts',
+					to: 'fonts', // Fonts go into assets/build/fonts
+				},
+				{
 					from: './assets/src/images',
 					to: 'images', // Images go into assets/build/images
 				},
