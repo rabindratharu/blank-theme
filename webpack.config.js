@@ -20,26 +20,30 @@ const [scriptConfig] = require('@wordpress/scripts/config/webpack.config');
  * @return {Object} Object with file entries.
  */
 const readAllFileEntries = (dir) => {
-    const entries = {};
+	const entries = {};
 
-    if (!fs.existsSync(dir)) {
-        return entries;
-    }
+	if (!fs.existsSync(dir)) {
+		return entries;
+	}
 
-    if (fs.readdirSync(dir).length === 0) {
-        return entries;
-    }
+	if (fs.readdirSync(dir).length === 0) {
+		return entries;
+	}
 
-    fs.readdirSync(dir).forEach((fileName) => {
-        const fullPath = path.resolve(dir, fileName); // Use path.resolve
-        if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
-            entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
-        }
-    });
+	fs.readdirSync(dir).forEach((fileName) => {
+		// Skip hidden files (starting with '.') and directories
+		if (fileName.startsWith('.')) {
+			return; // Skip files like .DS_Store
+		}
 
-    return entries;
+		const fullPath = path.resolve(dir, fileName);
+		if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
+			entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
+		}
+	});
+
+	return entries;
 };
-
 
 // Environment
 const isProduction = process.env.NODE_ENV === 'production';
@@ -71,6 +75,8 @@ const sharedConfig = {
 				],
 			},
 		],
+		// Prevent Webpack from processing these files
+		noParse: /\.(DS_Store)$/,
 	},
 	output: {
 		path: path.resolve(process.cwd(), 'assets', 'build'),
@@ -148,10 +154,6 @@ const assets = {
 	plugins: [
 		new CopyPlugin({
 			patterns: [
-				{
-					from: './assets/src/fonts',
-					to: 'fonts', // Fonts go into assets/build/fonts
-				},
 				{
 					from: './assets/src/images',
 					to: 'images', // Images go into assets/build/images
