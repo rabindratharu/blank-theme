@@ -1,0 +1,1 @@
+{"version":3,"file":"js/main.js","mappings":";;;;AAAA;AACA;AACA;;AAEAA,OAAO,CAACC,GAAG,CAAE,aAAc,CAAC,C","sources":["webpack://blank-theme/./assets/src/js/main.js"],"sourcesContent":["/**\n * File main.js.\n */\n\nconsole.log( 'child theme' );\n"],"names":["console","log"],"sourceRoot":""}
