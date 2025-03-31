@@ -52,7 +52,7 @@
 		"build:js": "wp-scripts build --experimental-modules",
 		"start": "wp-scripts start --experimental-modules",
 		"clean": "rm -rf assets/build/*",
-		"init": "./bin/init.js && npm run build:pot",
+		"init": "./bin/init.js && npm run build:pot && npm run build:zip",
 		"lint:all": "npm-run-all --parallel lint:*",
 		"lint:css": "wp-scripts lint-style ./assets/src",
 		"lint:css:fix": "npm run lint:css -- --fix ./assets/src",
@@ -64,6 +64,7 @@
 		"lint:package-json": "wp-scripts lint-pkg-json --ignorePath .gitignore",
 		"lint:staged": "lint-staged",
 		"build:pot": "grunt i18n",
+		"build:zip": "grunt release",
 		"precommit": "npm-run-all lint:* pot",
 		"prepare": "npm run init",
 		"wp-env": "wp-env"
