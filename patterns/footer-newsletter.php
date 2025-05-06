@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Footer with newsletter signup
- * Slug: blank-theme/footer-newsletter
+ * Slug: classic-theme/footer-newsletter
  * Categories: footer
  * Block Types: core/template-part/footer
  * Description: Footer with large site title and newsletter signup.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -15,17 +15,17 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:heading {"style":{"typography":{"fontSize":"clamp(1rem, 380px, 24vw)","letterSpacing":"-0.02em","fontWeight":"600","fontStyle":"normal"}}} -->
-		<h2 class="wp-block-heading" style="font-size:clamp(1rem, 380px, 24vw);font-style:normal;font-weight:600;letter-spacing:-0.02em"><?php esc_html_e( 'Stories', 'blank-theme' ); ?></h2>
+		<h2 class="wp-block-heading" style="font-size:clamp(1rem, 380px, 24vw);font-style:normal;font-weight:600;letter-spacing:-0.02em"><?php esc_html_e( 'Stories', 'classic-theme' ); ?></h2>
 		<!-- /wp:heading -->
 
 		<!-- wp:paragraph {"fontSize":"x-large"} -->
-		<p class="has-x-large-font-size"><?php esc_html_e( 'Receive our articles in your inbox.', 'blank-theme' ); ?></p>
+		<p class="has-x-large-font-size"><?php esc_html_e( 'Receive our articles in your inbox.', 'classic-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 
 		<!-- wp:buttons -->
 		<div class="wp-block-buttons">
 			<!-- wp:button -->
-			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Subscribe', 'blank-theme' ); ?></a></div>
+			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Subscribe', 'classic-theme' ); ?></a></div>
 			<!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->
@@ -37,15 +37,15 @@
 		<!-- wp:group {"align":"full","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 		<div class="wp-block-group alignfull">
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size"><?php esc_html_e( 'Blank Theme', 'blank-theme' ); ?></p>
+			<p class="has-small-font-size"><?php esc_html_e( 'Classic Theme', 'classic-theme' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"fontSize":"small"} -->
 			<p class="has-small-font-size">
 				<?php
 					printf(
 						/* translators: Designed with WordPress. %s: WordPress link. */
-						esc_html__( 'Designed with %s', 'blank-theme' ),
-						'<a href="' . esc_url( __( 'https://wordpress.org', 'blank-theme' ) ) . '" rel="nofollow">WordPress</a>'
+						esc_html__( 'Designed with %s', 'classic-theme' ),
+						'<a href="' . esc_url( __( 'https://wordpress.org', 'classic-theme' ) ) . '" rel="nofollow">WordPress</a>'
 					);
 					?>
 			</p>

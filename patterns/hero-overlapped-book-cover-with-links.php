@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Hero, overlapped book cover with links
- * Slug: blank-theme/hero-overlapped-book-cover-with-links
+ * Slug: classic-theme/hero-overlapped-book-cover-with-links
  * Categories: banner
  * Description: A hero with an overlapped book cover and links.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -23,13 +23,13 @@
 					<div class="wp-block-group">
 						<!-- wp:heading {"fontSize":"xx-large"} -->
 						<h2 class="wp-block-heading has-xx-large-font-size">
-							<?php echo esc_html_x( 'The Stories Book', 'Hero - Overlapped book cover pattern headline text', 'blank-theme' ); ?>
+							<?php echo esc_html_x( 'The Stories Book', 'Hero - Overlapped book cover pattern headline text', 'classic-theme' ); ?>
 						</h2>
 						<!-- /wp:heading -->
 
 						<!-- wp:paragraph {"className":"is-style-text-subtitle"} -->
 						<p class="is-style-text-subtitle">
-							<?php echo esc_html_x( 'A fine collection of moments in time featuring photographs from Louis Fleckenstein, Paul Strand and Asahachi Kōno.', 'Hero - Overlapped book cover pattern subline text', 'blank-theme' ); ?>
+							<?php echo esc_html_x( 'A fine collection of moments in time featuring photographs from Louis Fleckenstein, Paul Strand and Asahachi Kōno.', 'Hero - Overlapped book cover pattern subline text', 'classic-theme' ); ?>
 						</p>
 						<!-- /wp:paragraph -->
 					</div>
@@ -50,14 +50,14 @@
 									<!-- wp:button {"width":100,"className":"is-style-fill"} -->
 									<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill">
 										<a class="wp-block-button__link wp-element-button" href="#">
-											<?php echo esc_html_x( 'Amazon', 'Example brand name.', 'blank-theme' ); ?>
+											<?php echo esc_html_x( 'Amazon', 'Example brand name.', 'classic-theme' ); ?>
 										</a>
 									</div>
 									<!-- /wp:button -->
 									<!-- wp:button {"width":100,"className":"is-style-fill"} -->
 									<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill">
 										<a class="wp-block-button__link wp-element-button" href="#">
-											<?php echo esc_html_x( 'Apple Books', 'Example brand name.', 'blank-theme' ); ?>
+											<?php echo esc_html_x( 'Apple Books', 'Example brand name.', 'classic-theme' ); ?>
 										</a>
 									</div>
 									<!-- /wp:button -->
@@ -72,14 +72,14 @@
 									<!-- wp:button {"width":100,"className":"is-style-fill"} -->
 									<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill">
 										<a class="wp-block-button__link wp-element-button" href="#">
-											<?php echo esc_html_x( 'Audible', 'Example brand name.', 'blank-theme' ); ?>
+											<?php echo esc_html_x( 'Audible', 'Example brand name.', 'classic-theme' ); ?>
 										</a>
 									</div>
 									<!-- /wp:button -->
 									<!-- wp:button {"width":100,"className":"is-style-fill"} -->
 									<div class="wp-block-button has-custom-width wp-block-button__width-100 is-style-fill">
 										<a class="wp-block-button__link wp-element-button" href="#">
-											<?php echo esc_html_x( 'Barnes &amp; Noble', 'Example brand name.', 'blank-theme' ); ?>
+											<?php echo esc_html_x( 'Barnes &amp; Noble', 'Example brand name.', 'classic-theme' ); ?>
 										</a>
 									</div>
 									<!-- /wp:button -->
@@ -95,7 +95,7 @@
 						<!-- /wp:spacer -->
 
 						<!-- wp:paragraph {"fontSize":"medium"} -->
-						<p class="has-medium-font-size"><?php echo wp_kses_post( _x( 'Outside Europe? View <a href="#" rel="nofollow">international editions</a>.', 'Pattern placeholder text with link.', 'blank-theme' ) ); ?></p>
+						<p class="has-medium-font-size"><?php echo wp_kses_post( _x( 'Outside Europe? View <a href="#" rel="nofollow">international editions</a>.', 'Pattern placeholder text with link.', 'classic-theme' ) ); ?></p>
 						<!-- /wp:paragraph -->
 					</div>
 					<!-- /wp:group -->
@@ -108,7 +108,7 @@
 			<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:45%">
 				<!-- wp:image {"aspectRatio":"3/4","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
 				<figure class="wp-block-image size-full">
-					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/book-image.webp" alt="<?php echo esc_attr__( 'Book Image', 'blank-theme' ); ?>" style="aspect-ratio:3/4;object-fit:cover"/>
+					<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/book-image.webp" alt="<?php echo esc_attr__( 'Book Image', 'classic-theme' ); ?>" style="aspect-ratio:3/4;object-fit:cover"/>
 				</figure>
 				<!-- /wp:image -->
 			</div>

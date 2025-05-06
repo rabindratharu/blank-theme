@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Instagram grid
- * Slug: blank-theme/media-instagram-grid
+ * Slug: classic-theme/media-instagram-grid
  * Categories: media, gallery, featured
  * Viewport width: 1440
  * Description: A grid section with photos and a link to an Instagram profile.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -19,11 +19,11 @@
 			<!-- wp:group {"style":{"dimensions":{"minHeight":"100%"},"spacing":{"blockGap":"var:preset|spacing|20"}},"layout":{"type":"flex","orientation":"vertical","verticalAlignment":"center","justifyContent":"center"}} -->
 			<div class="wp-block-group" style="min-height:100%">
 				<!-- wp:heading {"fontSize":"large"} -->
-				<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Instagram', 'blank-theme' ); ?></h2>
+				<h2 class="wp-block-heading has-large-font-size"><?php esc_html_e( 'Instagram', 'classic-theme' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
-				<p class="has-text-align-center has-medium-font-size"><a href="#"><?php echo esc_html_x( '@example', 'Example username for social media account.', 'blank-theme' ); ?></a></p>
+				<p class="has-text-align-center has-medium-font-size"><a href="#"><?php echo esc_html_x( '@example', 'Example username for social media account.', 'classic-theme' ); ?></a></p>
 				<!-- /wp:paragraph -->
 				</div>
 			<!-- /wp:group -->
@@ -31,31 +31,31 @@
 		<!-- /wp:group -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/flower-meadow-square.webp" alt="<?php esc_attr_e( 'Photo of a field full of flowers, a blue sky and a tree.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/flower-meadow-square.webp" alt="<?php esc_attr_e( 'Photo of a field full of flowers, a blue sky and a tree.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/vash-gon-square.webp" alt="<?php esc_attr_e( 'Profile portrait of a native person.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/vash-gon-square.webp" alt="<?php esc_attr_e( 'Profile portrait of a native person.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/coral-square.webp" alt="<?php esc_attr_e( 'View of the deep ocean.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/coral-square.webp" alt="<?php esc_attr_e( 'View of the deep ocean.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/agenda-img-4.webp" alt="<?php esc_attr_e( 'Portrait of an African Woman dressed in traditional costume, wearing decorative jewelry.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/agenda-img-4.webp" alt="<?php esc_attr_e( 'Portrait of an African Woman dressed in traditional costume, wearing decorative jewelry.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/parthenon-square.webp" alt="<?php esc_attr_e( 'The Acropolis of Athens.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/parthenon-square.webp" alt="<?php esc_attr_e( 'The Acropolis of Athens.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/dallas-creek-square.webp" alt="<?php esc_attr_e( 'Close up of two flowers on a dark background.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/dallas-creek-square.webp" alt="<?php esc_attr_e( 'Close up of two flowers on a dark background.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/marshland-birds-square.webp" alt="<?php esc_attr_e( 'Birds on a lake.', 'blank-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
+		<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/marshland-birds-square.webp" alt="<?php esc_attr_e( 'Birds on a lake.', 'classic-theme' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 	</div>
 	<!-- /wp:group -->

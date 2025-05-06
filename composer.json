@@ -1,8 +1,8 @@
 {
-	"name": "rabindratharu/blank-theme",
+	"name": "rabindratharu/classic-theme",
 	"type": "wordpress-theme",
 	"description": "A base theme for WordPress development.",
-	"homepage": "https://github.com/rabindratharu/blank-theme",
+	"homepage": "https://github.com/rabindratharu/classic-theme",
 	"license": "MIT",
 	"require": {
 	  "php": ">=7.4"
@@ -27,6 +27,6 @@
 	"scripts": {
 	  "phpcbf": "phpcbf",
 	  "phpcs": "phpcs",
-	  "pot": "wp i18n make-pot . ./languages/blank-theme.pot --domain=blank-theme --package-name=\"Blank Theme\" --skip-theme-json"
+	  "pot": "wp i18n make-pot . ./languages/classic-theme.pot --domain=classic-theme --package-name=\"Classic Theme\" --skip-theme-json"
 	}
   }

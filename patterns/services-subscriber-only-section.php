@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Services, subscriber only section
- * Slug: blank-theme/services-subscriber-only-section
+ * Slug: classic-theme/services-subscriber-only-section
  * Categories: call-to-action, services
  * Description: A subscriber-only section highlighting exclusive services and offerings.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -16,29 +16,29 @@
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:heading {"fontSize":"xx-large"} -->
-			<h2 class="wp-block-heading has-xx-large-font-size"><?php esc_html_e( 'Subscribe to get unlimited access', 'blank-theme' ); ?></h2>
+			<h2 class="wp-block-heading has-xx-large-font-size"><?php esc_html_e( 'Subscribe to get unlimited access', 'classic-theme' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:list {"className":"is-style-checkmark-list","style":{"spacing":{"margin":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"},"padding":{"left":"var:preset|spacing|30"}}}} -->
 			<ul style="margin-top:var(--wp--preset--spacing--40);margin-bottom:var(--wp--preset--spacing--40);padding-left:var(--wp--preset--spacing--30)" class="wp-block-list is-style-checkmark-list">
 				<!-- wp:list-item {"fontSize":"medium"} -->
-				<li class="has-medium-font-size"><?php esc_html_e( 'Get access to our paid articles and weekly newsletter.', 'blank-theme' ); ?></li>
+				<li class="has-medium-font-size"><?php esc_html_e( 'Get access to our paid articles and weekly newsletter.', 'classic-theme' ); ?></li>
 				<!-- /wp:list-item -->
 
 				<!-- wp:list-item {"fontSize":"medium"} -->
-				<li class="has-medium-font-size"><?php esc_html_e( 'Join our IRL events.', 'blank-theme' ); ?></li>
+				<li class="has-medium-font-size"><?php esc_html_e( 'Join our IRL events.', 'classic-theme' ); ?></li>
 				<!-- /wp:list-item -->
 
 				<!-- wp:list-item {"fontSize":"medium"} -->
-				<li class="has-medium-font-size"><?php esc_html_e( 'Get a free tote bag.', 'blank-theme' ); ?></li>
+				<li class="has-medium-font-size"><?php esc_html_e( 'Get a free tote bag.', 'classic-theme' ); ?></li>
 				<!-- /wp:list-item -->
 
 				<!-- wp:list-item {"fontSize":"medium"} -->
-				<li class="has-medium-font-size"><?php esc_html_e( 'An elegant addition of home decor collection.', 'blank-theme' ); ?></li>
+				<li class="has-medium-font-size"><?php esc_html_e( 'An elegant addition of home decor collection.', 'classic-theme' ); ?></li>
 				<!-- /wp:list-item -->
 
 				<!-- wp:list-item {"fontSize":"medium"} -->
-				<li class="has-medium-font-size"><?php esc_html_e( 'Join our forums.', 'blank-theme' ); ?></li>
+				<li class="has-medium-font-size"><?php esc_html_e( 'Join our forums.', 'classic-theme' ); ?></li>
 				<!-- /wp:list-item -->
 			</ul>
 			<!-- /wp:list -->
@@ -46,17 +46,17 @@
 			<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"left","flexWrap":"nowrap"}} -->
 			<div class="wp-block-buttons">
 				<!-- wp:button {"className":"is-style-fill"} -->
-				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Subscribe', 'blank-theme' ); ?></a></div>
+				<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Subscribe', 'classic-theme' ); ?></a></div>
 				<!-- /wp:button -->
 
 				<!-- wp:button {"className":"is-style-outline"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'View plans', 'blank-theme' ); ?></a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'View plans', 'classic-theme' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
 
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size"><?php esc_html_e( 'Cancel or pause anytime.', 'blank-theme' ); ?></p>
+			<p class="has-small-font-size"><?php esc_html_e( 'Cancel or pause anytime.', 'classic-theme' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
@@ -64,7 +64,7 @@
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/services-subscriber-photo.webp" alt="<?php esc_attr_e( 'Smartphones capturing a scenic wildflower meadow with trees', 'blank-theme' ); ?>"/></figure>
+			<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/services-subscriber-photo.webp" alt="<?php esc_attr_e( 'Smartphones capturing a scenic wildflower meadow with trees', 'classic-theme' ); ?>"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

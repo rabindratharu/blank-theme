@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Footer with columns
- * Slug: blank-theme/footer-columns
+ * Slug: classic-theme/footer-columns
  * Categories: footer
  * Block Types: core/template-part/footer
  * Description: Footer columns with title, tagline and links.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -30,13 +30,13 @@
                 <div class="wp-block-group" style="padding-right:0;padding-left:0">
                     <!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"medium"} -->
                     <h3 class="wp-block-heading has-medium-font-size" style="font-style:normal;font-weight:700">
-                        <?php esc_html_e( 'Stories', 'blank-theme' ); ?></h3>
+                        <?php esc_html_e( 'Stories', 'classic-theme' ); ?></h3>
                     <!-- /wp:heading -->
-                    <!-- wp:navigation {"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Stories', 'blank-theme' ); ?>"} -->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Blog', 'blank-theme' ); ?>","url":"#"} /-->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'About', 'blank-theme' ); ?>","url":"#"} /-->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'FAQs', 'blank-theme' ); ?>","url":"#"} /-->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Authors', 'blank-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation {"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Stories', 'classic-theme' ); ?>"} -->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Blog', 'classic-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'About', 'classic-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'FAQs', 'classic-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Authors', 'classic-theme' ); ?>","url":"#"} /-->
                     <!-- /wp:navigation -->
                 </div>
                 <!-- /wp:group -->
@@ -44,13 +44,13 @@
                 <div class="wp-block-group" style="padding-right:0;padding-left:0">
                     <!-- wp:heading {"level":3,"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"medium"} -->
                     <h3 class="wp-block-heading has-medium-font-size" style="font-style:normal;font-weight:700">
-                        <?php echo esc_html_x( 'Fleurs', 'Example brand name.', 'blank-theme' ); ?></h3>
+                        <?php echo esc_html_x( 'Fleurs', 'Example brand name.', 'classic-theme' ); ?></h3>
                     <!-- /wp:heading -->
-                    <!-- wp:navigation {"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Featured', 'blank-theme' ); ?>"} -->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Events', 'blank-theme' ); ?>","url":"#"} /-->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Shop', 'blank-theme' ); ?>","url":"#"} /-->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Patterns', 'blank-theme' ); ?>","url":"#"} /-->
-                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Themes', 'blank-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation {"overlayMenu":"never","style":{"spacing":{"blockGap":"var:preset|spacing|20"}},"fontSize":"medium","layout":{"type":"flex","orientation":"vertical"},"ariaLabel":"<?php esc_attr_e( 'Featured', 'classic-theme' ); ?>"} -->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Events', 'classic-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Shop', 'classic-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Patterns', 'classic-theme' ); ?>","url":"#"} /-->
+                    <!-- wp:navigation-link {"label":"<?php esc_html_e( 'Themes', 'classic-theme' ); ?>","url":"#"} /-->
                     <!-- /wp:navigation -->
                 </div>
                 <!-- /wp:group -->
@@ -64,15 +64,15 @@
         <!-- wp:group {"align":"full","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
         <div class="wp-block-group alignfull">
             <!-- wp:paragraph {"fontSize":"small"} -->
-            <p class="has-small-font-size"><?php esc_html_e( 'Blank Theme', 'blank-theme' ); ?></p>
+            <p class="has-small-font-size"><?php esc_html_e( 'Classic Theme', 'classic-theme' ); ?></p>
             <!-- /wp:paragraph -->
             <!-- wp:paragraph {"fontSize":"small"} -->
             <p class="has-small-font-size">
                 <?php
 			printf(
 				/* translators: Designed with WordPress. %s: WordPress link. */
-				esc_html__( 'Designed with %s', 'blank-theme' ),
-				'<a href="' . esc_url( __( 'https://wordpress.org', 'blank-theme' ) ) . '" rel="nofollow">WordPress</a>'
+				esc_html__( 'Designed with %s', 'classic-theme' ),
+				'<a href="' . esc_url( __( 'https://wordpress.org', 'classic-theme' ) ) . '" rel="nofollow">WordPress</a>'
 			);
 			?>
             </p>

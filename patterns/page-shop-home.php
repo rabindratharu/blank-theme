@@ -1,19 +1,19 @@
 <?php
 /**
  * Title: Shop homepage
- * Slug: blank-theme/page-shop-home
- * Categories: blank_theme_page
+ * Slug: classic-theme/page-shop-home
+ * Categories: classic_theme_page
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template
  * Viewport width: 1400
  * Description: A shop homepage pattern.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
 
-<!-- wp:pattern {"slug":"blank-theme/banner-intro-image"} /-->
-<!-- wp:pattern {"slug":"blank-theme/grid-with-categories"} /-->
-<!-- wp:pattern {"slug":"blank-theme/media-instagram-grid"} /-->
+<!-- wp:pattern {"slug":"classic-theme/banner-intro-image"} /-->
+<!-- wp:pattern {"slug":"classic-theme/grid-with-categories"} /-->
+<!-- wp:pattern {"slug":"classic-theme/media-instagram-grid"} /-->

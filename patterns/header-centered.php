@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Centered header
- * Slug: blank-theme/header-centered
+ * Slug: classic-theme/header-centered
  * Categories: header
  * Block Types: core/template-part/header
  * Description: Header with centered site title and navigation.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>

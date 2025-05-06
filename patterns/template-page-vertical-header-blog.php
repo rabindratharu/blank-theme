@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Page template for the right-aligned blog
- * Slug: blank-theme/template-page-vertical-header-blog
+ * Slug: classic-theme/template-page-vertical-header-blog
  * Template Types: page
  * Viewport width: 1400
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>

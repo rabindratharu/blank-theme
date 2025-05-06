@@ -45,35 +45,35 @@ module.exports = function( grunt ) {
 					'!sass/**',
 					'!*.zip',
 				],
-				dest: 'blank-theme/',
+				dest: 'classic-theme/',
 			},
 		},
 
 		compress: {
 			main: {
 				options: {
-					archive: 'blank-theme.zip',
+					archive: 'classic-theme.zip',
 					mode: 'zip',
 				},
 				files: [
 					{
-						src: [ './blank-theme/**' ],
+						src: [ './classic-theme/**' ],
 					},
 				],
 			},
 		},
 
 		clean: {
-			main: [ 'blank-theme' ],
-			zip: [ 'blank-theme.zip' ],
+			main: [ 'classic-theme' ],
+			zip: [ 'classic-theme.zip' ],
 		},
 
 		makepot: {
 			target: {
 				options: {
 					domainPath: '/',
-					mainFile: 'blank-theme.php',
-					potFilename: 'languages/blank-theme.pot',
+					mainFile: 'classic-theme.php',
+					potFilename: 'languages/classic-theme.pot',
 					potHeaders: {
 						poedit: true,
 						'x-poedit-keywordslist': true,
@@ -97,7 +97,7 @@ module.exports = function( grunt ) {
 
 		addtextdomain: {
 			options: {
-				textdomain: 'blank-theme',
+				textdomain: 'classic-theme',
 			},
 			target: {
 				files: {
@@ -118,7 +118,7 @@ module.exports = function( grunt ) {
 		checktextdomain: {
 			standard: {
 				options: {
-					text_domain: 'blank-theme', //Specify allowed domain(s)
+					text_domain: 'classic-theme', //Specify allowed domain(s)
 					keywords: [
 						//List keyword specifications
 						'__:1,2d',

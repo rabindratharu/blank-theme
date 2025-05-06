@@ -138,22 +138,22 @@ const renderThemeDetails = (themeName) => {
  */
 const initTheme = (themeInfo) => {
 	const chunksToReplace = {
-		'blank theme': themeInfo.themeNameLowerCase,
-		'Blank Theme': themeInfo.themeName,
-		BlankTheme: themeInfo.pascalCase,
-		'BLANK THEME': themeInfo.themeNameCobolCase,
-		'blank-theme': themeInfo.kebabCase,
-		'Blank-Theme': themeInfo.trainCase,
-		'BLANK-THEME': themeInfo.cobolCase,
-		blank_theme: themeInfo.snakeCase,
-		Blank_Theme: themeInfo.pascalSnakeCase,
-		BLANK_THEME: themeInfo.macroCase,
-		'blank-theme-': themeInfo.kebabCaseWithHyphenSuffix,
-		'Blank-Theme-': themeInfo.trainCaseWithHyphenSuffix,
-		'BLANK-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
-		blank_theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
-		Blank_Theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
-		BLANK_THEME_: themeInfo.macroCaseWithUnderscoreSuffix,
+		'classic theme': themeInfo.themeNameLowerCase,
+		'Classic Theme': themeInfo.themeName,
+		ClassicTheme: themeInfo.pascalCase,
+		'CLASSIC THEME': themeInfo.themeNameCobolCase,
+		'classic-theme': themeInfo.kebabCase,
+		'Classic-Theme': themeInfo.trainCase,
+		'CLASSIC-THEME': themeInfo.cobolCase,
+		classic_theme: themeInfo.snakeCase,
+		Classic_Theme: themeInfo.pascalSnakeCase,
+		CLASSIC_THEME: themeInfo.macroCase,
+		'classic-theme-': themeInfo.kebabCaseWithHyphenSuffix,
+		'Classic-Theme-': themeInfo.trainCaseWithHyphenSuffix,
+		'CLASSIC-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
+		classic_theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
+		Classic_Theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
+		CLASSIC_THEME_: themeInfo.macroCaseWithUnderscoreSuffix,
 	};
 
 	const files = getAllFiles(getRoot());
@@ -190,7 +190,7 @@ const initTheme = (themeInfo) => {
 	if (fileContentUpdated || fileNameUpdated) {
 		console.log(info.success('\nYour new theme is ready to go!'), '✨');
 		// Docs link
-		console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/blank-theme/blob/master/README.md\n')));
+		console.log(info.success('\nFor more information on how to use this theme, please visit the following link: ' + info.warning('https://github.com/rabindratharu/classic-theme/blob/master/README.md\n')));
 	} else {
 		console.log(info.warning('\nNo changes were made to your theme.\n'));
 	}

@@ -1,4 +1,4 @@
-=== Blank Theme ===
+=== Classic Theme ===
 Contributors: rabindratharu
 Requires at least: 6.7
 Tested up to: 6.7
@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Blank Theme is a responsive multipurpose theme.
+Classic Theme is a responsive multipurpose theme.
 
 
 == Changelog ==
@@ -19,8 +19,8 @@ Blank Theme is a responsive multipurpose theme.
 
 == Copyright ==
 
-Blank Theme WordPress Theme, (C) 2024 WordPress.org and contributors.
-Blank Theme is distributed under the terms of the GNU GPL.
+Classic Theme WordPress Theme, (C) 2024 WordPress.org and contributors.
+Classic Theme is distributed under the terms of the GNU GPL.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

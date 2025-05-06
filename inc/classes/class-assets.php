@@ -2,12 +2,12 @@
 /**
  * Enqueue theme assets.
  *
-  * @package Blank-Theme
+  * @package Classic-Theme
  */
 
-namespace Blank_Theme\Inc;
+namespace Classic_Theme\Inc;
 
-use Blank_Theme\Inc\Traits\Singleton;
+use Classic_Theme\Inc\Traits\Singleton;
 
 /**
  * Class Assets
@@ -59,10 +59,10 @@ class Assets {
 	public function register_scripts() {
 
 		// Register the main JavaScript file for the theme with jQuery dependency.
-		$this->register_script( 'blank-theme-main', 'js/main.js', [ 'jquery' ] );
+		$this->register_script( 'classic-theme-main', 'js/main.js', [ 'jquery' ] );
 
 		// Enqueue the registered JavaScript file to be included in the front-end.
-		//wp_enqueue_script( 'blank-theme-main' );
+		//wp_enqueue_script( 'classic-theme-main' );
 	}
 
 	/**
@@ -77,10 +77,10 @@ class Assets {
 	 */
 	public function register_styles() {
 		// Register the main CSS file for the theme.
-		$this->register_style( 'blank-theme-main', 'css/main.css' );
+		$this->register_style( 'classic-theme-main', 'css/main.css' );
 
 		// Enqueue the registered CSS file to be included in the front-end.
-		wp_enqueue_style( 'blank-theme-main' );
+		wp_enqueue_style( 'classic-theme-main' );
 	}
 
 	/**
@@ -93,10 +93,10 @@ class Assets {
 	 */
 	public function register_editor_styles() {
 		// Register the editor CSS file.
-		$this->register_style( 'blank-theme-editor', 'css/editor.css' );
+		$this->register_style( 'classic-theme-editor', 'css/editor.css' );
 
 		// Enqueue the registered editor CSS file to be included in the block editor.
-		wp_enqueue_style( 'blank-theme-editor' );
+		wp_enqueue_style( 'classic-theme-editor' );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Assets {
 	 */
 	public function get_asset_meta( $file, $deps = array(), $ver = false ) {
 		// Get the asset meta file path.
-		$asset_meta_file = sprintf( '%s/js/%s.asset.php', untrailingslashit( BLANK_THEME_BUILD_DIR ), basename( $file, '.' . pathinfo( $file )['extension'] ) );
+		$asset_meta_file = sprintf( '%s/js/%s.asset.php', untrailingslashit( CLASSIC_THEME_BUILD_DIR ), basename( $file, '.' . pathinfo( $file )['extension'] ) );
 
 		// If the file is readable, read the asset meta data from the file.
 		if ( is_readable( $asset_meta_file ) ) {
@@ -162,7 +162,7 @@ class Assets {
 		 *
 		 * @var string $src The URL of the script file.
 		 */
-		$src = sprintf( BLANK_THEME_BUILD_URI . '/%s', $file );
+		$src = sprintf( CLASSIC_THEME_BUILD_URI . '/%s', $file );
 
 		/**
 		 * Get the asset meta data.
@@ -208,7 +208,7 @@ class Assets {
 		 *
 		 * @var string $src The URL of the style file.
 		 */
-		$src = sprintf( BLANK_THEME_BUILD_URI . '/%s', $file );
+		$src = sprintf( CLASSIC_THEME_BUILD_URI . '/%s', $file );
 
 		/**
 		 * Get the asset meta data.
@@ -250,7 +250,7 @@ class Assets {
 		}
 
 		// Get the file path.
-		$file_path = sprintf( '%s/%s', BLANK_THEME_BUILD_DIR, $file );
+		$file_path = sprintf( '%s/%s', CLASSIC_THEME_BUILD_DIR, $file );
 
 		// Check if the file exists.
 		if ( file_exists( $file_path ) ) {

@@ -1,13 +1,13 @@
 <?php
 /**
  * Title: Vertical header
- * Slug: blank-theme/vertical-header
+ * Slug: classic-theme/vertical-header
  * Categories: header
  * Block Types: core/template-part/vertical-header
  * Description: Vertical Header with site title and navigation
  * Viewport width: 300
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>

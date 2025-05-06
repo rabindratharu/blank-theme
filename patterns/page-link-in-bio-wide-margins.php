@@ -1,14 +1,14 @@
 <?php
 /**
  * Title: Link in bio with profile, links and wide margins
- * Slug: blank-theme/page-link-in-bio-wide-margins
- * Categories: blank_theme_page, banner, featured
+ * Slug: classic-theme/page-link-in-bio-wide-margins
+ * Categories: classic_theme_page, banner, featured
  * Keywords: starter
  * Block Types: core/post-content
  * Viewport width: 1400
  * Description: A link in bio landing page with social links, a profile photo and a brief description.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -19,7 +19,7 @@
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:image {"scale":"cover","sizeSlug":"full","linkDestination":"none","align":"center","style":{"border":{"radius":{"topLeft":"150px","bottomRight":"150px"}}}} -->
-			<figure class="wp-block-image aligncenter size-full has-custom-border"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/woman-splashing-water.webp" alt="<?php esc_attr_e( 'Woman on beach, splashing water.', 'blank-theme' ); ?>" style="border-top-left-radius:150px;border-bottom-right-radius:150px;object-fit:cover"/></figure>
+			<figure class="wp-block-image aligncenter size-full has-custom-border"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/woman-splashing-water.webp" alt="<?php esc_attr_e( 'Woman on beach, splashing water.', 'classic-theme' ); ?>" style="border-top-left-radius:150px;border-bottom-right-radius:150px;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -29,11 +29,11 @@
 			<!-- wp:group {"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch"}} -->
 			<div class="wp-block-group">
 				<!-- wp:heading {"textAlign":"left"} -->
-				<h2 class="wp-block-heading has-text-align-left"><?php esc_html_e( 'Nora Winslow Keene', 'blank-theme' ); ?></h2>
+				<h2 class="wp-block-heading has-text-align-left"><?php esc_html_e( 'Nora Winslow Keene', 'classic-theme' ); ?></h2>
 				<!-- /wp:heading -->
 
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html_x( 'I’m Nora, a dedicated public interest attorney based in Denver. I’m a graduate of Stanford University.', 'Pattern placeholder text.', 'blank-theme' ); ?></p>
+				<p><?php echo esc_html_x( 'I’m Nora, a dedicated public interest attorney based in Denver. I’m a graduate of Stanford University.', 'Pattern placeholder text.', 'classic-theme' ); ?></p>
 				<!-- /wp:paragraph -->
 
 				<!-- wp:social-links {"iconColor":"currentColor","iconColorValue":"currentColor","className":"is-style-logos-only"} -->

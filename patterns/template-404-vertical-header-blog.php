@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Right-aligned blog, 404
- * Slug: blank-theme/template-404-vertical-header-blog
+ * Slug: classic-theme/template-404-vertical-header-blog
  * Template Types: 404
  * Viewport width: 1400
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -24,7 +24,7 @@
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->
 
-			<!-- wp:pattern {"slug":"blank-theme/hidden-404"} /-->
+			<!-- wp:pattern {"slug":"classic-theme/hidden-404"} /-->
 
 			<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>

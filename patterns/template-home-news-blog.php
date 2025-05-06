@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: News blog home
- * Slug: blank-theme/template-home-news-blog
+ * Slug: classic-theme/template-home-news-blog
  * Template Types: front-page, index, home
  * Viewport width: 1400
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -35,7 +35,7 @@
 						<!-- /wp:post-template -->
 						<!-- wp:query-no-results -->
 							<!-- wp:paragraph -->
-							<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+							<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 							<!-- /wp:paragraph -->
 						<!-- /wp:query-no-results -->
 					</div>

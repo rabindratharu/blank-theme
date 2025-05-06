@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Photo blog search results
- * Slug: blank-theme/template-search-photo-blog
+ * Slug: classic-theme/template-search-photo-blog
  * Template Types: search
  * Viewport width: 1400
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -17,10 +17,10 @@
 	<!-- wp:query-title {"type":"search","textAlign":"center","align":"wide"} /-->
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:pattern {"slug":"blank-theme/hidden-search"} /-->
+		<!-- wp:pattern {"slug":"classic-theme/hidden-search"} /-->
 	</div>
 	<!-- /wp:group -->
-	<!-- wp:pattern {"slug":"blank-theme/template-query-loop-photo-blog"} /-->
+	<!-- wp:pattern {"slug":"classic-theme/template-query-loop-photo-blog"} /-->
 </main>
 <!-- /wp:group -->
 

@@ -1,15 +1,15 @@
 <?php
 /**
  * Title: Portfolio homepage
- * Slug: blank-theme/page-portfolio-home
- * Categories: blank_theme_page, posts
+ * Slug: classic-theme/page-portfolio-home
+ * Categories: classic_theme_page, posts
  * Keywords: starter
  * Block Types: core/post-content
  * Post Types: page, wp_template
  * Viewport width: 1400
  * Description: A portfolio homepage pattern.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -22,7 +22,7 @@
 			<!-- wp:column {"width":"50%"} -->
 			<div class="wp-block-column" style="flex-basis:50%">
 				<!-- wp:heading {"align":"wide","fontSize":"x-large"} -->
-				<h2 class="wp-block-heading alignwide has-x-large-font-size"><?php esc_html_e( 'My name is Anna Möller and these are some of my photo projects.', 'blank-theme' ); ?></h2>
+				<h2 class="wp-block-heading alignwide has-x-large-font-size"><?php esc_html_e( 'My name is Anna Möller and these are some of my photo projects.', 'classic-theme' ); ?></h2>
 				<!-- /wp:heading -->
 			</div>
 			<!-- /wp:column -->
@@ -60,7 +60,7 @@
 				<!-- /wp:post-template -->
 				<!-- wp:query-no-results -->
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- /wp:query-no-results -->
 			</div>
@@ -82,7 +82,7 @@
 				<!-- /wp:post-template -->
 				<!-- wp:query-no-results -->
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- /wp:query-no-results -->
 			</div>
@@ -116,7 +116,7 @@
 		<!-- /wp:post-template -->
 		<!-- wp:query-no-results -->
 		<!-- wp:paragraph -->
-		<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+		<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 	</div>
@@ -149,7 +149,7 @@
 				<!-- /wp:post-template -->
 				<!-- wp:query-no-results -->
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- /wp:query-no-results -->
 			</div>
@@ -171,7 +171,7 @@
 				<!-- /wp:post-template -->
 				<!-- wp:query-no-results -->
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+				<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 				<!-- /wp:paragraph -->
 				<!-- /wp:query-no-results -->
 			</div>
@@ -198,7 +198,7 @@
 		<!-- /wp:post-template -->
 		<!-- wp:query-no-results -->
 		<!-- wp:paragraph -->
-		<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+		<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 	</div>
@@ -221,10 +221,10 @@
 		<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 		<div class="wp-block-group alignwide">
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size"><?php esc_html_e( 'Blank Theme', 'blank-theme' ); ?></p>
+			<p class="has-small-font-size"><?php esc_html_e( 'Classic Theme', 'classic-theme' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"fontSize":"small"} -->
-			<p class="has-small-font-size"><?php esc_html_e( 'email@example.com', 'blank-theme' ); ?><br><?php echo esc_html_x( '+1 555 349 1806', 'Phone number.', 'blank-theme' ); ?></p>
+			<p class="has-small-font-size"><?php esc_html_e( 'email@example.com', 'classic-theme' ); ?><br><?php echo esc_html_x( '+1 555 349 1806', 'Phone number.', 'classic-theme' ); ?></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->

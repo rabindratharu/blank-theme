@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: News blog archive
- * Slug: blank-theme/template-archive-news-blog
+ * Slug: classic-theme/template-archive-news-blog
  * Template Types: archive
  * Viewport width: 1400
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -28,7 +28,7 @@
 	<!-- /wp:group -->
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
-		<!-- wp:pattern {"slug":"blank-theme/template-query-loop-news-blog"} /-->
+		<!-- wp:pattern {"slug":"classic-theme/template-query-loop-news-blog"} /-->
 	</div>
 	<!-- /wp:group -->
 </main>

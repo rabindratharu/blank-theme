@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Photo blog page
- * Slug: blank-theme/template-page-photo-blog
+ * Slug: classic-theme/template-page-photo-blog
  * Template Types: page
  * Viewport width: 1400
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>

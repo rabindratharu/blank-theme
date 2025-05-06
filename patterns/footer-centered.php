@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Centered footer
- * Slug: blank-theme/footer-centered
+ * Slug: classic-theme/footer-centered
  * Categories: footer
  * Block Types: core/template-part/footer
  * Description: Footer with centered site title and tagline.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -28,8 +28,8 @@
 		<?php
 		printf(
 			/* translators: Designed with WordPress. %s: WordPress link. */
-			esc_html__( 'Designed with %s', 'blank-theme' ),
-			'<a href="' . esc_url( __( 'https://wordpress.org', 'blank-theme' ) ) . '" rel="nofollow">WordPress</a>'
+			esc_html__( 'Designed with %s', 'classic-theme' ),
+			'<a href="' . esc_url( __( 'https://wordpress.org', 'classic-theme' ) ) . '" rel="nofollow">WordPress</a>'
 		);
 		?>
 	</p>

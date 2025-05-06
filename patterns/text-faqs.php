@@ -1,13 +1,13 @@
 <?php
 /**
  * Title: FAQs
- * Slug: blank-theme/text-faqs
+ * Slug: classic-theme/text-faqs
  * Categories: text, about
  * Keywords: faq, about, frequently asked questions
  * Viewport width: 1400
  * Description: A FAQs section with a FAQ heading and list of questions and answers.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -18,7 +18,7 @@
         style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
         <!-- wp:heading {"fontSize":"x-large"} -->
         <h2 class="wp-block-heading has-x-large-font-size">
-            <?php echo esc_html_x( 'Frequently Asked Questions', 'Heading of the FAQs pattern.', 'blank-theme' ); ?>
+            <?php echo esc_html_x( 'Frequently Asked Questions', 'Heading of the FAQs pattern.', 'classic-theme' ); ?>
         </h2>
         <!-- /wp:heading -->
 
@@ -31,12 +31,12 @@
                     style="border-top-color:var(--wp--preset--color--accent-6);border-top-width:1px;padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
                     <!-- wp:heading {"level":3} -->
                     <h3 class="wp-block-heading">
-                        <?php echo esc_html_x( 'What is The Stories Book about?', 'Question in the FAQs pattern.', 'blank-theme' ); ?>
+                        <?php echo esc_html_x( 'What is The Stories Book about?', 'Question in the FAQs pattern.', 'classic-theme' ); ?>
                     </h3>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph -->
-                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'blank-theme' ); ?>
+                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'classic-theme' ); ?>
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -51,12 +51,12 @@
                     style="border-top-color:var(--wp--preset--color--accent-6);border-top-width:1px;padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
                     <!-- wp:heading {"level":3} -->
                     <h3 class="wp-block-heading">
-                        <?php echo esc_html_x( 'How much does The Stories Book cost?', 'Question in the FAQs pattern.', 'blank-theme' ); ?>
+                        <?php echo esc_html_x( 'How much does The Stories Book cost?', 'Question in the FAQs pattern.', 'classic-theme' ); ?>
                     </h3>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph -->
-                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'blank-theme' ); ?>
+                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'classic-theme' ); ?>
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -75,12 +75,12 @@
                     style="border-top-color:var(--wp--preset--color--accent-6);border-top-width:1px;padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
                     <!-- wp:heading {"level":3} -->
                     <h3 class="wp-block-heading">
-                        <?php echo esc_html_x( 'When will The Stories Book be released?', 'Question in the FAQs pattern.', 'blank-theme' ); ?>
+                        <?php echo esc_html_x( 'When will The Stories Book be released?', 'Question in the FAQs pattern.', 'classic-theme' ); ?>
                     </h3>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph -->
-                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'blank-theme' ); ?>
+                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'classic-theme' ); ?>
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -95,12 +95,12 @@
                     style="border-top-color:var(--wp--preset--color--accent-6);border-top-width:1px;padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)">
                     <!-- wp:heading {"level":3} -->
                     <h3 class="wp-block-heading">
-                        <?php echo esc_html_x( 'Are signed copies available?', 'Question in the FAQs pattern.', 'blank-theme' ); ?>
+                        <?php echo esc_html_x( 'Are signed copies available?', 'Question in the FAQs pattern.', 'classic-theme' ); ?>
                     </h3>
                     <!-- /wp:heading -->
 
                     <!-- wp:paragraph -->
-                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'blank-theme' ); ?>
+                    <p><?php echo esc_html_x( 'This exquisite compilation showcases a diverse array of photographs that capture the essence of different eras and cultures, reflecting the unique styles and perspectives of each artist.', 'Answer in the FAQs pattern.', 'classic-theme' ); ?>
                     </p>
                     <!-- /wp:paragraph -->
                 </div>

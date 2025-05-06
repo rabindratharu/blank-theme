@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Cover with big heading
- * Slug: blank-theme/banner-cover-big-heading
+ * Slug: classic-theme/banner-cover-big-heading
  * Categories: banner, about, featured
  * Description: A full-width cover section with a large background image and an oversized heading.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -17,7 +17,7 @@
         <!-- wp:image {"sizeSlug":"full","linkDestination":"none","align":"wide"} -->
         <figure class="wp-block-image alignwide size-full">
             <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/coming-soon-bg-image.webp"
-                alt="<?php esc_attr_e( 'Photo of a field full of flowers, a blue sky and a tree.', 'blank-theme' ); ?>" />
+                alt="<?php esc_attr_e( 'Photo of a field full of flowers, a blue sky and a tree.', 'classic-theme' ); ?>" />
         </figure>
         <!-- /wp:image -->
 
@@ -26,7 +26,7 @@
             <!-- wp:heading {"align":"left","style":{"typography":{"fontSize":"clamp(1rem, 380px, 24vw)","letterSpacing":"-0.02em","lineHeight":"1","fontWeight":"700","fontStyle":"normal"}}} -->
             <h2 class="wp-block-heading has-text-align-left"
                 style="font-size:clamp(1rem, 380px, 24vw);font-style:normal;font-weight:700;letter-spacing:-0.02em;line-height:1">
-                <?php echo esc_html_e( 'Stories', 'blank-theme' ); ?></h2>
+                <?php echo esc_html_e( 'Stories', 'classic-theme' ); ?></h2>
             <!-- /wp:heading -->
 
         </div>

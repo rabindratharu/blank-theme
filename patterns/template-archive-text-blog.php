@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Text-only blog, archive
- * Slug: blank-theme/template-archive-text-blog
+ * Slug: classic-theme/template-archive-text-blog
  * Template Types: archive
  * Viewport width: 1400
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -19,7 +19,7 @@
 	<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 	<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 	<!-- /wp:spacer -->
-	<!-- wp:pattern {"slug":"blank-theme/template-query-loop-text-blog"} /-->
+	<!-- wp:pattern {"slug":"classic-theme/template-query-loop-text-blog"} /-->
 </main>
 <!-- /wp:group -->
 

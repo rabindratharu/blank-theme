@@ -1,10 +1,10 @@
 <?php
 /**
  * Title: Written by
- * Slug: blank-theme/hidden-written-by
+ * Slug: classic-theme/hidden-written-by
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -12,11 +12,11 @@
 <div class="wp-block-group has-accent-4-color has-text-color has-link-color has-small-font-size"
     style="margin-bottom:var(--wp--preset--spacing--60)">
     <!-- wp:paragraph -->
-    <p><?php esc_html_e( 'Written by ', 'blank-theme' ); ?></p>
+    <p><?php esc_html_e( 'Written by ', 'classic-theme' ); ?></p>
     <!-- /wp:paragraph -->
     <!-- wp:post-author-name {"isLink":true} /-->
     <!-- wp:paragraph -->
-    <p><?php esc_html_e( 'in', 'blank-theme' ); ?></p>
+    <p><?php esc_html_e( 'in', 'classic-theme' ); ?></p>
     <!-- /wp:paragraph -->
     <!-- wp:post-terms {"term":"category","style":{"typography":{"fontWeight":"300"}}} /-->
 </div>

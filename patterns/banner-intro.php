@@ -1,11 +1,11 @@
 <?php
 /**
  * Title: Intro with left-aligned description
- * Slug: blank-theme/banner-intro
+ * Slug: classic-theme/banner-intro
  * Categories: banner
  * Description: A large left-aligned heading with a brand name emphasized in bold.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -16,8 +16,8 @@
 		<?php
 			printf(
 				/* translators: %s is the brand name, e.g., 'Fleurs'. */
-				esc_html_x( 'We\'re %s, our mission is to deliver exquisite flower arrangements that not only adorn living spaces but also inspire a deeper appreciation for natural beauty.', 'Pattern placeholder text.', 'blank-theme' ),
-				'<strong>' . esc_html_x( 'Fleurs', 'Example brand name.', 'blank-theme' ) . '</strong>'
+				esc_html_x( 'We\'re %s, our mission is to deliver exquisite flower arrangements that not only adorn living spaces but also inspire a deeper appreciation for natural beauty.', 'Pattern placeholder text.', 'classic-theme' ),
+				'<strong>' . esc_html_x( 'Fleurs', 'Example brand name.', 'classic-theme' ) . '</strong>'
 			);
 			?>
 	</h2>

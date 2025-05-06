@@ -1,13 +1,13 @@
 <?php
 /**
  * Title: Photo blog posts
- * Slug: blank-theme/template-query-loop-photo-blog
+ * Slug: classic-theme/template-query-loop-photo-blog
  * Categories: query
  * Block Types: core/query
  * Viewport width: 1400
  * Description: A list of posts, 3 columns, with only featured images.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -17,7 +17,7 @@
 		<div class="wp-block-group">
 		<!-- wp:query-no-results -->
 		<!-- wp:paragraph {"align":"center"} -->
-		<p class="has-text-align-center"><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+		<p class="has-text-align-center"><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 		<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 	</div>

@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Header with columns
- * Slug: blank-theme/header-columns
+ * Slug: classic-theme/header-columns
  * Categories: header
  * Block Types: core/template-part/header
  * Description: Header with site title and navigation in columns.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>

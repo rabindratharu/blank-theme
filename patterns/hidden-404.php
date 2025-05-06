@@ -1,10 +1,10 @@
 <?php
 /**
  * Title: 404
- * Slug: blank-theme/hidden-404
+ * Slug: classic-theme/hidden-404
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -16,7 +16,7 @@
 		<div class="wp-block-column">
 			<!-- wp:image {"scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
 			<figure class="wp-block-image size-full">
-				<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/404-image.webp" alt="<?php echo esc_attr_x( 'Small totara tree on ridge above Long Point', 'image description', 'blank-theme' ); ?>" style="object-fit:cover"/>
+				<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/404-image.webp" alt="<?php echo esc_attr_x( 'Small totara tree on ridge above Long Point', 'image description', 'classic-theme' ); ?>" style="object-fit:cover"/>
 			</figure>
 			<!-- /wp:image -->
 		</div>
@@ -27,13 +27,13 @@
 			<div class="wp-block-group">
 				<!-- wp:heading {"level":1} -->
 				<h1 class="wp-block-heading">
-					<?php echo esc_html_x( 'Page not found', '404 error message', 'blank-theme' ); ?>
+					<?php echo esc_html_x( 'Page not found', '404 error message', 'classic-theme' ); ?>
 				</h1>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph -->
-				<p><?php echo esc_html_x( 'The page you are looking for doesn\'t exist, or it has been moved. Please try searching using the form below.', '404 error message', 'blank-theme' ); ?></p>
+				<p><?php echo esc_html_x( 'The page you are looking for doesn\'t exist, or it has been moved. Please try searching using the form below.', '404 error message', 'classic-theme' ); ?></p>
 				<!-- /wp:paragraph -->
-				<!-- wp:pattern {"slug":"blank-theme/hidden-search"} /-->
+				<!-- wp:pattern {"slug":"classic-theme/hidden-search"} /-->
 			</div>
 			<!-- /wp:group -->
 		</div>

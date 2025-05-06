@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Homepage for right-aligned blog
- * Slug: blank-theme/template-home-vertical-header-blog
+ * Slug: classic-theme/template-home-vertical-header-blog
  * Template Types: front-page, index, home
  * Viewport width: 1400
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -25,12 +25,12 @@
 			<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->
-			<!-- wp:pattern {"slug":"blank-theme/hidden-blog-heading"} /-->
+			<!-- wp:pattern {"slug":"classic-theme/hidden-blog-heading"} /-->
 			<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->
 
-			<!-- wp:pattern {"slug":"blank-theme/template-query-loop-vertical-header-blog"} /-->
+			<!-- wp:pattern {"slug":"classic-theme/template-query-loop-vertical-header-blog"} /-->
 
 			<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>

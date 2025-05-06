@@ -1,6 +1,6 @@
-# Blank Theme
+# Classic Theme
 
-Blank Theme is a custom blank theme created with the underscore theme, which includes the Foundation basic grid system and some basic customizer settings required in almost all projects.
+Classic Theme is a custom classic theme created with the underscore theme, which includes the Foundation basic grid system and some basic customizer settings required in almost all projects.
 
 ## Getting Started
 

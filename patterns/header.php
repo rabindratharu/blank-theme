@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Header
- * Slug: blank-theme/header
+ * Slug: classic-theme/header
  * Categories: header
  * Block Types: core/template-part/header
  * Description: Header with site title and navigation.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>

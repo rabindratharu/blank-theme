@@ -1,10 +1,10 @@
 <?php
 /**
  * Title: News blog query loop
- * Slug: blank-theme/template-query-loop-news-blog
+ * Slug: classic-theme/template-query-loop-news-blog
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -25,7 +25,7 @@
 <!-- wp:group {"style":{"spacing":{"blockGap":"0.12em"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group">
 	<!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|accent-4"}}}},"textColor":"accent-4","fontSize":"small"} -->
-	<p class="has-accent-4-color has-text-color has-link-color has-small-font-size"><?php echo esc_html_x( 'Written by', 'Prefix before the author name. The post author name is displayed in a separate block.', 'blank-theme' ); ?></p>
+	<p class="has-accent-4-color has-text-color has-link-color has-small-font-size"><?php echo esc_html_x( 'Written by', 'Prefix before the author name. The post author name is displayed in a separate block.', 'classic-theme' ); ?></p>
 	<!-- /wp:paragraph -->
 	<!-- wp:post-author-name {"isLink":true,"fontSize":"small"} /-->
 </div>
@@ -40,17 +40,17 @@
 
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"default"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:query-pagination {"paginationArrow":"arrow","layout":{"type":"flex","justifyContent":"space-between"}} -->
-<!-- wp:query-pagination-previous {"label":"<?php esc_html_e( 'Newer Posts', 'blank-theme' ); ?>"} /-->
+<!-- wp:query-pagination-previous {"label":"<?php esc_html_e( 'Newer Posts', 'classic-theme' ); ?>"} /-->
 
 <!-- wp:query-pagination-numbers /-->
 
-<!-- wp:query-pagination-next {"label":"<?php esc_html_e( 'Older Posts', 'blank-theme' ); ?>"} /-->
+<!-- wp:query-pagination-next {"label":"<?php esc_html_e( 'Older Posts', 'classic-theme' ); ?>"} /-->
 <!-- /wp:query-pagination --></div>
 <!-- /wp:group -->
 
 <!-- wp:query-no-results -->
 <!-- wp:paragraph -->
-<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'blank-theme' ); ?></p>
+<p><?php echo esc_html_x( 'Sorry, but nothing was found. Please try a search with different keywords.', 'Message explaining that there are no results returned from a search.', 'classic-theme' ); ?></p>
 <!-- /wp:paragraph -->
 <!-- /wp:query-no-results -->
 

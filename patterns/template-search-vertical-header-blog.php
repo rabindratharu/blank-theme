@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Right-aligned blog, search
- * Slug: blank-theme/template-search-vertical-header-blog
+ * Slug: classic-theme/template-search-vertical-header-blog
  * Template Types: search
  * Viewport width: 1400
  * Inserter: no
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
@@ -25,11 +25,11 @@
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->
 			<!-- wp:query-title {"type":"search","fontSize":"large"} /-->
-			<!-- wp:pattern {"slug":"blank-theme/hidden-search"} /-->
+			<!-- wp:pattern {"slug":"classic-theme/hidden-search"} /-->
 			<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->
-			<!-- wp:pattern {"slug":"blank-theme/template-query-loop-vertical-header-blog"} /-->
+			<!-- wp:pattern {"slug":"classic-theme/template-query-loop-vertical-header-blog"} /-->
 			<!-- wp:spacer {"height":"var:preset|spacing|50"} -->
 			<div style="height:var(--wp--preset--spacing--50)" aria-hidden="true" class="wp-block-spacer"></div>
 			<!-- /wp:spacer -->

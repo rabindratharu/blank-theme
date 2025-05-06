@@ -1,12 +1,12 @@
 <?php
 /**
  * Title: Header with large title
- * Slug: blank-theme/header-large-title
+ * Slug: classic-theme/header-large-title
  * Categories: header
  * Block Types: core/template-part/header
  * Description: Header with large site title and right-aligned navigation.
  *
- * @package Blank-Theme
+ * @package Classic-Theme
  */
 
 ?>
