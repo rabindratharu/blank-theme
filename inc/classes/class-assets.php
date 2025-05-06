@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Enqueue theme assets.
  *
-  * @package Classic-Theme
+ * @package classic-theme
  */
 
 namespace Classic_Theme\Inc;
@@ -12,7 +13,8 @@ use Classic_Theme\Inc\Traits\Singleton;
 /**
  * Class Assets
  */
-class Assets {
+class Assets
+{
 
 	use Singleton;
 
@@ -21,12 +23,12 @@ class Assets {
 	 *
 	 * Initializes the class and sets up necessary hooks.
 	 */
-	protected function __construct() {
+	protected function __construct()
+	{
 		// Set up hooks for the class
 		$this->setup_hooks();
 	}
 
-	
 	/**
 	 * Set up hooks for the class.
 	 *
@@ -35,16 +37,17 @@ class Assets {
 	 *
 	 * @return void
 	 */
-	protected function setup_hooks() {
+	protected function setup_hooks()
+	{
 
 		// Register and enqueue scripts.
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_scripts' ] );
+		add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
 
 		// Register and enqueue styles.
-		add_action( 'wp_enqueue_scripts', [ $this, 'register_styles' ] );
+		add_action('wp_enqueue_scripts', [$this, 'register_styles']);
 
 		// Register and enqueue editor styles.
-		add_action( 'enqueue_block_editor_assets', [ $this, 'register_editor_styles' ] );
+		add_action('enqueue_block_editor_assets', [$this, 'register_editor_styles']);
 	}
 
 	/**
@@ -56,10 +59,11 @@ class Assets {
 	 *
 	 * @return void
 	 */
-	public function register_scripts() {
+	public function register_scripts()
+	{
 
 		// Register the main JavaScript file for the theme with jQuery dependency.
-		$this->register_script( 'classic-theme-main', 'js/main.js', [ 'jquery' ] );
+		$this->register_script('classic-theme-main', 'js/main.js', ['jquery']);
 
 		// Enqueue the registered JavaScript file to be included in the front-end.
 		//wp_enqueue_script( 'classic-theme-main' );
@@ -75,12 +79,13 @@ class Assets {
 	 * @action wp_enqueue_scripts
 	 * @return void
 	 */
-	public function register_styles() {
+	public function register_styles()
+	{
 		// Register the main CSS file for the theme.
-		$this->register_style( 'classic-theme-main', 'css/main.css' );
+		$this->register_style('classic-theme-main', 'css/main.css');
 
 		// Enqueue the registered CSS file to be included in the front-end.
-		wp_enqueue_style( 'classic-theme-main' );
+		wp_enqueue_style('classic-theme-main');
 	}
 
 	/**
@@ -91,12 +96,13 @@ class Assets {
 	 *
 	 * @action enqueue_block_editor_assets
 	 */
-	public function register_editor_styles() {
+	public function register_editor_styles()
+	{
 		// Register the editor CSS file.
-		$this->register_style( 'classic-theme-editor', 'css/editor.css' );
+		$this->register_style('classic-theme-editor', 'css/editor.css');
 
 		// Enqueue the registered editor CSS file to be included in the block editor.
-		wp_enqueue_style( 'classic-theme-editor' );
+		wp_enqueue_style('classic-theme-editor');
 	}
 
 	/**
@@ -117,12 +123,13 @@ class Assets {
 	 *     @type string $version      String specifying script version number.
 	 * }
 	 */
-	public function get_asset_meta( $file, $deps = array(), $ver = false ) {
+	public function get_asset_meta($file, $deps = array(), $ver = false)
+	{
 		// Get the asset meta file path.
-		$asset_meta_file = sprintf( '%s/js/%s.asset.php', untrailingslashit( CLASSIC_THEME_BUILD_DIR ), basename( $file, '.' . pathinfo( $file )['extension'] ) );
+		$asset_meta_file = sprintf('%s/js/%s.asset.php', untrailingslashit(CLASSIC_THEME_BUILD_DIR), basename($file, '.' . pathinfo($file)['extension']));
 
 		// If the file is readable, read the asset meta data from the file.
-		if ( is_readable( $asset_meta_file ) ) {
+		if (is_readable($asset_meta_file)) {
 			$asset_meta = require $asset_meta_file;
 		} else {
 			// If the file is not readable, set the asset meta data to an empty array.
@@ -130,12 +137,12 @@ class Assets {
 		}
 
 		// Add the dependencies to the asset meta data if they are set.
-		if ( ! empty( $deps ) ) {
-			$asset_meta['dependencies'] = array_merge( $asset_meta['dependencies'], $deps );
+		if (! empty($deps)) {
+			$asset_meta['dependencies'] = array_merge($asset_meta['dependencies'], $deps);
 		}
 
 		// Add the version to the asset meta data if it is set.
-		if ( $ver ) {
+		if ($ver) {
 			$asset_meta['version'] = $ver;
 		}
 
@@ -156,13 +163,14 @@ class Assets {
 	 *                                    Default 'false'.
 	 * @return bool Whether the script has been registered. True on success, false on failure.
 	 */
-	public function register_script( $handle, $file, $deps = array(), $ver = false, $in_footer = true ) {
+	public function register_script($handle, $file, $deps = array(), $ver = false, $in_footer = true)
+	{
 		/**
 		 * Get the URL of the script file.
 		 *
 		 * @var string $src The URL of the script file.
 		 */
-		$src = sprintf( CLASSIC_THEME_BUILD_URI . '/%s', $file );
+		$src = sprintf(CLASSIC_THEME_BUILD_URI . '/%s', $file);
 
 		/**
 		 * Get the asset meta data.
@@ -174,14 +182,14 @@ class Assets {
 		 *     @type string $version      String specifying script version number.
 		 * }
 		 */
-		$asset_meta = $this->get_asset_meta( $file, $deps );
+		$asset_meta = $this->get_asset_meta($file, $deps);
 
 		/**
 		 * Register the script with the WordPress script enqueueing API.
 		 *
 		 * @var bool $return Whether the script has been registered. True on success, false on failure.
 		 */
-		return wp_register_script( $handle, $src, $asset_meta['dependencies'], $asset_meta['version'], $in_footer );
+		return wp_register_script($handle, $src, $asset_meta['dependencies'], $asset_meta['version'], $in_footer);
 	}
 
 	/**
@@ -201,14 +209,15 @@ class Assets {
 	 *
 	 * @return bool Whether the style has been registered. True on success, false on failure.
 	 */
-	public function register_style( $handle, $file, $deps = array(), $ver = false, $media = 'all' ) {
+	public function register_style($handle, $file, $deps = array(), $ver = false, $media = 'all')
+	{
 
 		/**
 		 * Get the URL of the style file.
 		 *
 		 * @var string $src The URL of the style file.
 		 */
-		$src = sprintf( CLASSIC_THEME_BUILD_URI . '/%s', $file );
+		$src = sprintf(CLASSIC_THEME_BUILD_URI . '/%s', $file);
 
 		/**
 		 * Get the asset meta data.
@@ -220,14 +229,14 @@ class Assets {
 		 *     @type string $version      String specifying script version number.
 		 * }
 		 */
-		$asset_meta = $this->get_asset_meta( $file, $deps );
+		$asset_meta = $this->get_asset_meta($file, $deps);
 
 		/**
 		 * Register the style with the WordPress script enqueueing API.
 		 *
 		 * @var bool $return Whether the style has been registered. True on success, false on failure.
 		 */
-		return wp_register_style( $handle, $src, $asset_meta['dependencies'], $asset_meta['version'], $media );
+		return wp_register_style($handle, $src, $asset_meta['dependencies'], $asset_meta['version'], $media);
 	}
 
 
@@ -243,19 +252,20 @@ class Assets {
 	 *
 	 * @return bool|false|int
 	 */
-	public function get_file_version( $file, $ver = false ) {
+	public function get_file_version($file, $ver = false)
+	{
 		// If a version is provided, return it.
-		if ( ! empty( $ver ) ) {
+		if (! empty($ver)) {
 			return $ver;
 		}
 
 		// Get the file path.
-		$file_path = sprintf( '%s/%s', CLASSIC_THEME_BUILD_DIR, $file );
+		$file_path = sprintf('%s/%s', CLASSIC_THEME_BUILD_DIR, $file);
 
 		// Check if the file exists.
-		if ( file_exists( $file_path ) ) {
+		if (file_exists($file_path)) {
 			// If the file exists, get the modification time.
-			$file_time = filemtime( $file_path );
+			$file_time = filemtime($file_path);
 
 			// Return the modification time.
 			return $file_time;
@@ -264,5 +274,4 @@ class Assets {
 			return false;
 		}
 	}
-
 }

@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Bootstraps the Theme.
  *
-  * @package Classic-Theme
+ * @package classic-theme
  */
 
 namespace Classic_Theme\Inc;
@@ -12,7 +13,8 @@ use Classic_Theme\Inc\Traits\Singleton;
 /**
  * Main theme bootstrap file.
  */
-class Classic_Theme {
+class Classic_Theme
+{
 
 	use Singleton;
 
@@ -22,9 +24,12 @@ class Classic_Theme {
 	 * Initializes the theme by loading necessary classes
 	 * and setting up hooks.
 	 */
-	protected function __construct() {
+	protected function __construct()
+	{
 		// Load the Assets class instance.
 		Assets::get_instance();
+		Customizer::get_instance();
+		Widgets::get_instance();
 
 		// Set up theme hooks.
 		$this->setup_hooks();
@@ -38,20 +43,20 @@ class Classic_Theme {
 	 *
 	 * @return void
 	 */
-	protected function setup_hooks() {
+	protected function setup_hooks()
+	{
 
 		/**
 		 * Actions
-		 *
-		 * - `after_setup_theme`: Called after the theme has been activated.
-		 *   It is used to set up theme features and hooks.
-		 * - `init`: Called after WordPress has finished loading but before any
-		 *   headers are sent.
 		 */
-		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
-		add_action( 'init', [ $this, 'block_styles' ] );
-		add_action( 'init', [ $this, 'pattern_categories' ] );
-		add_action( 'init', [ $this, 'block_bindings' ] );
+		add_action('wp_head', [$this, 'add_pingback_link']);
+		add_action('after_setup_theme', [$this, 'setup_theme']);
+
+		/**
+		 * Filters
+		 */
+		add_filter('excerpt_more', [$this, 'add_read_more_link']);
+		add_filter('body_class', [$this, 'filter_body_classes']);
 	}
 
 	/**
@@ -62,193 +67,147 @@ class Classic_Theme {
 	 *
 	 * @return void
 	 */
-	public function setup_theme() {
+	public function setup_theme()
+	{
 
-		/**
-		 * Make theme available for translation.
-		 *
-		 * Translations can be added to the `/languages` directory.
-		 */
-		load_theme_textdomain( 'classic-theme', CLASSIC_THEME_TEMP_DIR . '/languages' );
+		/*
+		* Make theme available for translation.
+		* Translations can be filed in the /languages/ directory.
+		* If you're building a theme based on classic-theme, use a find and replace
+		* to change 'classic-theme' to the name of your theme in all the template files.
+		*/
+		load_theme_textdomain('classic-theme', CLASSIC_THEME_TEMP_DIR . '/languages');
 
-		/**
-		 * Enable post-formats feature.
-		 *
-		 * This allows users to select a post format when creating a post.
-		 * The post formats that are available are:
-		 * - aside
-		 * - audio
-		 * - chat
-		 * - gallery
-		 * - image
-		 * - link
-		 * - quote
-		 * - status
-		 * - video
-		 */
-		add_theme_support( 'post-formats', array(
-			'aside',
-			'audio',
-			'chat',
-			'gallery',
-			'image',
-			'link',
-			'quote',
-			'status',
-			'video'
-		) );
-	}
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support('automatic-feed-links');
 
-	/**
-	 * Registers a block style for the core/list block.
-	 *
-	 * This method registers a block style for the core/list block.
-	 * The block style is a list with a checkmark instead of a bullet.
-	 * The block style can be selected when inserting a list block.
-	 *
-	 * @param string $link The link to the stylesheet.
-	 * @return string The modified link.
-	 */
-	public function block_styles( $link ) {
-		/**
-		 * Register a block style for the core/list block.
-		 *
-		 * The block style is a list with a checkmark instead of a bullet.
-		 * The block style can be selected when inserting a list block.
-		 */
-		register_block_style(
-			'core/list',
-			array(
-				'name'         => 'checkmark-list', // Unique name for the block style.
-				'label'        => __( 'Checkmark', 'classic-theme' ), // Display label for the block style.
-				'inline_style' => '
-				/*
-				 * Set the list style type to a checkmark.
-				 * The checkmark is a Unicode character.
-				 */
-				ul.is-style-checkmark-list {
-					list-style-type: "\2713"; // Use checkmark as list bullet.
-				}
+		/*
+		* Let WordPress manage the document title.
+		* By adding theme support, we declare that this theme does not use a
+		* hard-coded <title> tag in the document head, and expect WordPress to
+		* provide it for us.
+		*/
+		add_theme_support('title-tag');
 
-				/*
-				 * Add padding to list items.
-				 * This is done to align the list items with the text.
-				 */
-				ul.is-style-checkmark-list li {
-					padding-inline-start: 1ch; // Add padding to list items.
-				}',
+		add_theme_support('jetpack-responsive-videos');
+
+		/*
+		* Enable support for Post Thumbnails on posts and pages.
+		*
+		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		*/
+		add_theme_support('post-thumbnails');
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus(
+			[
+				'menu-1' => esc_html__('Primary', 'classic-theme'),
+			]
+		);
+
+		/*
+		* Switch default core markup for search form, comment form, and comments
+		* to output valid HTML5.
+		*/
+		add_theme_support(
+			'html5',
+			[
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			]
+		);
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support(
+			'custom-background',
+			apply_filters(
+				'classic_theme_custom_background_args',
+				[
+					'default-color' => 'ffffff',
+					'default-image' => '',
+				]
 			)
 		);
 
-		return $link; // Return the modified link.
+		// Add theme support for selective refresh for widgets.
+		add_theme_support('customize-selective-refresh-widgets');
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support(
+			'custom-logo',
+			[
+				'header-text' => [
+					'site-title',
+					'site-description',
+				],
+			]
+		);
+
+		if (! isset($content_width)) {
+			$content_width = 640;
+		}
+
+		//$GLOBALS['content_width'] = apply_filters('classic_theme_content_width', 640);
 	}
 
-	
 	/**
-	 * Registers block pattern categories for pages and post formats.
+	 * Add a ping back url auto-discovery header for single posts, pages, or attachments.
 	 *
-	 * This method registers two block pattern categories:
-	 * - A category for pages.
-	 * - A category for post formats.
-	 *
-	 * The categories are used in the editor for categorizing block patterns.
+	 * @action wp_head
 	 *
 	 * @return void
 	 */
-	public function pattern_categories() {
-		// Register a block pattern category for pages.
-		// The category is used in the editor for categorizing block patterns.
-		register_block_pattern_category(
-			'classic_theme_page',
-			array(
-				/**
-				 * The label for the block pattern category.
-				 *
-				 * This label is used in the editor for displaying the category name.
-				 *
-				 * @var string
-				 */
-				'label'       => __( 'Pages', 'classic-theme' ),
-
-				/**
-				 * The description for the block pattern category.
-				 *
-				 * This description is used in the editor for displaying the category description.
-				 *
-				 * @var string
-				 */
-				'description' => __( 'A collection of full page layouts.', 'classic-theme' ),
-			)
-		);
-
-		// Register a block pattern category for post formats.
-		// The category is used in the editor for categorizing block patterns.
-		register_block_pattern_category(
-			'classic_theme_post-format',
-			array(
-				/**
-				 * The label for the block pattern category.
-				 *
-				 * This label is used in the editor for displaying the category name.
-				 *
-				 * @var string
-				 */
-				'label'       => __( 'Post formats', 'classic-theme' ),
-
-				/**
-				 * The description for the block pattern category.
-				 *
-				 * This description is used in the editor for displaying the category description.
-				 *
-				 * @var string
-				 */
-				'description' => __( 'A collection of post format patterns.', 'classic-theme' ),
-			)
-		);
+	public function add_pingback_link()
+	{
+		if (is_singular() && pings_open()) {
+			printf('<link rel="pingback" href="%s">', esc_url(get_bloginfo('pingback_url')));
+		}
 	}
 
-	
 	/**
-	 * Registers a block bindings source for the post format name.
+	 * Adds custom classes to the array of body classes.
 	 *
-	 * This method registers a block bindings source for the post format name.
-	 * The block bindings source is used in the editor for displaying the post format name.
+	 * @param array $classes Classes for the body element.
 	 *
-	 * @return void
+	 * @filter body_class
+	 *
+	 * @return array
 	 */
-	public function block_bindings() {
-		/**
-		 * Register a block bindings source for the post format name.
-		 *
-		 * The block bindings source is used in the editor for displaying the post format name.
-		 *
-		 * @param string $name The name of the block bindings source.
-		 * @param array  $args The arguments for the block bindings source.
-		 */
-		register_block_bindings_source(
-			'classic-theme/format',
-			array(
-				/**
-				 * The label for the block bindings source.
-				 *
-				 * This label is used in the editor for displaying the block bindings source name.
-				 *
-				 * @var string
-				 */
-				'label'              => _x( 'Post format name', 'Label for the block binding placeholder in the editor', 'classic-theme' ),
+	public function filter_body_classes($classes)
+	{
 
-				/**
-				 * The callback function to get the post format name.
-				 *
-				 * This function is used in the editor for displaying the post format name.
-				 * The function takes an array of arguments, which are the attributes of the block.
-				 * The function must return the post format name as a string.
-				 *
-				 * @var callable
-				 */
-				'get_value_callback' => 'classic_theme_format_binding', // Callback function to get the post format name.
-			)
-		);
+		if (! is_singular()) {
+			$classes[] = 'hfeed';
+		}
+
+		// Adds a class of no-sidebar when there is no sidebar present.
+		if (! is_active_sidebar('sidebar-1')) {
+			$classes[] = 'no-sidebar';
+		}
+
+		return $classes;
 	}
 
+	/**
+	 * Add read more link
+	 *
+	 * @filter excerpt_more
+	 *
+	 * @return string
+	 */
+	public function add_read_more_link()
+	{
+		global $post;
+
+		return sprintf('<a class="moretag" href="%s">%s</a>', get_permalink($post->ID), esc_html__('Read More', 'blank-theme'));
+	}
 }
