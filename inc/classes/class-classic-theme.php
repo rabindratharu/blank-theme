@@ -208,6 +208,6 @@ class Classic_Theme
 	{
 		global $post;
 
-		return sprintf('<a class="moretag" href="%s">%s</a>', get_permalink($post->ID), esc_html__('Read More', 'blank-theme'));
+		return sprintf('<a class="moretag" href="%s">%s</a>', get_permalink($post->ID), esc_html__('Read More', 'classic-theme'));
 	}
 }

@@ -1,182 +1,122 @@
 /**
- * External dependencies
+ * Webpack configuration with RTL support.
  */
-const fs = require('fs');
 const path = require('path');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const RtlCssPlugin = require('rtlcss-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const RtlCssPlugin = require('rtlcss-webpack-plugin');
 
-/**
- * WordPress dependencies
- */
-const [scriptConfig] = require('@wordpress/scripts/config/webpack.config');
+// Directory paths
+const CSS_DIR = path.resolve(__dirname, 'assets/src/css');
+const JS_DIR = path.resolve(__dirname, 'assets/src/js');
+const IMG_DIR = path.resolve(__dirname, 'assets/src/images');
+const BUILD_DIR = path.resolve(__dirname, 'assets/build');
 
-/**
- * Read all file entries in a directory.
- * @param {string} dir Directory to read.
- * @return {Object} Object with file entries.
- */
-const readAllFileEntries = (dir) => {
-  const entries = {};
-
-  if (!fs.existsSync(dir)) {
-    return entries;
-  }
-
-  if (fs.readdirSync(dir).length === 0) {
-    return entries;
-  }
-
-  fs.readdirSync(dir).forEach((fileName) => {
-    // Skip hidden files (starting with '.') and directories
-    if (fileName.startsWith('.')) {
-      return; // Skip files like .DS_Store
-    }
-
-    const fullPath = path.resolve(dir, fileName);
-    if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
-      entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
-    }
-  });
-
-  return entries;
+const entry = {
+  main: path.join(JS_DIR, 'main.js'),
+  customizer: path.join(JS_DIR, 'customizer.js'),
 };
 
-// Shared configuration function
-const getSharedConfig = (env, argv) => {
-  const isProduction = argv.mode === 'production';
+const output = {
+  path: BUILD_DIR,
+  filename: 'js/[name].js',
+  assetModuleFilename: 'images/[name][ext][query]',
+};
 
-  const plugins = [
-    ...scriptConfig.plugins.filter((plugin) => !(plugin instanceof RtlCssPlugin)),
-    new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: isProduction
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    new RemoveEmptyScriptsPlugin({
-      stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-    }),
-    new RtlCssPlugin({
-      filename: '[name]-rtl.css',
-    }),
-  ];
+const plugins = (argv) => [
+  new CleanWebpackPlugin({
+    cleanStaleWebpackAssets: argv.mode === 'production',
+    protectWebpackAssets: false,
+  }),
+  new RemoveEmptyScriptsPlugin(),
+  new MiniCssExtractPlugin({
+    filename: 'css/[name].css',
+    chunkFilename: 'css/[id].css',
+  }),
+  new RtlCssPlugin({
+    filename: 'css/[name]-rtl.css'
+  }),
+  new DependencyExtractionWebpackPlugin({
+    injectPolyfill: true,
+    combineAssets: true,
+  }),
+  new CopyPlugin({
+    patterns: [
+      {
+        from: IMG_DIR,
+        to: 'images',
+        noErrorOnMissing: true,
+      },
+    ],
+  }),
+];
 
-  const rules = [
-    {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: 'babel-loader'
+const rules = [
+  {
+    test: /\.js$/,
+    include: [JS_DIR],
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env', '@babel/preset-react'],
+      },
     },
-    {
-      test: /\.(sc|sa|c)ss$/,
-      exclude: /node_modules/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader',
-        'sass-loader',
-      ]
-    }
-  ];
-
-  const optimization = {
-    ...scriptConfig.optimization,
-    splitChunks: {
-      ...scriptConfig.optimization.splitChunks,
-    },
-    minimizer: scriptConfig.optimization.minimizer.concat([
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              normalizeWhitespace: isProduction,
-            },
-          ],
+  },
+  {
+    test: /\.(sc|sa|c)ss$/,
+    exclude: /node_modules/,
+    use: [
+      MiniCssExtractPlugin.loader,
+      'css-loader',
+      {
+        loader: 'postcss-loader',
+        options: {
+          postcssOptions: {
+            plugins: [
+              require('autoprefixer')({
+                overrideBrowserslist: ['last 2 versions', '> 1%', 'ie >= 11']
+              }),
+            ],
+          },
         },
-      }),
-    ]),
-  };
+      },
+      'sass-loader',
+    ],
+  },
+];
+
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === 'production';
+  process.env.NODE_ENV = argv.mode; // Set environment for postcss
 
   return {
-    ...scriptConfig,
-    devtool: false,
+    entry: entry,
+    output: output,
+    devtool: isProduction ? false : 'source-map',
     module: {
       rules: rules,
-      noParse: /\.(DS_Store)$/,
     },
-    optimization: optimization,
-    plugins: plugins,
-    resolve: {
-      modules: [
-        path.resolve(process.cwd(), 'node_modules'),
-        'node_modules',
+    optimization: {
+      minimize: isProduction,
+      minimizer: [
+        new TerserPlugin({
+          parallel: true,
+          terserOptions: {
+            sourceMap: !isProduction
+          }
+        }),
+        new CssMinimizerPlugin(),
       ],
     },
+    plugins: plugins(argv),
     externals: {
-      jquery: 'jQuery'
-    }
+      jquery: 'jQuery',
+    },
   };
 };
-
-// Styles configuration
-const stylesConfig = (env, argv) => {
-  const config = getSharedConfig(env, argv);
-  return {
-    ...config,
-    entry: () => readAllFileEntries('./assets/src/css'),
-    output: {
-      ...config.output,
-      path: path.resolve(process.cwd(), 'assets', 'build', 'css'),
-      filename: '[name].js', // Needed even though we're extracting CSS
-    }
-  };
-};
-
-// Scripts configuration
-const scriptsConfig = (env, argv) => {
-  const config = getSharedConfig(env, argv);
-  return {
-    ...config,
-    entry: () => readAllFileEntries('./assets/src/js'),
-    output: {
-      ...config.output,
-      path: path.resolve(process.cwd(), 'assets', 'build', 'js'),
-    }
-  };
-};
-
-// Assets configuration
-const assetsConfig = (env, argv) => {
-  const config = getSharedConfig(env, argv);
-  return {
-    ...config,
-    plugins: [
-      ...config.plugins,
-      new CopyPlugin({
-        patterns: [
-          {
-            from: './assets/src/images',
-            to: path.resolve(process.cwd(), 'assets', 'build', 'images'),
-          },
-          {
-            from: './assets/src/fonts',
-            to: path.resolve(process.cwd(), 'assets', 'build', 'fonts'),
-          },
-        ],
-      }),
-    ],
-    entry: {}, // No entry points needed for copy plugin
-    output: {
-      path: path.resolve(process.cwd(), 'assets', 'build'),
-    }
-  };
-};
-
-module.exports = [stylesConfig, scriptsConfig, assetsConfig];

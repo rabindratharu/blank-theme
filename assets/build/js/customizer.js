@@ -1,4 +1,4 @@
-/******/ (function() { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /*!*************************************!*\
   !*** ./assets/src/js/customizer.js ***!
   \*************************************/
@@ -46,3 +46,4 @@
 })(jQuery);
 /******/ })()
 ;
+//# sourceMappingURL=customizer.js.map

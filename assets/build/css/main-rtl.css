@@ -1,6 +1,6 @@
-/*!************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/src/css/main.css ***!
-  \************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./assets/src/css/main.css ***!
+  \****************************************************************************************************************************************************************************************/
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
@@ -455,7 +455,7 @@ hr {
 
 ul,
 ol {
-  margin: 0 0 1.5em 3em;
+  margin: 0 3em 1.5em 0;
 }
 
 ul {
@@ -469,7 +469,7 @@ ol {
 li > ul,
 li > ol {
   margin-bottom: 0;
-  margin-left: 1.5em;
+  margin-right: 1.5em;
 }
 
 dt {
@@ -625,28 +625,28 @@ textarea {
   display: none;
   list-style: none;
   margin: 0;
-  padding-left: 0;
+  padding-right: 0;
 }
 
 .main-navigation ul ul {
   -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-  float: left;
+  float: right;
   position: absolute;
   top: 100%;
-  left: -999em;
+  right: -999em;
   z-index: 99999;
 }
 
 .main-navigation ul ul ul {
-  left: -999em;
+  right: -999em;
   top: 0;
 }
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
   display: block;
-  left: auto;
+  right: auto;
 }
 
 .main-navigation ul ul a {
@@ -655,7 +655,7 @@ textarea {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-  left: auto;
+  right: auto;
 }
 
 .main-navigation li {
@@ -785,8 +785,8 @@ textarea {
 
 .wp-caption img[class*=wp-image-] {
   display: block;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 }
 
 .wp-caption .wp-caption-text {
@@ -894,7 +894,7 @@ textarea {
   font-size: 0.875rem;
   font-weight: 700;
   height: auto;
-  left: 5px;
+  right: 5px;
   line-height: normal;
   padding: 15px 23px 14px;
   text-decoration: none;
@@ -911,21 +911,21 @@ textarea {
 /* Alignments
 --------------------------------------------- */
 .alignleft {
-  float: right;
-  margin-left: 1.5em;
+  float: left;
+  margin-right: 1.5em;
   margin-bottom: 1.5em;
 }
 
 .alignright {
-  float: left;
-  margin-right: 1.5em;
+  float: right;
+  margin-left: 1.5em;
   margin-bottom: 1.5em;
 }
 
 .aligncenter {
   clear: both;
   display: block;
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
   margin-bottom: 1.5em;
 }
