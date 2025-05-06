@@ -79,7 +79,7 @@
 		 Multiple valid prefixes can be provided as a comma-delimited list. -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="classic_theme, Classic_Theme" />
+			<property name="prefixes" type="array" value="Classic_Theme, Classic_Theme" />
 		</properties>
 	</rule>
 

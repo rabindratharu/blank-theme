@@ -8,11 +8,11 @@
  * @package classic-theme
  */
 
-if (! function_exists('classic_theme_posted_on')) :
+if (! function_exists('Classic_Theme_posted_on')) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time.
 	 */
-	function classic_theme_posted_on()
+	function Classic_Theme_posted_on()
 	{
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if (get_the_time('U') !== get_the_modified_time('U')) {
@@ -38,11 +38,11 @@ if (! function_exists('classic_theme_posted_on')) :
 	}
 endif;
 
-if (! function_exists('classic_theme_posted_by')) :
+if (! function_exists('Classic_Theme_posted_by')) :
 	/**
 	 * Prints HTML with meta information for the current author.
 	 */
-	function classic_theme_posted_by()
+	function Classic_Theme_posted_by()
 	{
 		$byline = sprintf(
 			/* translators: %s: post author. */
@@ -55,11 +55,11 @@ if (! function_exists('classic_theme_posted_by')) :
 	}
 endif;
 
-if (! function_exists('classic_theme_entry_footer')) :
+if (! function_exists('Classic_Theme_entry_footer')) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function classic_theme_entry_footer()
+	function Classic_Theme_entry_footer()
 	{
 		// Hide category and tag text for pages.
 		if ('post' === get_post_type()) {
@@ -116,14 +116,14 @@ if (! function_exists('classic_theme_entry_footer')) :
 	}
 endif;
 
-if (! function_exists('classic_theme_post_thumbnail')) :
+if (! function_exists('Classic_Theme_post_thumbnail')) :
 	/**
 	 * Displays an optional post thumbnail.
 	 *
 	 * Wraps the post thumbnail in an anchor element on index views, or a div
 	 * element when on single views.
 	 */
-	function classic_theme_post_thumbnail()
+	function Classic_Theme_post_thumbnail()
 	{
 		if (post_password_required() || is_attachment() || ! has_post_thumbnail()) {
 			return;

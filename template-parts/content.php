@@ -23,14 +23,14 @@
 		?>
 			<div class="entry-meta">
 				<?php
-				classic_theme_posted_on();
-				classic_theme_posted_by();
+				Classic_Theme_posted_on();
+				Classic_Theme_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php classic_theme_post_thumbnail(); ?>
+	<?php Classic_Theme_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php
@@ -59,6 +59,6 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php classic_theme_entry_footer(); ?>
+		<?php Classic_Theme_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

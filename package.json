@@ -7,15 +7,21 @@
 		"build": "npm run clean && cross-env NODE_ENV=production webpack --mode production --progress",
 		"start": "npm run clean && cross-env NODE_ENV=development webpack --watch --mode development --progress",
 		"clean": "rimraf assets/build/*",
-		"svg": "svgr -d assets/src/js/icons assets/src/icons",
-		"lint:php": "vendor/bin/phpcs",
-		"lint:php:fix": "vendor/bin/phpcbf",
-		"lint": "eslint assets/src/js/*",
-		"lint:fix": "eslint --fix assets/src/js/*",
-		"lint-css": "stylelint 'assets/src/sass/**/*.scss'",
-		"lint-css:fix": "npm run lint-css -- --fix",
-		"precommit": "npm run lint:php && npm run lint-css:fix && npm run lint:fix && npm run build",
-		"cypress:open": "cypress open"
+		"init": "node bin/init.js && npm run build:pot && npm run build:zip",
+		"build:pot": "grunt i18n",
+		"build:zip": "grunt release",
+		"lint:all": "npm-run-all --parallel lint:*",
+		"lint:css:fix": "npm run lint:css -- --fix ./assets/src",
+		"lint:js": "wp-scripts lint-js ./assets/src",
+		"lint:js:fix": "npm run lint:js -- --fix ./assets/src",
+		"lint:js:report": "npm run lint:js -- --output-file lint-js-report.json --format json .",
+		"lint:php": "php vendor/bin/phpcs",
+		"lint:php:fix": "node bin/phpcbf.js",
+		"lint:staged": "lint-staged",
+		"precommit": "npm-run-all lint:* pot",
+		"cypress:open": "cypress open",
+		"prepare": "npm run init",
+		"wp-env": "wp-env"
 	},
 	"keywords": [
 		"wordpress",
@@ -75,6 +81,7 @@
 		"npm-run-all": "^4.1.5",
 		"postcss": "^8.5.3",
 		"postcss-loader": "^8.1.1",
+		"postcss-preset-env": "^10.1.3",
 		"rimraf": "^6.0.1",
 		"sass": "^1.87.0",
 		"sass-loader": "^16.0.5",
@@ -87,7 +94,10 @@
 		"webpack-cli": "^6.0.1",
 		"webpack-remove-empty-scripts": "^1.0.4",
 		"rtlcss": "^4.3.0",
-		"rtlcss-webpack-plugin": "^4.0.7"
+		"rtlcss-webpack-plugin": "^4.0.7",
+		"eslint-plugin-eslint-comments": "^3.2.0",
+		"jest-silent-reporter": "^0.6.0",
+		"lint-staged": "^15.4.3"
 	},
 	"browserslist": {
 		"production": [

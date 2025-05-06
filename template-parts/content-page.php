@@ -15,7 +15,7 @@
 		<?php the_title('<h1 class="entry-title">', '</h1>'); ?>
 	</header><!-- .entry-header -->
 
-	<?php classic_theme_post_thumbnail(); ?>
+	<?php Classic_Theme_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php

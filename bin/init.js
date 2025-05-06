@@ -18,16 +18,16 @@ const rl = readline.createInterface({
 });
 const info = {
 	error: (message) => {
-		return `\x1b[31m${ message }\x1b[0m`;
+		return `\x1b[31m${message}\x1b[0m`;
 	},
 	success: (message) => {
-		return `\x1b[32m${ message }\x1b[0m`;
+		return `\x1b[32m${message}\x1b[0m`;
 	},
 	warning: (message) => {
-		return `\x1b[33m${ message }\x1b[0m`;
+		return `\x1b[33m${message}\x1b[0m`;
 	},
 	message: (message) => {
-		return `\x1b[34m${ message }\x1b[0m`;
+		return `\x1b[34m${message}\x1b[0m`;
 	},
 };
 let fileContentUpdated = false;
@@ -107,10 +107,10 @@ const renderThemeDetails = (themeName) => {
 		'Function Prefix: ': themeInfo.snakeCaseWithUnderscoreSuffix,
 		'CSS Class Prefix: ': themeInfo.kebabCaseWithHyphenSuffix,
 		'PHP Variable Prefix: ': themeInfo.snakeCaseWithUnderscoreSuffix,
-		'Version Constant: ': `${ themeInfo.macroCase }_VERSION`,
-		'Theme Directory Constant: ': `${ themeInfo.macroCase }_TEMP_DIR`,
-		'Theme Build Directory Constant: ': `${ themeInfo.macroCase }_BUILD_DIR`,
-		'Theme Build Directory URI Constant: ': `${ themeInfo.macroCase }_BUILD_URI`,
+		'Version Constant: ': `${themeInfo.macroCase}_VERSION`,
+		'Theme Directory Constant: ': `${themeInfo.macroCase}_TEMP_DIR`,
+		'Theme Build Directory Constant: ': `${themeInfo.macroCase}_BUILD_DIR`,
+		'Theme Build Directory URI Constant: ': `${themeInfo.macroCase}_BUILD_URI`,
 	};
 
 	const biggestStringLength = themeDetails['Theme Build Directory URI Constant: '].length + 'Theme Build Directory URI Constant: '.length;
@@ -145,13 +145,13 @@ const initTheme = (themeInfo) => {
 		'classic-theme': themeInfo.kebabCase,
 		'Classic-Theme': themeInfo.trainCase,
 		'CLASSIC-THEME': themeInfo.cobolCase,
-		classic_theme: themeInfo.snakeCase,
-		Classic_Theme: themeInfo.pascalSnakeCase,
+		Classic_Theme: themeInfo.snakeCase,
+		'classic-theme': themeInfo.pascalSnakeCase,
 		CLASSIC_THEME: themeInfo.macroCase,
 		'classic-theme-': themeInfo.kebabCaseWithHyphenSuffix,
 		'Classic-Theme-': themeInfo.trainCaseWithHyphenSuffix,
 		'CLASSIC-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
-		classic_theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
+		Classic_Theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
 		Classic_Theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
 		CLASSIC_THEME_: themeInfo.macroCaseWithUnderscoreSuffix,
 	};
@@ -247,11 +247,11 @@ const replaceFileContent = (files, chunksToReplace, newChunk) => {
 			content = content.replace(regex, newChunk);
 			if (content !== fs.readFileSync(filePath, 'utf8')) {
 				fs.writeFileSync(filePath, content, 'utf8');
-				console.log(info.success(`Updated [${ info.message( chunksToReplace ) }] ${ info.success( 'to' ) } [${ info.message( newChunk ) }] ${ info.success( 'in file' ) } [${ info.message( path.basename( file ) ) }]`));
+				console.log(info.success(`Updated [${info.message(chunksToReplace)}] ${info.success('to')} [${info.message(newChunk)}] ${info.success('in file')} [${info.message(path.basename(file))}]`));
 				fileContentUpdated = true;
 			}
 		} catch (err) {
-			console.log(info.error(`\nError: ${ err }`));
+			console.log(info.error(`\nError: ${err}`));
 		}
 	});
 };
@@ -272,10 +272,10 @@ const replaceFileName = (files, oldFileName, newFileName) => {
 		const newFilePath = path.resolve(getRoot(), file.replace(oldFileName, newFileName));
 		try {
 			fs.renameSync(filePath, newFilePath);
-			console.log(info.success(`Updated file [${ info.message( path.basename( filePath ) ) }] ${ info.success( 'to' ) } [${ info.message( path.basename( newFilePath ) ) }]`));
+			console.log(info.success(`Updated file [${info.message(path.basename(filePath))}] ${info.success('to')} [${info.message(path.basename(newFilePath))}]`));
 			fileNameUpdated = true;
 		} catch (err) {
-			console.log(info.error(`\nError: ${ err }`));
+			console.log(info.error(`\nError: ${err}`));
 		}
 	});
 };
@@ -362,11 +362,11 @@ const runThemeCleanup = () => {
 				fs.rmdirSync(dirPath, {
 					recursive: true
 				});
-				console.log(info.success(`Deleted directory [${ info.message( dir ) }]`));
+				console.log(info.success(`Deleted directory [${info.message(dir)}]`));
 				themeCleanup = true;
 			}
 		} catch (err) {
-			console.log(info.error(`\nError: ${ err }`));
+			console.log(info.error(`\nError: ${err}`));
 		}
 	});
 
