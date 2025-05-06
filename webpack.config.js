@@ -82,6 +82,8 @@ const rules = [
               require('autoprefixer')({
                 overrideBrowserslist: ['last 2 versions', '> 1%', 'ie >= 11']
               }),
+              // Add rtlcss for development mode
+              [require('rtlcss')()]
             ],
           },
         },
