@@ -5,7 +5,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package classic-theme
+ * @package Classic-Theme
  */
 
 if (! function_exists('classic_theme_posted_on')) :

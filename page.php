@@ -10,7 +10,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package classic-theme
+ * @package Classic-Theme
  */
 
 get_header();

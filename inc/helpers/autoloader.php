@@ -3,7 +3,7 @@
 /**
  * Autoloader file for plugin.
  *
- * @package classic-theme
+ * @package Classic-Theme
  */
 
 namespace Classic_Theme\Inc\Helpers;

@@ -3,7 +3,7 @@
 /**
  * Classic Theme file includes and definitions
  *
- * @package classic-theme
+ * @package Classic-Theme
  */
 
 if (! defined('CLASSIC_THEME_VERSION')) {

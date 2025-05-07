@@ -3,7 +3,7 @@
 /**
  * Bootstraps the Theme.
  *
- * @package classic-theme
+ * @package Classic-Theme
  */
 
 namespace Classic_Theme\Inc;

@@ -23,7 +23,7 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
- * @package classic-theme
+ * @package Classic-Theme
  */
 
 namespace Classic_Theme\Inc\Traits;

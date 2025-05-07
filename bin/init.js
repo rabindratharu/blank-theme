@@ -145,14 +145,14 @@ const initTheme = (themeInfo) => {
 		'classic-theme': themeInfo.kebabCase,
 		'Classic-Theme': themeInfo.trainCase,
 		'CLASSIC-THEME': themeInfo.cobolCase,
-		Classic_Theme: themeInfo.snakeCase,
-		'classic-theme': themeInfo.pascalSnakeCase,
+		classic_theme: themeInfo.snakeCase,
+		Classic_Theme: themeInfo.pascalSnakeCase,
 		CLASSIC_THEME: themeInfo.macroCase,
 		'classic-theme-': themeInfo.kebabCaseWithHyphenSuffix,
 		'Classic-Theme-': themeInfo.trainCaseWithHyphenSuffix,
 		'CLASSIC-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
 		classic_theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
-		classic_theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
+		Classic_Theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
 		CLASSIC_THEME_: themeInfo.macroCaseWithUnderscoreSuffix,
 	};
 
