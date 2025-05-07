@@ -21,6 +21,7 @@ if (! defined('CLASSIC_THEME_BUILD_DIR')) {
 
 require_once CLASSIC_THEME_TEMP_DIR . '/inc/helpers/autoloader.php';
 require_once CLASSIC_THEME_TEMP_DIR . '/inc/helpers/custom-functions.php';
+require_once CLASSIC_THEME_TEMP_DIR . '/inc/helpers/template-tags.php';
 
 
 /**
@@ -28,9 +29,9 @@ require_once CLASSIC_THEME_TEMP_DIR . '/inc/helpers/custom-functions.php';
  *
  * @return object Classic_Theme
  */
-function Classic_Theme_get_theme_instance()
+function classic_theme_get_theme_instance()
 {
 	return Classic_Theme\Inc\Classic_Theme::get_instance();
 }
 
-Classic_Theme_get_theme_instance();
+classic_theme_get_theme_instance();

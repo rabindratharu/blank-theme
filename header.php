@@ -40,10 +40,10 @@
 					<p class="site-title"><a href="<?php echo esc_url(home_url('/')); ?>" rel="home"><?php bloginfo('name'); ?></a></p>
 				<?php
 				endif;
-				$Classic_Theme_description = get_bloginfo('description', 'display');
-				if ($Classic_Theme_description || is_customize_preview()) :
+				$classic_theme_description = get_bloginfo('description', 'display');
+				if ($classic_theme_description || is_customize_preview()) :
 				?>
-					<p class="site-description"><?php echo $Classic_Theme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+					<p class="site-description"><?php echo $classic_theme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 												?></p>
 				<?php endif; ?>
 			</div><!-- .site-branding -->

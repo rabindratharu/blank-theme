@@ -151,8 +151,8 @@ const initTheme = (themeInfo) => {
 		'classic-theme-': themeInfo.kebabCaseWithHyphenSuffix,
 		'Classic-Theme-': themeInfo.trainCaseWithHyphenSuffix,
 		'CLASSIC-THEME-': themeInfo.cobolCaseWithHyphenSuffix,
-		Classic_Theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
-		Classic_Theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
+		classic_theme_: themeInfo.snakeCaseWithUnderscoreSuffix,
+		classic_theme_: themeInfo.pascalSnakeCaseWithUnderscoreSuffix,
 		CLASSIC_THEME_: themeInfo.macroCaseWithUnderscoreSuffix,
 	};
 

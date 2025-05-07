@@ -126,7 +126,7 @@ class Classic_Theme
 		add_theme_support(
 			'custom-background',
 			apply_filters(
-				'Classic_Theme_custom_background_args',
+				'classic_theme_custom_background_args',
 				[
 					'default-color' => 'ffffff',
 					'default-image' => '',
@@ -156,7 +156,7 @@ class Classic_Theme
 			$content_width = 640;
 		}
 
-		//$GLOBALS['content_width'] = apply_filters('Classic_Theme_content_width', 640);
+		//$GLOBALS['content_width'] = apply_filters('classic_theme_content_width', 640);
 	}
 
 	/**

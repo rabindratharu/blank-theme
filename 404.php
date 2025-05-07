@@ -19,7 +19,8 @@ get_header();
 		</header><!-- .page-header -->
 
 		<div class="page-content">
-			<p><?php esc_html_e('It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'classic-theme'); ?></p>
+			<p><?php esc_html_e('It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'classic-theme'); ?>
+			</p>
 
 			<?php
 			get_search_form();
@@ -46,8 +47,8 @@ get_header();
 
 			<?php
 			/* translators: %1$s: smiley */
-			$Classic_Theme_archive_content = '<p>' . sprintf(esc_html__('Try looking in the monthly archives. %1$s', 'classic-theme'), convert_smilies(':)')) . '</p>';
-			the_widget('WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$Classic_Theme_archive_content");
+			$classic_theme_archive_content = '<p>' . sprintf(esc_html__('Try looking in the monthly archives. %1$s', 'classic-theme'), convert_smilies(':)')) . '</p>';
+			the_widget('WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$classic_theme_archive_content");
 
 			the_widget('WP_Widget_Tag_Cloud');
 			?>
