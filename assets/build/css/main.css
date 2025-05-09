@@ -455,7 +455,7 @@ hr {
 
 ul,
 ol {
-  margin: 0 3em 1.5em 0;
+  margin: 0 0 1.5em 3em;
 }
 
 ul {
@@ -469,7 +469,7 @@ ol {
 li > ul,
 li > ol {
   margin-bottom: 0;
-  margin-right: 1.5em;
+  margin-left: 1.5em;
 }
 
 dt {
@@ -625,28 +625,28 @@ textarea {
   display: none;
   list-style: none;
   margin: 0;
-  padding-right: 0;
+  padding-left: 0;
 }
 
 .main-navigation ul ul {
   -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-  float: right;
+  float: left;
   position: absolute;
   top: 100%;
-  right: -999em;
+  left: -999em;
   z-index: 99999;
 }
 
 .main-navigation ul ul ul {
-  right: -999em;
+  left: -999em;
   top: 0;
 }
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
   display: block;
-  right: auto;
+  left: auto;
 }
 
 .main-navigation ul ul a {
@@ -655,7 +655,7 @@ textarea {
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
-  right: auto;
+  left: auto;
 }
 
 .main-navigation li {
@@ -785,8 +785,8 @@ textarea {
 
 .wp-caption img[class*=wp-image-] {
   display: block;
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
 }
 
 .wp-caption .wp-caption-text {
@@ -894,7 +894,7 @@ textarea {
   font-size: 0.875rem;
   font-weight: 700;
   height: auto;
-  right: 5px;
+  left: 5px;
   line-height: normal;
   padding: 15px 23px 14px;
   text-decoration: none;
@@ -911,13 +911,17 @@ textarea {
 /* Alignments
 --------------------------------------------- */
 .alignleft {
+  /*rtl:ignore*/
   float: left;
+  /*rtl:ignore*/
   margin-right: 1.5em;
   margin-bottom: 1.5em;
 }
 
 .alignright {
+  /*rtl:ignore*/
   float: right;
+  /*rtl:ignore*/
   margin-left: 1.5em;
   margin-bottom: 1.5em;
 }
@@ -925,8 +929,8 @@ textarea {
 .aligncenter {
   clear: both;
   display: block;
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
   margin-bottom: 1.5em;
 }
 

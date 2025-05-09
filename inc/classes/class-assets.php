@@ -61,9 +61,11 @@ class Assets
 	 */
 	public function register_scripts()
 	{
+		// Register Library styles
+		$this->register_script('swiper', 'library/swiper/swiper-bundle.min.js', [], '11.2.6');
 
 		// Register the main JavaScript file for the theme with jQuery dependency.
-		$this->register_script('classic-theme-main', 'js/main.js', ['jquery']);
+		$this->register_script('classic-theme-main', 'js/main.js', ['jquery', 'swiper']);
 
 		// Enqueue the registered JavaScript file to be included in the front-end.
 		wp_enqueue_script('classic-theme-main');
@@ -81,6 +83,28 @@ class Assets
 	 */
 	public function register_styles()
 	{
+		// Register the main CSS file for the theme.
+		$suffix = is_rtl() ? '-rtl' : '';
+
+		// Register Library styles
+		$this->register_style('font-awesome', "library/fontawesome/all{$suffix}.min.css", [], '6.7.2');
+		$this->register_style('swiper', "library/swiper/swiper-bundle{$suffix}.min.css", [], '11.2.6');
+
+		$this->register_style('classic-theme-main', "css/main{$suffix}.css", ['font-awesome', 'swiper']);
+
+		// Enqueue the registered CSS file to be included in the front-end.
+		$fonts = $this->get_font_url();
+		if ($fonts) {
+			require_once CLASSIC_THEME_TEMP_DIR . '/inc/helpers/wptt-webfont-loader.php';
+			wp_enqueue_style(
+				'classic-theme-font',
+				wptt_get_webfont_url($fonts),
+				[],
+				CLASSIC_THEME_VERSION
+			);
+		}
+		wp_enqueue_style('classic-theme-main');
+
 		// Register the main CSS file for the theme.
 		$this->register_style('classic-theme-main', 'css/main.css');
 
@@ -104,8 +128,6 @@ class Assets
 		// Enqueue the registered editor CSS file to be included in the block editor.
 		wp_enqueue_style('classic-theme-editor');
 	}
-
-
 
 	/**
 	 * Retrieves asset dependencies and version info from assets.php.
@@ -205,5 +227,25 @@ class Assets
 			sanitize_text_field($asset_meta['version']),
 			sanitize_key($media)
 		);
+	}
+
+	/**
+	 * Gets the URL of the Google Fonts stylesheet.
+	 *
+	 * @since 1.0.0
+	 * @return string The URL of the Google Fonts stylesheet.
+	 */
+	public function get_font_url()
+	{
+		$fonts = array(
+			'Albert+Sans:ital,wght@0,100..900;1,100..900'
+		);
+
+		$uri = add_query_arg(array(
+			'family' 	=> implode('&family=', $fonts),
+			'display' 	=> 'swap',
+		), 'https://fonts.googleapis.com/css2');
+
+		return esc_url_raw($uri);
 	}
 }

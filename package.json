@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "npm run clean && cross-env NODE_ENV=production webpack --mode production --progress",
 		"start": "npm run clean && cross-env NODE_ENV=development webpack --watch --mode development --progress",
-		"clean": "rimraf assets/build/*",
+		"clean": "rimraf assets/build",
 		"init": "node ./bin/init.js && npm run build:pot && npm run build:zip",
 		"build:pot": "grunt i18n",
 		"build:zip": "grunt release",

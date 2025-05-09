@@ -15,6 +15,7 @@ const RtlCssPlugin = require('rtlcss-webpack-plugin');
 const CSS_DIR = path.resolve(__dirname, 'assets/src/css');
 const JS_DIR = path.resolve(__dirname, 'assets/src/js');
 const IMG_DIR = path.resolve(__dirname, 'assets/src/images');
+const LIBRARY_DIR = path.resolve(__dirname, 'assets/src/library');
 const BUILD_DIR = path.resolve(__dirname, 'assets/build');
 
 const entry = {
@@ -52,6 +53,11 @@ const plugins = (argv) => [
         to: 'images',
         noErrorOnMissing: true,
       },
+      {
+        from: LIBRARY_DIR,
+        to: 'library',
+        noErrorOnMissing: true,
+      },
     ],
   }),
 ];
@@ -82,8 +88,6 @@ const rules = [
               require('autoprefixer')({
                 overrideBrowserslist: ['last 2 versions', '> 1%', 'ie >= 11']
               }),
-              // Add rtlcss for development mode
-              [require('rtlcss')()]
             ],
           },
         },
