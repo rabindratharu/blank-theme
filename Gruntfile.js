@@ -31,12 +31,16 @@ module.exports = function( grunt ) {
 					'!phpcs.xml',
 					'!CONTRIBUTING.md',
 					'!phpcs.ruleset.xml',
+					'!assets/src/**',
 					/**
 					 * Are you developer? Then add below files.
 					 */
 					'!Gruntfile.js',
 					'!postcss.config.js',
 					'!webpack.config.js',
+					'!tailwind.config.js',
+					'!babel.config.js',
+					'!package-lock.json',
 					'!package.json',
 					'!package-lock.json',
 					'!composer.json',
@@ -107,6 +111,8 @@ module.exports = function( grunt ) {
 						'!node_modules/**',
 						'!php-tests/**',
 						'!bin/**',
+						'!vendor/**',
+						'!tests/**',
 					],
 				},
 			},
@@ -142,6 +148,10 @@ module.exports = function( grunt ) {
 						src: [
 							'**/*.php', //all php
 							'!node_modules/**',
+							'!php-tests/**',
+							'!bin/**',
+							'!vendor/**',
+							'!tests/**',
 						],
 						expand: true,
 					},
