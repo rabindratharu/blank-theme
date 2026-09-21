@@ -1,182 +1,157 @@
 /**
  * External dependencies
  */
-const fs = require('fs');
-const path = require('path');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const RtlCssPlugin = require('rtlcss-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const fs = require( 'fs' );
+const path = require( 'path' );
+const CssMinimizerPlugin = require( 'css-minimizer-webpack-plugin' );
+const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
+const CopyPlugin = require( 'copy-webpack-plugin' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
 /**
  * WordPress dependencies
  */
-const [scriptConfig] = require('@wordpress/scripts/config/webpack.config');
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
-/**
- * Read all file entries in a directory.
- * @param {string} dir Directory to read.
- * @return {Object} Object with file entries.
- */
-const readAllFileEntries = (dir) => {
-  const entries = {};
+// Directory paths
+const SRC_DIR = path.resolve( __dirname, 'assets/src' );
+const BUILD_DIR = path.resolve( __dirname, 'assets/build' );
 
-  if (!fs.existsSync(dir)) {
-    return entries;
-  }
+// Production flag
+const isProduction = process.env.NODE_ENV === 'production';
 
-  if (fs.readdirSync(dir).length === 0) {
-    return entries;
-  }
+// Ensure build directory exists
+if ( ! fs.existsSync( BUILD_DIR ) ) {
+	fs.mkdirSync( BUILD_DIR, { recursive: true } );
+}
 
-  fs.readdirSync(dir).forEach((fileName) => {
-    // Skip hidden files (starting with '.') and directories
-    if (fileName.startsWith('.')) {
-      return; // Skip files like .DS_Store
-    }
-
-    const fullPath = path.resolve(dir, fileName);
-    if (!fs.lstatSync(fullPath).isDirectory() && !fileName.startsWith('_')) {
-      entries[fileName.replace(/\.[^/.]+$/, '')] = fullPath;
-    }
-  });
-
-  return entries;
+// Shared base config
+const sharedConfig = {
+	...defaultConfig,
+	output: {
+		path: BUILD_DIR,
+		filename: '[name].js',
+		chunkFilename: '[name].js',
+	},
+	devtool: isProduction ? false : defaultConfig.devtool,
+	plugins: [
+		...defaultConfig.plugins,
+		new RemoveEmptyScriptsPlugin(),
+		new CopyPlugin( {
+			patterns: [
+				{
+					from: path.join( SRC_DIR, 'images' ),
+					to: path.join( BUILD_DIR, 'images' ),
+					noErrorOnMissing: true,
+				},
+				{
+					from: path.join( SRC_DIR, 'fonts' ),
+					to: path.join( BUILD_DIR, 'fonts' ),
+					noErrorOnMissing: true,
+				},
+			],
+		} ),
+	],
+	optimization: {
+		...defaultConfig.optimization,
+		splitChunks: {
+			...defaultConfig.optimization.splitChunks,
+		},
+		minimizer: defaultConfig.optimization.minimizer.concat( [ new CssMinimizerPlugin() ] ),
+	},
 };
 
-// Shared configuration function
-const getSharedConfig = (env, argv) => {
-  const isProduction = argv.mode === 'production';
+// Styles config
+const styles = {
+	...sharedConfig,
+	output: {
+		path: path.join( BUILD_DIR, 'css' ),
+		filename: '[name].js',
+		chunkFilename: '[name].js',
+	},
+	entry: () => {
+		const entries = {};
+		const dir = path.join( SRC_DIR, 'css' );
 
-  const plugins = [
-    ...scriptConfig.plugins.filter((plugin) => !(plugin instanceof RtlCssPlugin)),
-    new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: isProduction
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    new RemoveEmptyScriptsPlugin({
-      stage: RemoveEmptyScriptsPlugin.STAGE_AFTER_PROCESS_PLUGINS,
-    }),
-    new RtlCssPlugin({
-      filename: '[name]-rtl.css',
-    }),
-  ];
+		if ( fs.existsSync( dir ) ) {
+			fs.readdirSync( dir ).forEach( ( fileName ) => {
+				const fullPath = path.join( dir, fileName );
+				if (
+					! fs.lstatSync( fullPath ).isDirectory() &&
+					fileName.match( /\.(scss|css)$/ )
+				) {
+					entries[ fileName.replace( /\.[^/.]+$/, '' ) ] = fullPath;
+				}
+			} );
+		}
 
-  const rules = [
-    {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: 'babel-loader'
-    },
-    {
-      test: /\.(sc|sa|c)ss$/,
-      exclude: /node_modules/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader',
-        'sass-loader',
-      ]
-    }
-  ];
-
-  const optimization = {
-    ...scriptConfig.optimization,
-    splitChunks: {
-      ...scriptConfig.optimization.splitChunks,
-    },
-    minimizer: scriptConfig.optimization.minimizer.concat([
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              normalizeWhitespace: isProduction,
-            },
-          ],
-        },
-      }),
-    ]),
-  };
-
-  return {
-    ...scriptConfig,
-    devtool: false,
-    module: {
-      rules: rules,
-      noParse: /\.(DS_Store)$/,
-    },
-    optimization: optimization,
-    plugins: plugins,
-    resolve: {
-      modules: [
-        path.resolve(process.cwd(), 'node_modules'),
-        'node_modules',
-      ],
-    },
-    externals: {
-      jquery: 'jQuery'
-    }
-  };
+		return entries;
+	},
+	module: {
+		rules: [
+			// Keep all non-CSS/SCSS rules from sharedConfig
+			...( sharedConfig?.module?.rules?.filter( ( rule ) => {
+				return (
+					! rule.test ||
+					( ! rule.test.toString().includes( 'scss' ) &&
+						! rule.test.toString().includes( 'css' ) )
+				);
+			} ) || [] ),
+			// Custom SCSS/CSS rule with url() rewriting disabled
+			{
+				test: /\.(scss|css)$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							url: false, // Preserve relative url() paths as-is (e.g. ../images/)
+							importLoaders: 1,
+						},
+					},
+					'sass-loader',
+				],
+			},
+		],
+	},
+	plugins: [
+		...sharedConfig.plugins.filter(
+			( plugin ) =>
+				plugin.constructor.name !== 'DependencyExtractionWebpackPlugin' &&
+				plugin.constructor.name !== 'CopyPlugin', // Images already copied by scripts config
+		),
+	],
 };
 
-// Styles configuration
-const stylesConfig = (env, argv) => {
-  const config = getSharedConfig(env, argv);
-  return {
-    ...config,
-    entry: () => readAllFileEntries('./assets/src/css'),
-    output: {
-      ...config.output,
-      path: path.resolve(process.cwd(), 'assets', 'build', 'css'),
-      filename: '[name].js', // Needed even though we're extracting CSS
-    }
-  };
+// Scripts config
+const scripts = {
+	...sharedConfig,
+	output: {
+		path: path.join( BUILD_DIR, 'js' ),
+		filename: '[name].js',
+		chunkFilename: '[name].js',
+	},
+	entry: {
+		main: path.resolve( process.cwd(), 'assets', 'src', 'js', 'main.js' ),
+	},
+	module: {
+		rules:
+			sharedConfig?.module?.rules?.filter( ( rule ) => {
+				return (
+					! rule.test ||
+					( ! rule.test.toString().includes( 'scss' ) &&
+						! rule.test.toString().includes( 'css' ) )
+				);
+			} ) || [],
+	},
+	resolve: {
+		...sharedConfig.resolve,
+		extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
+		alias: {
+			...( sharedConfig.resolve?.alias || {} ),
+			'@': path.resolve( process.cwd(), 'assets', 'src' ),
+		},
+	},
 };
 
-// Scripts configuration
-const scriptsConfig = (env, argv) => {
-  const config = getSharedConfig(env, argv);
-  return {
-    ...config,
-    entry: () => readAllFileEntries('./assets/src/js'),
-    output: {
-      ...config.output,
-      path: path.resolve(process.cwd(), 'assets', 'build', 'js'),
-    }
-  };
-};
-
-// Assets configuration
-const assetsConfig = (env, argv) => {
-  const config = getSharedConfig(env, argv);
-  return {
-    ...config,
-    plugins: [
-      ...config.plugins,
-      new CopyPlugin({
-        patterns: [
-          {
-            from: './assets/src/images',
-            to: path.resolve(process.cwd(), 'assets', 'build', 'images'),
-          },
-          {
-            from: './assets/src/fonts',
-            to: path.resolve(process.cwd(), 'assets', 'build', 'fonts'),
-          },
-        ],
-      }),
-    ],
-    entry: {}, // No entry points needed for copy plugin
-    output: {
-      path: path.resolve(process.cwd(), 'assets', 'build'),
-    }
-  };
-};
-
-module.exports = [stylesConfig, scriptsConfig, assetsConfig];
+module.exports = [ scripts, styles ];

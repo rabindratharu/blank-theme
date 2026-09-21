@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./vendor/bin/phpcbf *)",
+      "Bash(./vendor/bin/phpcs *)"
+    ],
+    "ask": [
+      "Bash(git push *)"
+    ]
+  }
+}

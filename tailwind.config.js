@@ -1,12 +1,18 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
 	content: [
-		"./templates/**/*.{js,ts,jsx,tsx,html,php}",
-		"./patterns/**/*.{js,ts,jsx,tsx,html,php}",
-		"./assets/js/**/*.{js,ts,jsx,tsx,html,php}",
+		'./assets/src/**/*.{js,jsx,ts,tsx}',
+		'./inc/**/*.php',
+		'./templates/**/*.php', // if using templates
+		'./*.php', // root files like index.php
+		'./assets/**/*.html', // if using HTML templates
 	],
 	theme: {
-		extend: {},
+		extend: {
+			aspectRatio: {
+				'4/3': '4 / 3',
+				'3/2': '3 / 2',
+				golden: '1.618 / 1',
+			},
+		},
 	},
-	plugins: [],
 };

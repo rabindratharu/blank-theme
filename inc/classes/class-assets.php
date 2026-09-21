@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Enqueue theme assets.
  *
@@ -11,10 +10,10 @@ namespace Blank_Theme_Child\Inc;
 use Blank_Theme_Child\Inc\Traits\Singleton;
 
 /**
- * Class Assets
+ * Handles registration and enqueueing of the theme's compiled front-end assets.
  */
-class Assets
-{
+class Assets {
+
 
 	use Singleton;
 
@@ -23,9 +22,8 @@ class Assets
 	 *
 	 * Initializes the class and sets up necessary hooks.
 	 */
-	protected function __construct()
-	{
-		// Set up hooks for the class
+	protected function __construct() {
+		// Set up hooks for the class.
 		$this->setup_hooks();
 	}
 
@@ -37,10 +35,9 @@ class Assets
 	 *
 	 * @return void
 	 */
-	protected function setup_hooks()
-	{
+	protected function setup_hooks() {
 		// Register and enqueue scripts and styles.
-		add_action('wp_enqueue_scripts', [$this, 'register_assets']);
+		add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
 	}
 
 	/**
@@ -50,8 +47,7 @@ class Assets
 	 *
 	 * @return void
 	 */
-	public function register_assets()
-	{
+	public function register_assets() {
 		$this->register_styles();
 		$this->register_scripts();
 	}
@@ -65,13 +61,12 @@ class Assets
 	 *
 	 * @return void
 	 */
-	public function register_scripts()
-	{
+	public function register_scripts() {
 		// Register the main JavaScript file for the theme with jQuery dependency.
-		$this->register_script('blank-theme-child-main', 'js/main.js', ['jquery']);
+		$this->register_script( 'blank-theme-child-main', 'js/main.js', [ 'jquery' ] );
 
 		// Enqueue the registered JavaScript file to be included in the front-end.
-		wp_enqueue_script('blank-theme-child-main');
+		wp_enqueue_script( 'blank-theme-child-main' );
 	}
 
 	/**
@@ -82,13 +77,12 @@ class Assets
 	 *
 	 * @return void
 	 */
-	public function register_styles()
-	{
+	public function register_styles() {
 		// Register the main CSS file for the theme.
-		$this->register_style('blank-theme-child-main', 'css/main.css', ['parent-template-theme-css']);
+		$this->register_style( 'blank-theme-child-main', 'css/main.css', [ 'parent-template-theme-css' ] );
 
 		// Enqueue the registered CSS file to be included in the front-end.
-		wp_enqueue_style('blank-theme-child-main');
+		wp_enqueue_style( 'blank-theme-child-main' );
 	}
 
 	/**
@@ -109,45 +103,44 @@ class Assets
 	 *     @type string $version      String specifying script version number.
 	 * }
 	 */
-	public function get_asset_meta($file, $deps = [], $ver = false)
-	{
+	public function get_asset_meta( $file, $deps = [], $ver = false ) {
 		$asset_meta = [
 			'dependencies' => [],
-			'version'      => $this->get_file_version($file, $ver),
+			'version'      => $this->get_file_version( $file, $ver ),
 		];
 
-		// Determine file extension for asset meta lookup
-		$file_extension = pathinfo($file, PATHINFO_EXTENSION);
-		$file_name      = basename($file, '.' . $file_extension);
+		// Determine file extension for asset meta lookup.
+		$file_extension = pathinfo( $file, PATHINFO_EXTENSION );
+		$file_name      = basename( $file, '.' . $file_extension );
 
-		// Set appropriate directory based on file type
-		$directory = ('css' === $file_extension) ? 'css' : 'js';
+		// Set appropriate directory based on file type.
+		$directory = ( 'css' === $file_extension ) ? 'css' : 'js';
 
 		// Get the asset meta file path.
 		$asset_meta_file = sprintf(
 			'%s/%s/%s.asset.php',
-			untrailingslashit(BLANK_THEME_CHILD_BUILD_DIR),
+			untrailingslashit( BLANK_THEME_CHILD_BUILD_DIR ),
 			$directory,
 			$file_name
 		);
 
 		// If the file is readable, read the asset meta data from the file.
-		if (is_readable($asset_meta_file)) {
-			$file_meta = require $asset_meta_file;
+		if ( is_readable( $asset_meta_file ) ) {
+			$file_meta = require $asset_meta_file; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 
-			if (isset($file_meta['dependencies']) && is_array($file_meta['dependencies'])) {
+			if ( isset( $file_meta['dependencies'] ) && is_array( $file_meta['dependencies'] ) ) {
 				$asset_meta['dependencies'] = $file_meta['dependencies'];
 			}
 
-			if (isset($file_meta['version'])) {
+			if ( isset( $file_meta['version'] ) ) {
 				$asset_meta['version'] = $file_meta['version'];
 			}
 		}
 
 		// Merge with provided dependencies.
-		if (! empty($deps) && is_array($deps)) {
+		if ( ! empty( $deps ) && is_array( $deps ) ) {
 			$asset_meta['dependencies'] = array_unique(
-				array_merge($asset_meta['dependencies'], $deps)
+				array_merge( $asset_meta['dependencies'], $deps )
 			);
 		}
 
@@ -165,16 +158,15 @@ class Assets
 	 * @param array            $deps      Optional. An array of registered script handles this script depends on. Default empty array.
 	 * @param string|bool|null $ver       Optional. String specifying script version number, if not set, filetime will be used as version number.
 	 * @param bool             $in_footer Optional. Whether to enqueue the script before </body> instead of in the <head>. Default true.
-	 * 
+	 *
 	 * @return bool Whether the script has been registered. True on success, false on failure.
 	 */
-	public function register_script($handle, $file, $deps = [], $ver = false, $in_footer = true)
-	{
+	public function register_script( $handle, $file, $deps = [], $ver = false, $in_footer = true ) {
 		// Get the URL of the script file.
-		$src = sprintf('%s/%s', BLANK_THEME_CHILD_BUILD_URI, $file);
+		$src = sprintf( '%s/%s', BLANK_THEME_CHILD_BUILD_URI, $file );
 
 		// Get the asset meta data.
-		$asset_meta = $this->get_asset_meta($file, $deps, $ver);
+		$asset_meta = $this->get_asset_meta( $file, $deps, $ver );
 
 		// Register the script with the WordPress script enqueueing API.
 		return wp_register_script(
@@ -203,13 +195,12 @@ class Assets
 	 *
 	 * @return bool Whether the style has been registered. True on success, false on failure.
 	 */
-	public function register_style($handle, $file, $deps = [], $ver = false, $media = 'all')
-	{
+	public function register_style( $handle, $file, $deps = [], $ver = false, $media = 'all' ) {
 		// Get the URL of the style file.
-		$src = sprintf('%s/%s', BLANK_THEME_CHILD_BUILD_URI, $file);
+		$src = sprintf( '%s/%s', BLANK_THEME_CHILD_BUILD_URI, $file );
 
 		// Get the asset meta data.
-		$asset_meta = $this->get_asset_meta($file, $deps, $ver);
+		$asset_meta = $this->get_asset_meta( $file, $deps, $ver );
 
 		// Register the style with the WordPress script enqueueing API.
 		return wp_register_style(
@@ -233,23 +224,22 @@ class Assets
 	 *
 	 * @return string|int|boolean
 	 */
-	public function get_file_version($file, $ver = false)
-	{
+	public function get_file_version( $file, $ver = false ) {
 		// If a version is provided, return it.
-		if (! empty($ver)) {
+		if ( ! empty( $ver ) ) {
 			return $ver;
 		}
 
 		// Get the file path.
-		$file_path = sprintf('%s/%s', BLANK_THEME_CHILD_BUILD_DIR, $file);
+		$file_path = sprintf( '%s/%s', BLANK_THEME_CHILD_BUILD_DIR, $file );
 
 		// Check if the file exists.
-		if (file_exists($file_path)) {
+		if ( file_exists( $file_path ) ) {
 			// If the file exists, get the modification time.
-			return filemtime($file_path);
+			return filemtime( $file_path );
 		}
 
 		// If the file does not exist or no version specified, use theme version.
-		return defined('BLANK_THEME_CHILD_VERSION') ? BLANK_THEME_CHILD_VERSION : '1.0.0';
+		return defined( 'BLANK_THEME_CHILD_VERSION' ) ? BLANK_THEME_CHILD_VERSION : '1.0.0';
 	}
 }

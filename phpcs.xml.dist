@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<ruleset
+	name="WPCS for Theme/Plugin"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PHPCSStandards/PHP_CodeSniffer/master/phpcs.xsd"
+>
+	<description>Sniffs for theme/plugin</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+
+	<!-- Exclude paths -->
+	<exclude-pattern>**/build/**</exclude-pattern>
+	<exclude-pattern>**/node_modules/**</exclude-pattern>
+	<exclude-pattern>**/vendor/**</exclude-pattern>
+	<exclude-pattern>**/vendor-prefixed/**</exclude-pattern>
+	<exclude-pattern>**/tests/**</exclude-pattern>
+
+	<!-- CLI args -->
+	<arg value="sp" />
+	<arg name="basepath" value="./" />
+	<arg name="colors" />
+	<arg name="extensions" value="php" />
+	<arg name="cache" value=".phpcs-cache.json" />
+	<arg name="parallel" value="20" />
+	<arg name="severity" value="1" />
+
+	<!-- PHP version compatibility: matches platform.php in composer.json -->
+	<config name="testVersion" value="8.0-" />
+
+	<!-- WordPress version compatibility: correct WPCS config key -->
+	<config name="minimum_supported_wp_version" value="6.4" />
+
+	<!--
+		WordPress VIP Go standards
+		@see: https://docs.wpvip.com/technical-references/vip-code-analysis-bot/phpcs-report/
+	-->
+	<rule ref="WordPress-VIP-Go">
+		<exclude name="WordPressVIPMinimum.JS" />
+	</rule>
+
+	<!--
+		PHPCompatibility + PHPCompatibilityWP
+		@see: https://github.com/PHPCompatibility/PHPCompatibilityWP
+	-->
+	<rule ref="PHPCompatibilityWP" />
+
+	<!--
+		Core WordPress Coding Standards
+		@see: https://github.com/WordPress/WordPress-Coding-Standards
+	-->
+	<rule ref="WordPress-Extra">
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax" />
+		<exclude name="Universal.Operators.DisallowShortTernary" />
+		<exclude name="WordPress.Files.FileName" />
+		<!-- Deprecated in PHPCS v4 -->
+		<exclude name="Generic.Functions.CallTimePassByReference" />
+	</rule>
+	<rule ref="WordPress-Docs">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+
+	<!-- Enforce short array syntax [] over array() -->
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+
+	<!--
+		Test-specific exclusions
+	-->
+	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="Generic.PHP.NoSilencedErrors">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.PHP.DiscouragedPHPFunctions">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.PHP.NoSilencedErrors">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.EnqueuedResources.NonEnqueuedScript">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPressVIPMinimum.Functions.RestrictedFunctions">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPressVIPMinimum.Files.IncludingFile.UsingVariable">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+	</rule>
+
+	<!--
+		Plugin-specific customizations
+	-->
+
+	<!-- Enforce plugin prefix on all globals -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>**/tests/**</exclude-pattern>
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="BLANK_THEME_CHILD" /><!-- Constants -->
+				<element value="Blank_Theme_Child" /><!-- Classes -->
+				<element value="blank_theme_child_" /><!-- Functions/variables -->
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Enforce text domain -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="blank-theme" />
+			</property>
+		</properties>
+	</rule>
+
+</ruleset>

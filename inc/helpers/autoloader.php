@@ -1,17 +1,25 @@
 <?php
 /**
- * Autoloader file for plugin.
+ * Autoloader file for the theme.
  *
-  * @package Blank-Theme-Child
+ * @package Blank-Theme-Child
  */
 
 namespace Blank_Theme_Child\Inc\Helpers;
 
 /**
- * Auto loader function.
+ * Load a class file from a namespaced resource string.
+ *
+ * Resolves a `Blank_Theme_Child\Inc\...` namespace into a file path under
+ * `inc/` and requires it when the file exists:
+ * - `Traits\Foo`        → `inc/traits/trait-foo.php`
+ * - `Blocks\Foo`        → `inc/classes/blocks/class-foo.php`
+ * - `Widgets\Foo`       → `inc/classes/widgets/class-foo.php`
+ * - any other `Inc\Foo` → `inc/classes/class-foo.php`
+ *
+ * Registered via `spl_autoload_register()`.
  *
  * @param string $resource Source namespace.
- *
  * @return void
  */
 function autoloader( $resource = '' ) {

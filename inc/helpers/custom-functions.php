@@ -2,7 +2,7 @@
 /**
  * Contains custom functions used for the theme
  *
-  * @package Blank-Theme-Child
+ * @package Blank-Theme-Child
  */
 
 // Registers block binding callback function for the post format name.

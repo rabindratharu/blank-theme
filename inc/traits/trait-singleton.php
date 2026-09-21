@@ -22,11 +22,17 @@
  *
  * If you specifically need multiple objects, then use a normal class.
  *
-  * @package Blank-Theme-Child
+ * @package Blank-Theme-Child
  */
 
 namespace Blank_Theme_Child\Inc\Traits;
 
+/**
+ * Trait Singleton.
+ *
+ * Implements the singleton pattern: prevents direct construction and cloning,
+ * and exposes a shared instance for each called class via `get_instance()`.
+ */
 trait Singleton {
 
 	/**
@@ -83,7 +89,5 @@ trait Singleton {
 		}
 
 		return $instance[ $called_class ];
-
 	}
-
 } // End trait

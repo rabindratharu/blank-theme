@@ -1,190 +1,154 @@
 module.exports = function( grunt ) {
-	'use strict';
+	require( 'load-grunt-tasks' )( grunt );
 
+	const copyFiles = [
+		'**', // include everything
+		'!node_modules/**', // exclude node_modules
+		'!vendor/**', // exclude vendor directory
+		'!assets/src/images/**', // exclude source assets/images
+		'!assets/src/library/**', // exclude source assets/library
+		'!assets/src/fonts/**', // exclude source assets/fonts
+		'!cypress/**', // exclude Cypress tests
+		'!tests/**', // exclude unit tests
+		'!build/**', // exclude build output
+		'!.git/**', // exclude git directory
+		'!.gitignore', // exclude git config
+		'!package.json', // exclude package manifest
+		'!package-lock.json', // exclude lock files
+		'!composer.json', // exclude composer manifest
+		'!composer.lock',
+		'!*.config.js', // exclude config files used only for development
+		'!Gruntfile.js', // exclude this build file
+		'!webpack.config.js',
+		'!babel.config.js',
+		'!postcss.config.js',
+		'!tailwind.config.js',
+		'!cypress.config.js',
+		'!phpcs.xml.dist', // exclude linting configs
+		'!phpstan.neon.dist',
+		'!phpunit.xml.dist',
+		'!**/*.map', // exclude source maps
+		'!**/.DS_Store', // exclude macOS metadata
+		'!**/*.tmp', // exclude temporary files
+		'!.phpcs-cache.json', // exclude phpcs cache
+		'!clean-errors.txt',
+		'!CLAUDE.md', // exclude AI assistant instructions
+		'!AGENTS.md', // exclude AI assistant instructions
+	];
+
+	// Project configuration
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
 
-		copy: {
-			main: {
-				options: {
-					mode: true,
-				},
-				src: [
-					'**',
-					'!style - Copy.css',
-					'!resources/**',
-					'!node_modules/**',
-					'!css/sourcemap/**',
-					'!.git/**',
-					'!bin/**',
-					'!.gitlab-ci.yml',
-					'!tests/**',
-					'!phpunit.xml.dist',
-					'!*.sh',
-					'!*.map',
-					'!.gitignore',
-					'!phpunit.xml',
-					'!README.md',
-					'!codesniffer.ruleset.xml',
-					'!vendor/**',
-					'!phpcs.xml.dist',
-					'!phpcs.xml',
-					'!CONTRIBUTING.md',
-					'!phpcs.ruleset.xml',
-					'!assets/src/**',
-					/**
-					 * Are you developer? Then add below files.
-					 */
-					'!Gruntfile.js',
-					'!postcss.config.js',
-					'!webpack.config.js',
-					'!tailwind.config.js',
-					'!babel.config.js',
-					'!package-lock.json',
-					'!package.json',
-					'!package-lock.json',
-					'!composer.json',
-					'!composer.lock',
-					'!yarn.lock',
-					'!sass/**',
-					'!*.zip',
-				],
-				dest: 'blank-theme-child/',
-			},
-		},
-
-		compress: {
-			main: {
-				options: {
-					archive: 'blank-theme-child.zip',
-					mode: 'zip',
-				},
-				files: [
-					{
-						src: [ './blank-theme-child/**' ],
-					},
-				],
-			},
-		},
-
+		// Clean task to remove temporary files and previous builds
 		clean: {
-			main: [ 'blank-theme-child' ],
-			zip: [ 'blank-theme-child.zip' ],
-		},
-
-		makepot: {
-			target: {
-				options: {
-					domainPath: '/',
-					mainFile: 'blank-theme-child.php',
-					potFilename: 'languages/blank-theme-child.pot',
-					potHeaders: {
-						poedit: true,
-						'x-poedit-keywordslist': true,
-						'pot-creation-date': new Date().toISOString(), // Ensure this is correctly defined
-						'language-team': 'Your Team <team@example.com>', // Optional: Add language team
-						'report-msgid-bugs-to': 'https://example.com/support', // Optional: Add bug report URL
-					},
-					type: 'wp-theme',
-					updateTimestamp: true,
-				},
+			temp: {
+				src: [ '**/*.tmp', '**/.afpDeleted*', '**/.DS_Store' ],
+				dot: true,
+				filter: 'isFile',
 			},
-		},
-
-		wp_readme_to_markdown: {
-			your_target: {
-				files: {
-					'README.md': 'readme.txt',
-				},
-			},
-		},
-
-		addtextdomain: {
-			options: {
-				textdomain: 'blank-theme-child',
-			},
-			target: {
-				files: {
-					src: [
-						'*.php',
-						'**/*.php',
-						'!node_modules/**',
-						'!php-tests/**',
-						'!bin/**',
-						'!vendor/**',
-						'!tests/**',
-					],
-				},
-			},
-		},
-
-		/**
-		 * Check textdomain
-		 */
-		checktextdomain: {
-			standard: {
-				options: {
-					text_domain: 'blank-theme-child', //Specify allowed domain(s)
-					keywords: [
-						//List keyword specifications
-						'__:1,2d',
-						'_e:1,2d',
-						'_x:1,2c,3d',
-						'esc_html__:1,2d',
-						'esc_html_e:1,2d',
-						'esc_html_x:1,2c,3d',
-						'esc_attr__:1,2d',
-						'esc_attr_e:1,2d',
-						'esc_attr_x:1,2c,3d',
-						'_ex:1,2c,3d',
-						'_n:1,2,4d',
-						'_nx:1,2,4c,5d',
-						'_n_noop:1,2,3d',
-						'_nx_noop:1,2,3c,4d',
-					],
-				},
-				files: [
-					{
-						src: [
-							'**/*.php', //all php
-							'!node_modules/**',
-							'!php-tests/**',
-							'!bin/**',
-							'!vendor/**',
-							'!tests/**',
-						],
-						expand: true,
-					},
+			// Clean all build directories in assets folder and subfolders
+			assets: {
+				src: [
+					'build/**', // All build directories in assets
 				],
+			},
+			folder_v2: [ 'build/**' ],
+		},
+
+		// Check text domain for WordPress i18n
+		checktextdomain: {
+			options: {
+				text_domain: 'blank-theme-child',
+				keywords: [
+					'__:1,2d',
+					'_e:1,2d',
+					'_x:1,2c,3d',
+					'esc_html__:1,2d',
+					'esc_html_e:1,2d',
+					'esc_html_x:1,2c,3d',
+					'esc_attr__:1,2d',
+					'esc_attr_e:1,2d',
+					'esc_attr_x:1,2c,3d',
+					'_ex:1,2c,3d',
+					'_n:1,2,4d',
+					'_nx:1,2,4c,5d',
+					'_n_noop:1,2,3d',
+					'_nx_noop:1,2,3c,4d',
+				],
+			},
+			files: {
+				src: [
+					'inc/**/*.php',
+					'!core/external/**', // Exclude external libs
+				],
+				expand: true,
+			},
+		},
+
+		// Copy task for pro version
+		copy: {
+			pro: {
+				files: [ {
+					expand: true,
+					src: copyFiles,
+					dest: 'build/<%= pkg.name %>/',
+				} ],
+			},
+		},
+
+		// Compress task to create ZIP
+		compress: {
+			pro: {
+				options: {
+					mode: 'zip',
+					archive: './build/<%= pkg.name %>-<%= pkg.version %>.zip',
+				},
+				expand: true,
+				cwd: 'build/<%= pkg.name %>/',
+				src: [ '**/*' ],
+				dest: '<%= pkg.name %>/',
+			},
+		},
+
+		// Search task configuration (if needed)
+		search: {
+			version: {
+				files: {
+					src: [ '*.php', 'inc/**/*.php' ],
+				},
+				options: {
+					searchString: /Version:\s*(\d+\.\d+\.\d+)/,
+					logFormat: 'console',
+				},
 			},
 		},
 	} );
 
-	/**
-	 * Load Grunt Tasks
-	 */
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-compress' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-wp-i18n' );
-	grunt.loadNpmTasks( 'grunt-checktextdomain' );
+	// Register tasks
+	grunt.registerTask( 'version-compare', [ 'search:version' ] );
+	grunt.registerTask( 'finish', function() {
+		const json = grunt.file.readJSON( 'package.json' );
+		const file = `./build/${ json.name }-${ json.version }.zip`;
+		grunt.log.writeln( `Process finished. ZIP created: ${ file }` );
+		grunt.log.writeln( '----------' );
+	} );
 
-	/* Read File Generation task */
-	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
-
-	// Generate Read me file
-	grunt.registerTask( 'readme', [ 'wp_readme_to_markdown' ] );
-
-	// i18n
-	grunt.registerTask( 'i18n', [ 'checktextdomain', 'addtextdomain', 'makepot' ] );
-
-	// Generate Release package
-	grunt.registerTask( 'release', [
-		'clean:zip',
-		'copy',
-		'compress',
-		'clean:main',
+	// Build task
+	grunt.registerTask( 'build', [
+		'checktextdomain',
+		'copy:pro',
+		'compress:pro',
+		'finish',
 	] );
 
-	grunt.util.linefeed = '\n';
+	// Pre-build clean task
+	grunt.registerTask( 'preBuildClean', [
+		'clean:temp',
+		'clean:assets',
+		'clean:folder_v2',
+	] );
+
+	// release task
+	grunt.registerTask( 'release', [ 'preBuildClean', 'build' ] );
 };
