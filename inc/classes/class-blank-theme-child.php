@@ -96,7 +96,7 @@ class Blank_Theme_Child {
 		$parent_theme = get_template();
 
 		// Prevent running the migration more than once.
-		$migration_key = 'blank_theme_child_migrated_' . $child_theme;
+		$migration_key = 'migrated_' . $child_theme;
 
 		if ( get_option( $migration_key ) ) {
 			return;

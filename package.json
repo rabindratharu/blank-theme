@@ -89,8 +89,6 @@
 		"rename": "node bin/init.js",
 		"test:php": "wp-env run tests-cli --env-cwd=wp-content/plugins/$(basename \"$(pwd)\")/ composer run-script test",
 		"wp-env": "wp-env",
-		"init": "./bin/init.js && npm run release",
-		"prepare": "npm run init",
 		"precommit": "npm-run-all lint:* pot"
 	},
 	"overrides": {
